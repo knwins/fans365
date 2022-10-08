@@ -66,7 +66,7 @@ const Register: FC = () => {
   const checkConfirm = (_: any, value: string) => {
     const promise = Promise;
     if (value && value !== form.getFieldValue('password')) {
-      return promise.reject(<FormattedMessage id="pages.password.two.error" />);
+      return promise.reject(<FormattedMessage id="pages.password.confirm.password.required" />);
     }
     return promise.resolve();
   };
@@ -185,13 +185,13 @@ const Register: FC = () => {
               {
                 required: true,
                 message: intl.formatMessage({
-                  id: 'pages.register.please.username',
+                  id: 'pages.register.please.username.required',
                 }),
               },
               {
                 type: 'email',
                 message: intl.formatMessage({
-                  id: 'pages.register.please.username.error',
+                  id: 'pages.register.please.email.required',
                 }),
               },
             ]}
@@ -239,7 +239,6 @@ const Register: FC = () => {
                 );
                 return;
               } else {
-                message.error(info);
                 throw new Error(info);
               }
             }}

@@ -5,7 +5,7 @@ import { request } from '@umijs/max';
 export async function currentUser(options?: { [key: string]: any }) {
   return request<{
     data: API.CurrentUser;
-  }>('https://api.fans365.net/api/users/current', {
+  }>('http://localhost:8081/api/users/current', {
     method: 'GET',
     ...(options || {}),
   });
@@ -13,7 +13,7 @@ export async function currentUser(options?: { [key: string]: any }) {
 
 /** 退出登录接口 POST /api/login/outLogin */
 export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('https://api.fans365.net/api/login/outLogin', {
+  return request<Record<string, any>>('http://localhost:8081/api/login/outLogin', {
     method: 'POST',
     ...(options || {}),
   });
@@ -21,7 +21,7 @@ export async function outLogin(options?: { [key: string]: any }) {
 
 /** 登录接口 POST /api/login/account */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('https://api.fans365.net/api/login/account', {
+  return request<API.LoginResult>('http://localhost:8081/api/login/account', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export async function getNoticeList(options?: { [key: string]: any }) {
     total?: number;
     data: API.NoticeIconItem[];
     status?: boolean;
-  }>('https://api.fans365.net/api/notice/list', {
+  }>('http://localhost:8081/api/notice/list', {
     method: 'GET',
     ...(options || {}),
   });
@@ -48,7 +48,7 @@ export async function getNotice(data: { [id: string]: any }, options?: { [id: st
   return request<{
     data: API.NoticeIconItem;
     status?: boolean;
-  }>('https://api.fans365.net/api/notice/get', {
+  }>('http://localhost:8081/api/notice/get', {
     data,
     method: 'GET',
 
@@ -61,7 +61,7 @@ export async function updateNotice(data: { [key: string]: any }, options?: { [ke
   return request<{
     data: API.NoticeIconItem;
     status?: boolean;
-  }>('https://api.fans365.net/api/notice/update', {
+  }>('http://localhost:8081/api/notice/update', {
     data,
     method: 'PUT',
     ...(options || {}),
@@ -74,7 +74,7 @@ export async function removeNotice(data: { [key: string]: any }, options?: { [ke
   return request<{
     data: API.NoticeIconItem;
     status?: boolean;
-  }>('https://api.fans365.net/api/notice/delete', {
+  }>('http://localhost:8081/api/notice/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),
@@ -82,7 +82,7 @@ export async function removeNotice(data: { [key: string]: any }, options?: { [ke
 }
 
 export async function addNotice(data: { [key: string]: any }, options?: { [key: string]: any }) {
-  return request<API.NoticeIconItem>('https://api.fans365.net/api/notice/add', {
+  return request<API.NoticeIconItem>('http://localhost:8081/api/notice/add', {
     data,
     method: 'POST',
     ...(options || {}),

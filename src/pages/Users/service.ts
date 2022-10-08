@@ -19,7 +19,7 @@ export async function queryUsersList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/users/list', {
+  }>('http://localhost:8081/api/users/list', {
     method: 'GET',
     params: {
       ...params,
@@ -30,7 +30,7 @@ export async function queryUsersList(
 
 /** 新建 GET /api/users/list */
 export async function getUsers(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<UserItem>('https://api.fans365.net/api/users/get', {
+  return request<UserItem>('http://localhost:8081/api/users/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -44,7 +44,7 @@ export async function updateUsers(data: { [id: string]: any }, options?: { [id: 
     /** 列表的内容总数 */
     info?: string;
     status?: boolean;
-  }>('https://api.fans365.net/api/users/update', {
+  }>('http://localhost:8081/api/users/update', {
     data,
     method: 'PUT',
     headers: {
@@ -59,7 +59,7 @@ export async function removeUsers(data: { [id: string]: any }, options?: { [id: 
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/users/detele', {
+  }>('http://localhost:8081/api/users/detele', {
     data,
     method: 'DELETE',
     ...(options || {}),

@@ -28,10 +28,14 @@ export default {
   'pages.register': 'Register',
   'pages.register.username.label': 'Email',
   'pages.register.username.placeholder': 'Please enter email',
+  'pages.register.please.username.required': 'Please enter email!',
+  'pages.register.please.email.required': 'Please enter email!',
+
   'pages.register.password.label': 'Password ',
   'pages.register.password.placeholder': 'Please enter password',
   'pages.register.confirm.password.label': 'Confirm passowrd',
   'pages.register.confirm.password.placeholder': 'Please enter confirm password',
+  'pages.password.confirm.password.required': 'Two times to enter the password does not match',
   'pages.register.captcha.placeholder': 'Please enter vCode',
   'pages.register.accountLogin': 'Existing Account Login',
   'pages.register.registerAccount': 'Register Account',
@@ -51,7 +55,7 @@ export default {
 
   'pages.password.tip':
     'Please enter at least 6 characters. Please do not use a password that can be easily guessed.',
-  'pages.password.two.error': 'Two times to enter the password does not match',
+  
 
   'pages.forgotPassword.title': 'Forgot Password',
   'pages.forgotPassword.username': 'Username',

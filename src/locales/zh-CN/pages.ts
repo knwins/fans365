@@ -25,10 +25,13 @@ export default {
   'pages.register': '注册',
   'pages.register.username.lable': '电子邮件',
   'pages.register.username.placeholder': '请输入电子邮件',
+  'pages.register.please.username.required': '请输入电子邮件!',
+  'pages.register.please.email.required': '请输入电子邮件!',
   'pages.register.password.lable': '设置密码',
   'pages.register.password.placeholder': '请输入设置密码',
   'pages.register.confirm.password.lable': '确认密码',
   'pages.register.confirm.password.placeholder': '请输入确认密码',
+  'pages.password.confirm.password.required': '两次输入的密码不一致!',
   'pages.register.captcha.placeholder': '请输入验证码',
   'pages.register.accountLogin': '已有账户登陆',
   'pages.register.registerAccount': '注册账户',
@@ -412,5 +415,4 @@ export default {
   'pages.notice.description.label': '内容',
   'pages.notice.description.placeholder': '请输入内容',
   'pages.notice.description.required': '请输入内容!',
- 
 };

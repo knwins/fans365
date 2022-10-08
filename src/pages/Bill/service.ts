@@ -19,7 +19,7 @@ export async function queryBillList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/bill/list', {
+  }>('http://localhost:8081/api/bill/list', {
     method: 'GET',
     params: {
       ...params,
@@ -44,7 +44,7 @@ export async function queryBillMyList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/bill/mylist', {
+  }>('http://localhost:8081/api/bill/mylist', {
     method: 'GET',
     params: {
       ...params,
@@ -59,7 +59,7 @@ export async function latestBill() {
     data: BillItem;
     status?: boolean;
     info?: number;
-  }>('https://api.fans365.net/api/bill/latest', {
+  }>('http://localhost:8081/api/bill/latest', {
     method: 'GET',
   });
 }
@@ -70,7 +70,7 @@ export async function getBill(data: { [id: string]: any }, options?: { [id: stri
     data: BillItem;
     status?: boolean;
     info?: number;
-  }>('https://api.fans365.net/api/bill/get', {
+  }>('http://localhost:8081/api/bill/get', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -82,7 +82,7 @@ export async function updateBill(data: { [id: string]: any }, options?: { [id: s
   return request<{
     status?: boolean;
     info?: number;
-  }>('https://api.fans365.net/api/bill/update', {
+  }>('http://localhost:8081/api/bill/update', {
     data,
     method: 'PUT',
     ...(options || {}),
@@ -94,7 +94,7 @@ export async function addBill(data: { [id: string]: any }, options?: { [id: stri
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/bill/add', {
+  }>('http://localhost:8081/api/bill/add', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -106,7 +106,7 @@ export async function removeBill(data: { [id: string]: any }, options?: { [id: s
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/bill/delete', {
+  }>('http://localhost:8081/api/bill/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

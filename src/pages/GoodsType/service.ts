@@ -26,7 +26,7 @@ export async function getGoodsTypeList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/goods_type/list', {
+  }>('http://localhost:8081/api/goods_type/list', {
     method: 'GET',
     params: {
       ...params,
@@ -40,7 +40,7 @@ export async function getGoodsType(data: { [id: string]: any }, options?: { [id:
   return request<{
     data: GoodsTypeItem;
     status?: boolean;
-  }>('https://api.fans365.net/api/goods_type/get', {
+  }>('http://localhost:8081/api/goods_type/get', {
     data,
     method: 'GET',
 
@@ -53,7 +53,7 @@ export async function updateGoodsType(
   data: { [key: string]: any },
   options?: { [key: string]: any },
 ) {
-  return request<GoodsTypeItem>('https://api.fans365.net/api/goods_type/update', {
+  return request<GoodsTypeItem>('http://localhost:8081/api/goods_type/update', {
     data,
     method: 'PUT',
 
@@ -63,7 +63,7 @@ export async function updateGoodsType(
 
 /** 新建 POST /api/goodsType */
 export async function addGoodsType(data: { [key: string]: any }, options?: { [key: string]: any }) {
-  return request<GoodsTypeItem>('https://api.fans365.net/api/goods_type/add', {
+  return request<GoodsTypeItem>('http://localhost:8081/api/goods_type/add', {
     data,
     method: 'POST',
 
@@ -73,7 +73,7 @@ export async function addGoodsType(data: { [key: string]: any }, options?: { [ke
 
 /** 删除 DELETE /api/goodsType */
 export async function removeGoodsType(data: { id: string }, options?: { [key: string]: any }) {
-  return request<GoodsTypeItem>('https://api.fans365.net/api/goods_type/delete', {
+  return request<GoodsTypeItem>('http://localhost:8081/api/goods_type/delete', {
     data,
     method: 'DELETE',
 
