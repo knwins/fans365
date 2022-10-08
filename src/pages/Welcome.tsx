@@ -13,7 +13,7 @@ const Welcome: React.FC = () => {
     <PageContainer>
       <Typography>
         
-        <Title level={4}><FormattedMessage id="pages.welcome.title" defaultMessage="" /></Title>
+        <Title level={4}><FormattedMessage id="pages.welcome.title"/></Title>
         <Divider />
         <Paragraph strong> Twitter 推特</Paragraph>
         <Paragraph>
@@ -52,7 +52,7 @@ const Welcome: React.FC = () => {
           </ul>
         </Paragraph>
         <Divider />
-        <Text><FormattedMessage id="pages.welcome.title5" defaultMessage="" /></Text>
+        <Text><FormattedMessage id="pages.welcome.title5"/></Text>
         
       </Typography>
 

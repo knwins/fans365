@@ -37,7 +37,7 @@ const UpdateModal: FC<UpdateModalProps> = (props) => {
       submitter={{
         render: (_, dom) => (done ? null : dom),
         searchConfig: {
-          submitText: <FormattedMessage id="pages.forgotPassword.subimt" defaultMessage="Subimt" />,
+          submitText: <FormattedMessage id="pages.forgotPassword.subimt"/>,
         },
       }}
       trigger={<>{children}</>}

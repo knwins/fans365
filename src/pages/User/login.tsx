@@ -136,7 +136,7 @@ const Login: React.FC = () => {
             }}
           >
             <Link to="/user/register" style={{ float: 'left' }}>
-              <FormattedMessage id="pages.register" defaultMessage="User register" />
+              <FormattedMessage id="pages.register"/>
             </Link>
 
             <a
@@ -146,7 +146,7 @@ const Login: React.FC = () => {
                 setVisible(true);
               }}
             >
-              <FormattedMessage id="pages.forgotPassword" defaultMessage="forgot password" />
+              <FormattedMessage id="pages.forgotPassword" />
             </a>
           </div>
         </LoginForm>

@@ -66,12 +66,7 @@ const Register: FC = () => {
   const checkConfirm = (_: any, value: string) => {
     const promise = Promise;
     if (value && value !== form.getFieldValue('password')) {
-      return promise.reject(
-        <FormattedMessage
-          id="pages.password.two.error"
-          defaultMessage="Two times to enter the password does not match"
-        />,
-      );
+      return promise.reject(<FormattedMessage id="pages.password.two.error" />);
     }
     return promise.resolve();
   };
@@ -83,9 +78,7 @@ const Register: FC = () => {
       setVisible(!!value);
       return promise.reject(
         <FormattedMessage
-          id="pages.register.password.required"
-          defaultMessage="Please enter password"
-        />,
+          id="pages.register.password.required"        />,
       );
     }
     // 有值的情况

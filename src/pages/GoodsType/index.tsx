@@ -136,7 +136,7 @@ const GoodsType: React.FC = () => {
       hideInDescriptions: true,
     },
     {
-      title: <FormattedMessage id="pages.goods.type.name" defaultMessage="Name" />,
+      title: <FormattedMessage id="pages.goods.type.name"/>,
       dataIndex: 'name',
       hideInSearch: true,
       valueType: 'text',
@@ -154,14 +154,14 @@ const GoodsType: React.FC = () => {
       },
     },
     {
-      title: <FormattedMessage id="pages.goods.type.runner" defaultMessage="Runner" />,
+      title: <FormattedMessage id="pages.goods.type.runner" />,
       dataIndex: 'runner',
       valueType: 'text',
       hideInSearch: true,
       hideInForm: true,
     },
     {
-      title: <FormattedMessage id="pages.goods.type.action" defaultMessage="Action" />,
+      title: <FormattedMessage id="pages.goods.type.action"/>,
       dataIndex: 'action',
       valueType: 'text',
       hideInSearch: true,
@@ -177,7 +177,7 @@ const GoodsType: React.FC = () => {
     },
 
     {
-      title: <FormattedMessage id="pages.description" defaultMessage="Description" />,
+      title: <FormattedMessage id="pages.description" />,
       dataIndex: 'description',
       hideInSearch: true,
       hideInTable: true,
@@ -186,7 +186,7 @@ const GoodsType: React.FC = () => {
     },
 
     {
-      title: <FormattedMessage id="pages.option" defaultMessage="option" />,
+      title: <FormattedMessage id="pages.option" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
@@ -206,7 +206,7 @@ const GoodsType: React.FC = () => {
             actionRef.current?.reloadAndRest?.();
           }}
         >
-          <FormattedMessage id="pages.delete" defaultMessage="Delete" />
+          <FormattedMessage id="pages.delete"/>
         </a>,
       ],
     },
@@ -231,7 +231,7 @@ const GoodsType: React.FC = () => {
                 setCurrentRow(undefined);
               }}
             >
-              <PlusOutlined /> <FormattedMessage id="pages.new" defaultMessage="New" />
+              <PlusOutlined /> <FormattedMessage id="pages.new"/>
             </Button>,
           ]}
           onChange={(filters: any, sorter: any) => {

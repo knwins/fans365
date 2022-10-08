@@ -181,7 +181,7 @@ const Notice: React.FC = () => {
             actionRef.current?.reloadAndRest?.();
           }}
         >
-          <FormattedMessage id="pages.delete" defaultMessage="Delete" />
+          <FormattedMessage id="pages.delete"/>
         </a>,
       ],
     },
@@ -205,7 +205,7 @@ const Notice: React.FC = () => {
                 setCurrentRow(undefined);
               }}
             >
-              <PlusOutlined /> <FormattedMessage id="pages.new" defaultMessage="New" />
+              <PlusOutlined /> <FormattedMessage id="pages.new"/>
             </Button>,
           ]}
           request={getNoticeList}
