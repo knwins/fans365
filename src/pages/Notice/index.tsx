@@ -125,37 +125,38 @@ const Notice: React.FC = () => {
   };
 
   const columns: ProColumns<API.NoticeItem>[] = [
+
+
+    {
+      title: <FormattedMessage id="pages.notice.createTime" />,
+      dataIndex: 'createTime',
+      valueType: 'dateTime',
+      align: 'center',
+      width: '100px',
+    },
+
     {
       title: <FormattedMessage id="pages.notice.avatar" />,
       dataIndex: 'avatar',
       valueType: 'image',
-      hideInSearch: true,
       align: 'center',
-      width: '100px',
-      hideInDescriptions: true,
+      width: '80px',
     },
+
+
     {
       title: <FormattedMessage id="pages.notice.type" />,
       dataIndex: 'type',
-      hideInSearch: true,
       valueType: 'text',
-      width: '140px',
+      width: '100px',
     },
     {
       title: <FormattedMessage id="pages.notice.title" />,
       dataIndex: 'title',
-      hideInSearch: true,
       valueType: 'text',
-      width: '280px',
+      width: '360px',
     },
-
-    {
-      title: <FormattedMessage id="pages.notice.description" />,
-      dataIndex: 'description',
-      hideInSearch: true,
-      valueType: 'textarea',
-      ellipsis: true,
-    },
+ 
 
     {
       title: <FormattedMessage id="pages.option" />,

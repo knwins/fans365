@@ -399,17 +399,15 @@ export default {
   'pages.notice.notification.required': '平台公告不允许删除',
   'pages.notice.message': '通知消息',
   'pages.notice.clear': '清空',
-  
+  'pages.notice.createTime': '创建时间',
   'pages.notice.avatar': '图标',
   'pages.notice.title': '标题',
   'pages.notice.title.label': '标题',
   'pages.notice.title.placeholder': '请输入标题',
   'pages.notice.title.required': '请输入标题!',
-
   'pages.notice.type': '分类',
   'pages.notice.type.label': '分类',
   'pages.notice.type.required': '请选择分类!',
-
   'pages.notice.description': '内容',
   'pages.notice.description.label': '内容',
   'pages.notice.description.placeholder': '请输入内容',

@@ -414,17 +414,15 @@ export default {
   'pages.notice.notification.required': 'Notification not allowed to be deleted.',
   'pages.notice.message': 'message',
   'pages.notice.clear': 'Clear',
-
+  'pages.notice.createTime': 'Create Time',
   'pages.notice.avatar': 'ICOIN',
   'pages.notice.title': 'Title',
   'pages.notice.title.label': 'Title',
   'pages.notice.title.placeholder': 'Please enter title',
   'pages.notice.title.required': 'Please enter title!',
-
   'pages.notice.type': 'Type',
   'pages.notice.type.label': 'Type',
   'pages.notice.type.required': 'Please enter type!',
-
   'pages.notice.description': 'Content',
   'pages.notice.description.label': 'Content',
   'pages.notice.description.placeholder': 'Please enter content',

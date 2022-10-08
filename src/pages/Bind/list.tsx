@@ -306,6 +306,7 @@ const Bind: React.FC = () => {
       }),
       dataIndex: 'option',
       valueType: 'option',
+      hideInDescriptions:true,
       render: (_, record) => [
         <a
           key="edit"
@@ -336,7 +337,6 @@ const Bind: React.FC = () => {
           headerTitle=""
           actionRef={actionRef}
           rowKey={(record) => record.id}
-          search={false}
           params={params}
           pagination={paginationProps}
           toolBarRender={() => [
