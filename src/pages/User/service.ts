@@ -19,7 +19,7 @@ export async function queryUserList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('http://localhost:8081/api/users/list', {
+  }>('https://api.fans365.net/api/users/list', {
     method: 'GET',
     params: {
       ...params,
@@ -30,7 +30,7 @@ export async function queryUserList(
 
 /** 新建 GET /api/users/list */
 export async function getUser(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<UserItem>('http://localhost:8081/api/users/get', {
+  return request<UserItem>('https://api.fans365.net/api/users/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -44,7 +44,7 @@ export async function updateUser(data: { [id: string]: any }, options?: { [id: s
     /** 列表的内容总数 */
     info?: string;
     status?: boolean;
-  }>('http://localhost:8081/api/users/update', {
+  }>('https://api.fans365.net/api/users/update', {
     data,
     method: 'PUT',
     headers: {
@@ -59,7 +59,7 @@ export async function removeUser(data: { [id: string]: any }, options?: { [id: s
   return request<{
     status?: boolean;
     info?: string;
-  }>('http://localhost:8081/api/users/detele', {
+  }>('https://api.fans365.net/api/users/detele', {
     data,
     method: 'DELETE',
     ...(options || {}),
@@ -73,7 +73,7 @@ export async function registerUser(params: UserRegisterParams) {
   return request<{
     status?: boolean;
     info?: string;
-  }>('http://localhost:8081/api/users/register', {
+  }>('https://api.fans365.net/api/users/register', {
     method: 'POST',
     data: params,
   });
@@ -84,7 +84,7 @@ export async function getFakeCaptcha(
   data: { [username: string]: any },
   options?: { [id: string]: any },
 ) {
-  return request<{ status?: boolean; info?: string }>('http://localhost:8081/api/users/captcha', {
+  return request<{ status?: boolean; info?: string }>('https://api.fans365.net/api/users/captcha', {
     method: 'POST',
     data,
     ...(options || {}),
@@ -96,7 +96,7 @@ export async function getFakeCaptchaUser(
   data: { [username: string]: any },
   options?: { [id: string]: any },
 ) {
-  return request<{ status?: boolean; info?: string }>('http://localhost:8081/api/users/captcha_user', {
+  return request<{ status?: boolean; info?: string }>('https://api.fans365.net/api/users/captcha_user', {
     method: 'POST',
     data,
     ...(options || {}),
@@ -108,7 +108,7 @@ export async function forgotPassword(
   data: { [username: string]: any },
   options?: { [id: string]: any },
 ) {
-  return request<{ status?: boolean; info?: string }>('http://localhost:8081/api/users/forgotpassword', {
+  return request<{ status?: boolean; info?: string }>('https://api.fans365.net/api/users/forgotpassword', {
     method: 'POST',
     data,
     ...(options || {}),
@@ -120,7 +120,7 @@ export async function modifyPassword(
   data: { [username: string]: any },
   options?: { [id: string]: any },
 ) {
-  return request<{ status?: boolean; info?: string }>('http://localhost:8081/api/users/modifypassword', {
+  return request<{ status?: boolean; info?: string }>('https://api.fans365.net/api/users/modifypassword', {
     method: 'POST',
     data,
     ...(options || {}),
@@ -131,7 +131,7 @@ export async function payBinding(
   data: { [username: string]: any },
   options?: { [id: string]: any },
 ) {
-  return request<{ status?: boolean; info?: string }>('http://localhost:8081/api/users/paybinding', {
+  return request<{ status?: boolean; info?: string }>('https://api.fans365.net/api/users/paybinding', {
     method: 'POST',
     data,
     ...(options || {}),

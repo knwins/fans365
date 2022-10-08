@@ -19,7 +19,7 @@ export async function getTSTaskList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('http://localhost:8081/api/tstask/list', {
+  }>('https://api.fans365.net/api/tstask/list', {
     method: 'GET',
 
     params: {
@@ -45,7 +45,7 @@ export async function getTSTaskMerchantList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('http://localhost:8081/api/tstask/mylist', {
+  }>('https://api.fans365.net/api/tstask/mylist', {
     method: 'GET',
 
     params: {
@@ -60,7 +60,7 @@ export async function getTSTask(data: { [id: string]: any }, options?: { [id: st
   return request<{
     data: TSTaskItem;
     status?: boolean;
-  }>('http://localhost:8081/api/tstask/get', {
+  }>('https://api.fans365.net/api/tstask/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -69,7 +69,7 @@ export async function getTSTask(data: { [id: string]: any }, options?: { [id: st
 
 /** 新建 PUT /api/tstask */
 export async function updateTSTask(data: { [key: string]: any }, options?: { [key: string]: any }) {
-  return request<TSTaskItem>('http://localhost:8081/api/tstask/update', {
+  return request<TSTaskItem>('https://api.fans365.net/api/tstask/update', {
     data,
     method: 'PUT',
     ...(options || {}),
@@ -81,7 +81,7 @@ export async function addTSTask(data: { [key: string]: any }, options?: { [key: 
   return request<{
     status?: boolean;
     info?: string;
-  }>('http://localhost:8081/api/tstask/add', {
+  }>('https://api.fans365.net/api/tstask/add', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -90,7 +90,7 @@ export async function addTSTask(data: { [key: string]: any }, options?: { [key: 
 
 /** 删除 DELETE /api/tstask */
 export async function removeTSTask(data: { id: string }, options?: { [key: string]: any }) {
-  return request<TSTaskItem>('http://localhost:8081/api/tstask/delete', {
+  return request<TSTaskItem>('https://api.fans365.net/api/tstask/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

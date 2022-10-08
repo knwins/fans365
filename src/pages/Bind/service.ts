@@ -19,7 +19,7 @@ export async function getBindMerchantList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('http://localhost:8081/api/bind/merchant_list', {
+  }>('https://api.fans365.net/api/bind/merchant_list', {
     method: 'GET',
     params: {
       ...params,
@@ -44,7 +44,7 @@ export async function getBindList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('http://localhost:8081/api/bind/list', {
+  }>('https://api.fans365.net/api/bind/list', {
     method: 'GET',
     params: {
       ...params,
@@ -58,7 +58,7 @@ export async function getBind(data: { [id: string]: any }, options?: { [id: stri
   return request<{
     data: BindItem;
     status?: boolean;
-  }>('http://localhost:8081/api/bind/get', {
+  }>('https://api.fans365.net/api/bind/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -70,7 +70,7 @@ export async function updateBind(data: { [key: string]: any }, options?: { [key:
   return request<{
     status?: string;
     info?: string;
-  }>('http://localhost:8081/api/bind/update', {
+  }>('https://api.fans365.net/api/bind/update', {
     data,
     method: 'PUT',
     headers: {
@@ -86,7 +86,7 @@ export async function addBind(data: { [key: string]: any }, options?: { [key: st
   return request<{
     status?: string;
     info?: string;
-  }>('http://localhost:8081/api/bind/add', {
+  }>('https://api.fans365.net/api/bind/add', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -95,7 +95,7 @@ export async function addBind(data: { [key: string]: any }, options?: { [key: st
 
 /** 删除 DELETE /api/bind */
 export async function removeBind(data: { id: string }, options?: { [key: string]: any }) {
-  return request<BindItem>('http://localhost:8081/api/bind/delete', {
+  return request<BindItem>('https://api.fans365.net/api/bind/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

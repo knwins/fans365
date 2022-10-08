@@ -19,7 +19,7 @@ export async function queryGoodsList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('http://localhost:8081/api/goods/list', {
+  }>('https://api.fans365.net/api/goods/list', {
     method: 'GET',
     params: {
       ...params,
@@ -34,7 +34,7 @@ export async function getGoods(data: { [id: string]: any }, options?: { [id: str
     data: GoodsItem;
     status?: boolean;
     info?: number;
-  }>('http://localhost:8081/api/goods/get', {
+  }>('https://api.fans365.net/api/goods/get', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -46,7 +46,7 @@ export async function updateGoods(data: { [id: string]: any }, options?: { [id: 
   return request<{
     status?: boolean;
     info?: number;
-  }>('http://localhost:8081/api/goods/update', {
+  }>('https://api.fans365.net/api/goods/update', {
     data,
     method: 'PUT',
     ...(options || {}),
@@ -58,7 +58,7 @@ export async function addGoods(data: { [id: string]: any }, options?: { [id: str
   return request<{
     status?: boolean;
     info?: string;
-  }>('http://localhost:8081/api/goods/add', {
+  }>('https://api.fans365.net/api/goods/add', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -70,7 +70,7 @@ export async function removeGoods(data: { [id: string]: any }, options?: { [id: 
   return request<{
     status?: boolean;
     info?: string;
-  }>('http://localhost:8081/api/goods/delete', {
+  }>('https://api.fans365.net/api/goods/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

@@ -348,7 +348,7 @@ const Bind: React.FC = () => {
           toolBarRender={() => {
             return [
               <a
-                href={'http://localhost:8081/twitter/oauth2?userId=' + currentUser?.id}
+                href={'https://api.fans365.net/twitter/oauth2?userId=' + currentUser?.id}
                 target="_bank"
                 key="oauth2"
               >

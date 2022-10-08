@@ -11,7 +11,7 @@ export async function getFakeCaptcha(
   },
   options?: { [key: string]: any },
 ) {
-  return request<API.FakeCaptcha>('http://localhost:8081/api/login/captcha', {
+  return request<API.FakeCaptcha>('https://api.fans365.net/api/login/captcha', {
     method: 'GET',
     params: {
       ...params,

@@ -59,7 +59,7 @@ const AvatarView = ({ avatar }: { avatar: string }) => {
       </div>
       <Upload
         accept="image/png, image/jpeg"
-        action="http://localhost:8081/api/users/avatar"
+        action="https://api.fans365.net/api/users/avatar"
         showUploadList={false}
         beforeUpload={beforeUpload}
         name="avatar"
