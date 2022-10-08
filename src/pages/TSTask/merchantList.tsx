@@ -22,7 +22,7 @@ const TSTask: React.FC = () => {
       valueType: 'dateTime',
       hideInSearch: true,
       hideInForm: true,
-      width: '120px',
+      width: 'md',
       align: 'center',
     },
     {
@@ -30,7 +30,7 @@ const TSTask: React.FC = () => {
       dataIndex: ['orders', 'link'],
       hideInSearch: true,
       valueType: 'text',
-      width: '260px',
+      width: 'lg',
     },
 
     {
@@ -38,7 +38,7 @@ const TSTask: React.FC = () => {
       dataIndex: ['bind', 'username'],
       hideInSearch: true,
       valueType: 'text',
-      width: '40px',
+      width: 'xs',
     },
     {
       title: 'UUID',
@@ -46,7 +46,7 @@ const TSTask: React.FC = () => {
       valueType: 'text',
       hideInSearch: true,
       hideInForm: true,
-      width: '40px',
+      width: 'xs',
     },
 
     {
@@ -64,7 +64,7 @@ const TSTask: React.FC = () => {
       hideInSearch: true,
       hideInForm: true,
 
-      width: '80px',
+      width: 'xs',
     },
   ];
 
