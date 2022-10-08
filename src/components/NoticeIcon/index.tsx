@@ -14,7 +14,7 @@ export type GlobalHeaderRightProps = {
   onNoticeClear?: (tabName?: string) => void;
 };
 
-const getNoticeData = (notices: API.NoticeIconItem[]): Record<string, API.NoticeIconItem[]> => {
+const getNoticeData = (notices: API.NoticeItem[]): Record<string, API.NoticeItem[]> => {
   if (!notices || notices.length === 0 || !Array.isArray(notices)) {
     return {};
   }
@@ -54,7 +54,7 @@ const getNoticeData = (notices: API.NoticeIconItem[]): Record<string, API.Notice
   return groupBy(newNotices, 'type');
 };
 
-const getUnreadData = (noticeData: Record<string, API.NoticeIconItem[]>) => {
+const getUnreadData = (noticeData: Record<string, API.NoticeItem[]>) => {
   const unreadMsg: Record<string, number> = {};
   Object.keys(noticeData).forEach((key) => {
     const value = noticeData[key];
@@ -71,11 +71,11 @@ const getUnreadData = (noticeData: Record<string, API.NoticeIconItem[]>) => {
 };
 
 const NoticeIconView: React.FC = () => {
-  const [notices, setNotices] = useState<API.NoticeIconItem[]>([]);
+  const [notices, setNotices] = useState<API.NoticeItem[]>([]);
 
   const [iVisible, setiVisible] = useState<boolean>(false);
   const [done, setDone] = useState<boolean>(false);
-  const [currentRow, setCurrentRow] = useState<Partial<API.NoticeIconItem> | undefined>(undefined);
+  const [currentRow, setCurrentRow] = useState<Partial<API.NoticeItem> | undefined>(undefined);
 
 
   const handleDone = () => {

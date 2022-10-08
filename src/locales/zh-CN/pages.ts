@@ -44,16 +44,16 @@ export default {
   'pages.password.strength.strong': '密码强度：高',
 
   /* forgotPassword*/
-  
+
   'pages.password.tip': '请设置为数字+字母+特殊符号组合6位以上',
   'pages.forgotPassword.title': '找回密码',
   'pages.forgotPassword.username': '用户名',
   'pages.forgotPassword.placeholder': '请输入电子邮件',
   'pages.forgotPassword': '找回密码?',
   'pages.forgotPassword.subimt': '提交',
-   'pages.forgotPassword.captcha.placeholder': '请输入验证码',
+  'pages.forgotPassword.captcha.placeholder': '请输入验证码',
   'pages.forgotPassword.captcha.get': '获取验证码',
- 
+
   'pages.searchTable.createForm.newRule': '新建规则',
   'pages.searchTable.updateForm.ruleConfig': '规则配置',
   'pages.searchTable.updateForm.basicConfig': '基本信息',
@@ -129,7 +129,6 @@ export default {
   'pages.select.all': '全部',
   'pages.expand': '展开',
   'pages.collapse': '收起',
-  
 
   /**单位 */
   'pages.people': '人',
@@ -226,7 +225,7 @@ export default {
   'pages.orders.link.placeholder': '请输入链接',
   'pages.orders.link.required': '请输入链接!',
   'pages.orders.linkid': '唯一链接ID',
-  
+
   'pages.orders.goodsName': '商品名称',
   'pages.orders.goodsName.label': '商品名称',
   'pages.orders.goodsName.required': '请选择商品名称!',
@@ -261,8 +260,6 @@ export default {
   'pages.orders.key.placeholder': '用户名或者订单号',
   'pages.orders.tweet.title': '引用或者评论',
   'pages.orders.myPublished': '我的发布',
-  
-  
 
   /**bill */
   'pages.bill.createTime': '创建时间',
@@ -277,7 +274,7 @@ export default {
   'pages.bill.type.withdraw': '提现',
   'pages.bill.type.income': '收入',
   'pages.bill.type.expense': '支出',
-  
+
   'pages.bill.amount': '金额',
   'pages.bill.blance': '余额',
   'pages.bill.username.search': '用户搜索',
@@ -315,7 +312,8 @@ export default {
   'pages.account.payimage.upload': ' 上传二维码',
 
   'pages.account.password.title': '账户密码',
-  'pages.account.password.description': '为了账户安全请定期更改您的密码，请使用数字+字母+特殊字符6位以上密码。',
+  'pages.account.password.description':
+    '为了账户安全请定期更改您的密码，请使用数字+字母+特殊字符6位以上密码。',
 
   'pages.account.modify.password': '密码修改',
   'pages.account.password.label': '密码',
@@ -340,7 +338,7 @@ export default {
   'pages.bind.regtime': '注册时间',
   'pages.bind.runtime': '执行时间',
   'pages.bind.username': '用户名称',
-  
+
   'pages.bind.username.label': '用户名称',
   'pages.bind.username.placeholder': '请输用户名称',
   'pages.bind.username.required': '请输用户名称!',
@@ -390,20 +388,31 @@ export default {
   'pages.tweet.status.off': '停用',
   'pages.tweet.useCount.tip1': '请计算好所有使用人数之和大于购买人数，为0时内容不被使用.',
   'pages.tweet.useCount.tip2': '如果订单一直未完成，请检查是否人数用完。',
-  
 
-  'pages.result.success.twitter.title':'特推授权成功',
-  'pages.result.success.twitter.subTitle':'请进入我的账户查看授权Twitter用户.',
- 
-  'pages.result.fail.twitter.title':'特推授权失败',
-  'pages.result.fail.twitter.subTitle':'请检查是否是网络问题，如问题依据请联系客服.',
+  'pages.result.success.twitter.title': '特推授权成功',
+  'pages.result.success.twitter.subTitle': '请进入我的账户查看授权Twitter用户.',
+
+  'pages.result.fail.twitter.title': '特推授权失败',
+  'pages.result.fail.twitter.subTitle': '请检查是否是网络问题，如问题依据请联系客服.',
 
   'pages.notice.notification': '平台公告',
   'pages.notice.notification.required': '平台公告不允许删除',
   'pages.notice.message': '通知消息',
   'pages.notice.clear': '清空',
+  
+  'pages.notice.avatar': '图标',
+  'pages.notice.title': '标题',
+  'pages.notice.title.label': '标题',
+  'pages.notice.title.placeholder': '请输入标题',
+  'pages.notice.title.required': '请输入标题!',
 
+  'pages.notice.type': '分类',
+  'pages.notice.type.label': '分类',
+  'pages.notice.type.required': '请选择分类!',
 
+  'pages.notice.description': '内容',
+  'pages.notice.description.label': '内容',
+  'pages.notice.description.placeholder': '请输入内容',
+  'pages.notice.description.required': '请输入内容!',
  
-
 };

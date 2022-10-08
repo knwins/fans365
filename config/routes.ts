@@ -224,9 +224,18 @@ export default [
         component: './Users/index',
         access: 'AdminGroup',
       },
+      //---------------------------------Notice管理----------------------------
+      {
+        name: 'noticeManage',
+        icon: 'smile',
+        path: '/dashboard/notice/list',
+        component: './Notice/index',
+        access: 'AdminGroup',
+      },
       {
         component: '404',
       },
+
     ],
   },
 

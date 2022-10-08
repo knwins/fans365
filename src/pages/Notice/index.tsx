@@ -1,27 +1,25 @@
+import {
+  addNotice,
+  getNoticeList,
+  removeNotice,
+  updateNotice,
+} from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
-import type { ProDescriptionsItemProps } from '@ant-design/pro-descriptions';
-import ProDescriptions from '@ant-design/pro-descriptions';
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, message } from 'antd';
+import { Button, message } from 'antd';
 import React, { useRef, useState } from 'react';
-import { getGoodsTypeList } from '../GoodsType/service';
 import OperationModal from './components/OperationModal';
-import type { GoodsTypeItem, GoodsTypeParams } from './data';
-import { addGoodsType, removeGoodsType, updateGoodsType } from './service';
 
-const GoodsType: React.FC = () => {
+const Notice: React.FC = () => {
   const [done, setDone] = useState<boolean>(false);
 
   //edit/add
   const [visible, setVisible] = useState<boolean>(false);
-  //show
-  const [showDetail, setShowDetail] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
-  const [currentRow, setCurrentRow] = useState<Partial<GoodsTypeItem> | undefined>(undefined);
-  const [params, setParams] = useState<Partial<GoodsTypeParams> | undefined>(undefined);
+  const [currentRow, setCurrentRow] = useState<Partial<API.NoticeItem> | undefined>(undefined);
 
   //国际化
   const intl = useIntl();
@@ -37,9 +35,8 @@ const GoodsType: React.FC = () => {
    * @param fields
    */
 
-  const handleSubmit = async (fields: GoodsTypeItem) => {
+  const handleSubmit = async (fields: API.NoticeItem) => {
     try {
-      console.log(fields?.id);
       const action = fields?.id ? 'update' : 'add';
       const loadingShow = message.loading(
         intl.formatMessage({
@@ -48,8 +45,8 @@ const GoodsType: React.FC = () => {
       );
       loadingShow();
       if (action == 'add') {
-        await addGoodsType({ ...fields });
-         message.success(
+        await addNotice({ ...fields });
+        message.success(
           intl.formatMessage({
             id: 'pages.tip.success',
           }),
@@ -59,12 +56,11 @@ const GoodsType: React.FC = () => {
         if (actionRef.current) {
           actionRef.current.reloadAndRest?.();
         }
-        
+
         return;
       } else if (action == 'update') {
-        
-        await updateGoodsType({ ...fields });
-         message.success(
+        await updateNotice({ ...fields });
+        message.success(
           intl.formatMessage({
             id: 'pages.tip.success',
           }),
@@ -74,10 +70,9 @@ const GoodsType: React.FC = () => {
         if (actionRef.current) {
           actionRef.current.reloadAndRest?.();
         }
-       
+
         return;
       }
-     
     } catch (error) {
       message.error(
         intl.formatMessage({
@@ -90,12 +85,12 @@ const GoodsType: React.FC = () => {
   };
 
   /**
-   * 删除节点
+   * 删除
    *
    * @param selectedRows
    */
 
-  const handleRemove = async (selectedRows: GoodsTypeItem) => {
+  const handleRemove = async (selectedRows: API.NoticeItem) => {
     const loadingShow = message.loading(
       intl.formatMessage({
         id: 'pages.tip.loading',
@@ -104,17 +99,21 @@ const GoodsType: React.FC = () => {
     loadingShow();
     if (!selectedRows) return true;
     try {
-      await removeGoodsType({
+      await removeNotice({
         id: selectedRows.id,
       });
-       message.success(intl.formatMessage({
-        id: 'pages.tip.success',
-      }),);
+      message.success(
+        intl.formatMessage({
+          id: 'pages.tip.success',
+        }),
+      );
       return true;
     } catch (error) {
-       message.error(intl.formatMessage({
-        id: 'pages.tip.error',
-      }),);
+      message.error(
+        intl.formatMessage({
+          id: 'pages.tip.error',
+        }),
+      );
       return false;
     }
   };
@@ -125,70 +124,45 @@ const GoodsType: React.FC = () => {
     setCurrentRow(undefined);
   };
 
-  const columns: ProColumns<GoodsTypeItem>[] = [
+  const columns: ProColumns<API.NoticeItem>[] = [
     {
-      title: 'Logo',
-      width: '80px',
-      dataIndex: 'logo',
-      valueType: 'avatar',
+      title: <FormattedMessage id="pages.notice.avatar" />,
+      dataIndex: 'avatar',
+      valueType: 'image',
       hideInSearch: true,
       align: 'center',
+      width: '100px',
       hideInDescriptions: true,
     },
     {
-      title: <FormattedMessage id="pages.goods.type.name" defaultMessage="Name" />,
-      dataIndex: 'name',
+      title: <FormattedMessage id="pages.notice.type" />,
+      dataIndex: 'type',
       hideInSearch: true,
       valueType: 'text',
-      render: (dom, entity) => {
-        return (
-          <a
-            onClick={() => {
-              setCurrentRow(entity);
-              setShowDetail(true);
-            }}
-          >
-            {dom}
-          </a>
-        );
-      },
+      width: '140px',
     },
     {
-      title: <FormattedMessage id="pages.goods.type.runner" defaultMessage="Runner" />,
-      dataIndex: 'runner',
-      valueType: 'text',
+      title: <FormattedMessage id="pages.notice.title" />,
+      dataIndex: 'title',
       hideInSearch: true,
-      hideInForm: true,
-    },
-    {
-      title: <FormattedMessage id="pages.goods.type.action" defaultMessage="Action" />,
-      dataIndex: 'action',
       valueType: 'text',
-      hideInSearch: true,
-      hideInForm: true,
-    },
-    {
-      title: <FormattedMessage id="pages.sort" />,
-      dataIndex: 'sort',
-      valueType: 'text',
-      hideInSearch: true,
-      hideInForm: true,
-      sorter: true,
+      width: '280px',
     },
 
     {
-      title: <FormattedMessage id="pages.description" defaultMessage="Description" />,
+      title: <FormattedMessage id="pages.notice.description" />,
       dataIndex: 'description',
       hideInSearch: true,
-      hideInTable: true,
       valueType: 'textarea',
-      width: '60',
+      ellipsis: true,
     },
 
     {
-      title: <FormattedMessage id="pages.option" defaultMessage="option" />,
+      title: <FormattedMessage id="pages.option" />,
       dataIndex: 'option',
       valueType: 'option',
+      width: '120px',
+      align: 'center',
       render: (_, record) => [
         <a
           key="edit"
@@ -215,12 +189,11 @@ const GoodsType: React.FC = () => {
   return (
     <div>
       <PageContainer>
-        <ProTable<GoodsTypeItem, GoodsTypeParams>
+        <ProTable<API.NoticeItem>
           headerTitle=""
           actionRef={actionRef}
           rowKey={(record) => record.id}
           search={false}
-          params={params}
           pagination={paginationProps}
           toolBarRender={() => [
             <Button
@@ -234,17 +207,7 @@ const GoodsType: React.FC = () => {
               <PlusOutlined /> <FormattedMessage id="pages.new" defaultMessage="New" />
             </Button>,
           ]}
-          onChange={(filters: any, sorter: any) => {
-             if (sorter) {
-              sorter.order = sorter.order === 'descend' ? 'DESC' : 'ASC';
-              const goodsTypeParams: GoodsTypeParams = {
-                sorter: sorter.order,
-                filter: sorter.field,
-              };
-              setParams(goodsTypeParams);
-            }
-          }}
-          request={getGoodsTypeList}
+          request={getNoticeList}
           columns={columns}
         />
       </PageContainer>
@@ -256,31 +219,7 @@ const GoodsType: React.FC = () => {
         onDone={handleDone}
         onSubmit={handleSubmit}
       />
-
-      <Drawer
-        width={600}
-        visible={showDetail}
-        onClose={() => {
-          setCurrentRow(undefined);
-          setShowDetail(false);
-        }}
-        closable={false}
-      >
-        {currentRow?.id && (
-          <ProDescriptions<GoodsTypeItem>
-            column={1}
-            title={currentRow?.name}
-            request={async () => ({
-              data: currentRow || {},
-            })}
-            params={{
-              id: currentRow?.id,
-            }}
-            columns={columns as ProDescriptionsItemProps<GoodsTypeItem>[]}
-          />
-        )}
-      </Drawer>
     </div>
   );
 };
-export default GoodsType;
+export default Notice;

@@ -18,8 +18,8 @@ const GoodsList: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<GoodsItem>();
   const [params, setParams] = useState<Partial<GoodsParams> | undefined>(undefined);
 
-   //国际化
-   const intl = useIntl();
+  //国际化
+  const intl = useIntl();
   //读取分类数据
   const { data } = useRequest(() => {
     return getGoodsTypeList({
@@ -46,12 +46,11 @@ const GoodsList: React.FC = () => {
   };
 
   const columns: ProColumns<GoodsItem>[] = [
-
     {
       title: <FormattedMessage id="pages.goods.logo" />,
       width: '80px',
       dataIndex: 'logo',
-      valueType: 'image',
+      valueType: 'avatar',
       align: 'center',
       hideInSearch: true,
       hideInDescriptions: true,
@@ -142,8 +141,8 @@ const GoodsList: React.FC = () => {
       hideInTable: true,
       hideInDescriptions: false,
       valueType: 'textarea',
-    }, 
-  ]
+    },
+  ];
   return (
     <div>
       <PageContainer>

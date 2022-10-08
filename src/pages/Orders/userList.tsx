@@ -321,11 +321,7 @@ export const OrdersList: FC = () => {
       dataIndex: 'tstaskCount',
       valueType: 'people',
     },
-    {
-      title: <FormattedMessage id="pages.orders.description.label" />,
-      dataIndex: 'description',
-      valueType: 'textarea',
-    },
+    
   ];
 
   const tcolumns: ProColumns<TweetItem>[] = [

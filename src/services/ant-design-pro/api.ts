@@ -80,3 +80,11 @@ export async function removeNotice(data: { [key: string]: any }, options?: { [ke
     ...(options || {}),
   });
 }
+
+export async function addNotice(data: { [key: string]: any }, options?: { [key: string]: any }) {
+  return request<API.NoticeIconItem>('https://api.fans365.net/api/notice/add', {
+    data,
+    method: 'POST',
+    ...(options || {}),
+  });
+}

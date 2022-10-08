@@ -6,7 +6,6 @@ import {
   ProFormMoney,
   ProFormSelect,
   ProFormText,
-  ProFormTextArea,
 } from '@ant-design/pro-form';
 import { useIntl } from '@umijs/max';
 
@@ -219,7 +218,7 @@ const CreateModal: FC<CreateModalProps> = (props) => {
           id: 'pages.orders.fee.label',
         })
       } readonly />
-      <ProFormTextArea
+      {/* <ProFormTextArea
         name="description"
         width="lg"
         label={intl.formatMessage({
@@ -228,7 +227,7 @@ const CreateModal: FC<CreateModalProps> = (props) => {
         placeholder={intl.formatMessage({
           id: 'pages.orders.description.placeholder',
         })}
-      />
+      /> */}
     </ModalForm>
   );
 };

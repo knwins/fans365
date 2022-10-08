@@ -214,11 +214,7 @@ export const Applications: FC<Record<string, any>> = () => {
       dataIndex: 'tstaskCount',
       valueType: 'people',
     },
-    {
-      title: <FormattedMessage id="pages.orders.description.label" />,
-      dataIndex: 'description',
-      valueType: 'textarea',
-    },
+   
   ];
 
   const params: TweetParams = {

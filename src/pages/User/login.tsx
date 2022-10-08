@@ -81,6 +81,7 @@ const Login: React.FC = () => {
           onFinish={async (values) => {
             await handleSubmit(values as API.LoginParams);
           }}
+          key="login"
         >
           <div
             style={{

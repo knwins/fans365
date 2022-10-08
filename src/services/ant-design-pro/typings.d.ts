@@ -69,16 +69,20 @@ declare namespace API {
     success?: boolean;
   };
 
-  type NoticeIconList = {
-    data?: NoticeIconItem[];
+
+
+  /** Notice */
+  
+  type NoticeList = {
+    data?: NoticeItem[];
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
   };
 
-  type NoticeIconItemType = 'notification' | 'message' | 'event';
+  type NoticeItemType = 'notification' | 'message' | 'event';
 
-  type NoticeIconItem = {
+  type NoticeItem = {
     id?: string;
     key?: string;
     read?: boolean;
@@ -90,4 +94,11 @@ declare namespace API {
     description?: string;
     type?: NoticeIconItemType;
   };
+
+  type NoticeParams = {
+    filter?: Record<string, any[]>;
+    sorter?: Record<string, any>;
+  };
+  
 }
+

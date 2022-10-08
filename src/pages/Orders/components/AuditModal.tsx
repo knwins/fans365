@@ -1,4 +1,4 @@
-import { ModalForm, ProFormRadio, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
+import { ModalForm, ProFormRadio, ProFormText } from '@ant-design/pro-form';
 import { useIntl } from '@umijs/max';
 import type { FC } from 'react';
 import type { OrdersItem } from '../data.d';
@@ -117,7 +117,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
           },
         ]}
       />
-      <ProFormTextArea
+      {/* <ProFormTextArea
         name="description"
         width="lg"
         label={intl.formatMessage({
@@ -126,7 +126,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
         placeholder={intl.formatMessage({
           id: 'pages.description.placeholder',
         })}
-      />
+      /> */}
       　
     </ModalForm>
   );

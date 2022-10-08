@@ -5,12 +5,13 @@ import {
   ProFormRadio,
   ProFormSelect,
   ProFormText,
-  ProFormTextArea,
   StepsForm,
 } from '@ant-design/pro-form';
 import { FormattedMessage, useIntl } from '@umijs/max';
 import { Modal } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import type { GoodsItem } from '../data';
 
 export type FormValueType = {
@@ -26,8 +27,20 @@ export type UpdateFormProps = {
 };
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
+  const [value, setValue] = useState('');
+
+  const description = (desc: any) => {
+    return (
+      <ReactQuill
+        theme="snow"
+        defaultValue={desc}
+        onChange={setValue}
+      />
+    );
+  };
+
   //获取传递来的分类数据并处理
-  const { toDatas, current } = props;
+  const { toDatas, current, onSubmit } = props;
   const dataListOptions = {};
   if (toDatas) {
     toDatas.map((item) => {
@@ -45,10 +58,10 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
 
   return (
     <StepsForm
-      stepsProps={{
-        size: 'default',
-        current: 1,
-      }}
+    stepsProps={{
+      size: 'small',
+      current:1,
+    }}
       stepsFormRender={(dom, submitter) => {
         return (
           <Modal
@@ -70,7 +83,11 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           </Modal>
         );
       }}
-      onFinish={props.onSubmit}
+      onFinish={async (values) => {
+        values.description = value;
+        onSubmit(values);
+      }}
+      
     >
       <StepsForm.StepForm
         initialValues={current}
@@ -90,6 +107,29 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             {
               required: true,
               message: <FormattedMessage id="pages.goods.typeName.required" />,
+            },
+          ]}
+        />
+
+        <ProFormRadio.Group
+          name="status"
+          label={intl.formatMessage({
+            id: 'pages.goods.status.label',
+          })}
+          options={[
+            {
+              value: 'On',
+              label: <FormattedMessage id="pages.goods.status.on" />,
+            },
+            {
+              value: 'Off',
+              label: <FormattedMessage id="pages.goods.status.off" />,
+            },
+          ]}
+          rules={[
+            {
+              required: true,
+              message: <FormattedMessage id="pages.goods.status.required" />,
             },
           ]}
         />
@@ -117,32 +157,14 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             },
           ]}
         />
-        <ProFormTextArea
-          name="description"
-          width="lg"
-          label={intl.formatMessage({
-            id: 'pages.description.label',
+
+        <p>
+          {intl.formatMessage({
+            id: 'pages.notice.description.label',
           })}
-          placeholder={intl.formatMessage({
-            id: 'pages.description.placeholder',
-          })}
-          rules={[
-            {
-              required: true,
-              message: <FormattedMessage id="pages.description.required" />,
-              min: 5,
-            },
-          ]}
-        />
-        {/*        
-        <ReactQuill
-          theme="snow"
-          key="description"
-          value={current.description}
-          placeholder={intl.formatMessage({
-            id: 'pages.description.placeholder',
-          })}
-        /> */}
+        </p>
+
+        {description(current?.description)}
       </StepsForm.StepForm>
 
       <StepsForm.StepForm
@@ -252,28 +274,6 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             {
               required: true,
               message: <FormattedMessage id="pages.sort.required" />,
-            },
-          ]}
-        />
-        <ProFormRadio.Group
-          name="status"
-          label={intl.formatMessage({
-            id: 'pages.goods.status.label',
-          })}
-          options={[
-            {
-              value: 'On',
-              label: <FormattedMessage id="pages.goods.status.on" />,
-            },
-            {
-              value: 'Off',
-              label: <FormattedMessage id="pages.goods.status.off" />,
-            },
-          ]}
-          rules={[
-            {
-              required: true,
-              message: <FormattedMessage id="pages.goods.status.required" />,
             },
           ]}
         />

@@ -34,6 +34,9 @@ export default {
   'menu.dashboard.tstaskManage': 'TSTask管理',
   'menu.dashboard.myTSTask': '我的TSTask',
 
+  /*noticeManage */
+  'menu.dashboard.noticeManage': '公告管理',
+
   'menu.exception.403': '403',
   'menu.exception.404': '404',
   'menu.exception.500': '500',

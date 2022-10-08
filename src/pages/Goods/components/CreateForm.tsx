@@ -4,17 +4,15 @@ import {
   ProFormRadio,
   ProFormSelect,
   ProFormText,
-  ProFormTextArea,
   StepsForm,
 } from '@ant-design/pro-form';
 import { FormattedMessage, useIntl } from '@umijs/max';
 import { Modal } from 'antd';
-import React from 'react';
-
+import React, { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import type { GoodsTypeItem } from '../../GoodsType/data';
 import type { GoodsItem } from '../data';
-
-
 
 export type FormValueType = {
   target?: string;
@@ -28,8 +26,21 @@ export type UpdateFormProps = {
 };
 
 const CreateForm: React.FC<UpdateFormProps> = (props) => {
+  const [value, setValue] = useState('');
+
+  const description = (desc: any) => {
+    return (
+      <ReactQuill
+        theme="snow"
+        defaultValue={desc}
+        onChange={setValue}
+        modules={{ toolbar: true }}
+      />
+    );
+  };
+
   //获取传递来的分类数据并处理
-  const { toDatas } = props;
+  const { toDatas, onSubmit } = props;
   const dataListOptions = {};
   if (toDatas) {
     toDatas.map((item) => {
@@ -45,9 +56,10 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
 
   return (
     <StepsForm
-      stepsProps={{
-        size: 'small',
-      }}
+    stepsProps={{
+      size: 'small',
+      current:1,
+    }}
       stepsFormRender={(dom, submitter) => {
         return (
           <Modal
@@ -69,11 +81,17 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
           </Modal>
         );
       }}
-      onFinish={props.onSubmit}
+      onFinish={async (values) => {
+        values.description = value;
+        onSubmit(values);
+      }}
     >
-      <StepsForm.StepForm initialValues={{}} title={intl.formatMessage({
-            id: 'pages.goods.steps.1',
-          })}>
+      <StepsForm.StepForm
+        initialValues={{}}
+        title={intl.formatMessage({
+          id: 'pages.goods.steps.1',
+        })}
+      >
         <ProFormSelect
           name="goodsTypeId"
           width="md"
@@ -84,15 +102,41 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
           rules={[
             {
               required: true,
-              message: <FormattedMessage id='pages.goods.typeName.required'/>,
+              message: <FormattedMessage id="pages.goods.typeName.required" />,
+            },
+          ]}
+        />
+
+        <ProFormRadio.Group
+          name="status"
+          label={intl.formatMessage({
+            id: 'pages.goods.status.label',
+          })}
+          options={[
+            {
+              value: 'On',
+              label: <FormattedMessage id="pages.goods.status.on" />,
+            },
+            {
+              value: 'Off',
+              label: <FormattedMessage id="pages.goods.status.off" />,
+            },
+          ]}
+          rules={[
+            {
+              required: true,
+              message: <FormattedMessage id="pages.goods.status.required" />,
             },
           ]}
         />
       </StepsForm.StepForm>
 
-      <StepsForm.StepForm initialValues={{}} title={intl.formatMessage({
-            id: 'pages.goods.steps.2',
-          })}>
+      <StepsForm.StepForm
+        initialValues={{}}
+        title={intl.formatMessage({
+          id: 'pages.goods.steps.2',
+        })}
+      >
         <ProFormText
           name="name"
           label={intl.formatMessage({
@@ -105,31 +149,24 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
           rules={[
             {
               required: true,
-              message: <FormattedMessage id='pages.goods.name.required'/>,
+              message: <FormattedMessage id="pages.goods.name.required" />,
             },
           ]}
         />
-        <ProFormTextArea
-          name="description"
-          width="md"
-          label={intl.formatMessage({
-            id: 'pages.description.label',
+        <p>
+          {intl.formatMessage({
+            id: 'pages.notice.description.label',
           })}
-          placeholder={intl.formatMessage({
-            id: 'pages.description.placeholder',
-          })}
-          rules={[
-            {
-              required: true,
-              message: <FormattedMessage id='pages.description.required'/>,
-              min: 5,
-            },
-          ]}
-        />
+        </p>
+
+        {description('')}
       </StepsForm.StepForm>
-      <StepsForm.StepForm initialValues={{}} title={intl.formatMessage({
-            id: 'pages.goods.steps.3',
-          })}>
+      <StepsForm.StepForm
+        initialValues={{}}
+        title={intl.formatMessage({
+          id: 'pages.goods.steps.3',
+        })}
+      >
         　
         <ProFormMoney
           name="price"
@@ -147,7 +184,7 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
           rules={[
             {
               required: true,
-              message: <FormattedMessage id='pages.goods.price.required'/>,
+              message: <FormattedMessage id="pages.goods.price.required" />,
             },
           ]}
         />
@@ -166,7 +203,7 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
           rules={[
             {
               required: true,
-              message: <FormattedMessage id='pages.goods.minNumber.required'/>,
+              message: <FormattedMessage id="pages.goods.minNumber.required" />,
             },
           ]}
         />
@@ -185,7 +222,7 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
           rules={[
             {
               required: true,
-              message: <FormattedMessage id='pages.goods.maxNumber.required'/>,
+              message: <FormattedMessage id="pages.goods.maxNumber.required" />,
             },
           ]}
         />
@@ -198,14 +235,13 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
           min={1}
           max={10000}
           fieldProps={{ precision: 0 }}
-
           placeholder={intl.formatMessage({
             id: 'pages.goods.days.placeholder',
           })}
           rules={[
             {
               required: true,
-              message: <FormattedMessage id='pages.goods.days.required'/>,
+              message: <FormattedMessage id="pages.goods.days.required" />,
             },
           ]}
         />
@@ -218,40 +254,16 @@ const CreateForm: React.FC<UpdateFormProps> = (props) => {
           min={1}
           max={5000}
           fieldProps={{ precision: 0 }}
-
           placeholder={intl.formatMessage({
             id: 'pages.sort.placeholder',
           })}
           rules={[
             {
               required: true,
-              message: <FormattedMessage id='pages.sort.required'/>,
+              message: <FormattedMessage id="pages.sort.required" />,
             },
           ]}
         />
-        <ProFormRadio.Group
-          name="status"
-          label={intl.formatMessage({
-            id: 'pages.goods.status.label',
-          })}
-          options={[
-            {
-              value: 'On',
-              label: <FormattedMessage id='pages.goods.status.on'/>,
-            },
-            {
-              value: 'Off',
-              label: <FormattedMessage id='pages.goods.status.off'/>,
-            },
-          ]}
-          rules={[
-            {
-              required: true,
-              message: <FormattedMessage id='pages.goods.status.required'/>,
-            },
-          ]}
-        />
-        　
       </StepsForm.StepForm>
     </StepsForm>
   );
