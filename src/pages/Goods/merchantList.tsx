@@ -1,3 +1,4 @@
+import { ProProvider } from '@ant-design/pro-components';
 import type { ProDescriptionsItemProps } from '@ant-design/pro-descriptions';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import { PageContainer } from '@ant-design/pro-layout';
@@ -5,7 +6,7 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { FormattedMessage, useIntl } from '@umijs/max';
 import { Drawer } from 'antd';
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useRequest } from 'umi';
 import { getGoodsTypeList } from '../GoodsType/service';
 import type { GoodsItem, GoodsParams } from './data';
@@ -20,6 +21,7 @@ const GoodsList: React.FC = () => {
 
   //国际化
   const intl = useIntl();
+
   //读取分类数据
   const { data } = useRequest(() => {
     return getGoodsTypeList({
@@ -48,7 +50,7 @@ const GoodsList: React.FC = () => {
   const columns: ProColumns<GoodsItem>[] = [
     {
       title: <FormattedMessage id="pages.goods.logo" />,
-      width: '80px',
+      width: '120px',
       dataIndex: 'logo',
       valueType: 'avatar',
       align: 'center',
@@ -132,29 +134,79 @@ const GoodsList: React.FC = () => {
         },
       },
     },
+  ];
 
+  const proDescriptions: ProDescriptionsItemProps<
+    GoodsItem,
+    'description' | 'price' | 'day' | 'people'
+  >[] = [
+    {
+      title: <FormattedMessage id="pages.goods.name" />,
+      dataIndex: 'name',
+      valueType: 'text',
+    },
+
+    {
+      title: <FormattedMessage id="pages.goods.price" />,
+      dataIndex: 'price',
+      valueType: 'money',
+    },
+    {
+      title: <FormattedMessage id="pages.goods.minNumber" />,
+      dataIndex: 'minNumber',
+      valueType: 'people',
+    },
+    {
+      title: <FormattedMessage id="pages.goods.maxNumber" />,
+      valueType: 'people',
+      dataIndex: 'maxNumber',
+    },
+    {
+      title: <FormattedMessage id="pages.goods.days" />,
+      valueType: 'day',
+      dataIndex: 'days',
+    },
+    {
+      title: <FormattedMessage id="pages.goods.typeName" />,
+      dataIndex: ['goodsType', 'name'],
+      valueType: 'text',
+    },
+
+    {
+      title: <FormattedMessage id="pages.goods.status" />,
+      dataIndex: 'status',
+      valueEnum: {
+        0: {
+          text: <FormattedMessage id="pages.goods.status.on" />,
+          status: 'On',
+        },
+        1: {
+          text: <FormattedMessage id="pages.goods.status.off" />,
+          status: 'Off',
+        },
+      },
+    },
     {
       title: <FormattedMessage id="pages.description" />,
       dataIndex: 'description',
-      width: 'md',
-      hideInSearch: true,
-      hideInTable: true,
-      hideInDescriptions: false,
-      valueType: 'textarea',
+      valueType: 'description',
     },
   ];
+  const ivalues = useContext(ProProvider);
+
   return (
     <div>
       <PageContainer>
         <ProTable<GoodsItem, GoodsParams>
+          headerTitle=""
           actionRef={actionRef}
           pagination={paginationProps}
           rowKey={(record) => record.id}
           params={params}
-          request={queryGoodsList}
-          columns={columns}
           search={false}
           toolBarRender={false}
+          request={queryGoodsList}
+          columns={columns}
           onChange={(pagination, filters: any, sorter: any) => {
             console.log(pagination);
             if (sorter) {
@@ -167,32 +219,63 @@ const GoodsList: React.FC = () => {
             }
           }}
         />
-
-        <Drawer
-          width={600}
-          visible={showDetail}
-          onClose={() => {
-            setCurrentRow(undefined);
-            setShowDetail(false);
+        <ProProvider.Provider
+          value={{
+            ...ivalues,
+            valueTypeMap: {
+              description: {
+                render: (text) => (
+                  <div dangerouslySetInnerHTML={{ __html: text }} key="description"></div>
+                ),
+              },
+              people: {
+                render: (text) => (
+                  <span>
+                    {text}
+                    <FormattedMessage id="pages.people" />
+                  </span>
+                ),
+              },
+              day: {
+                render: (text) => (
+                  <span>
+                    {text}
+                    <FormattedMessage id="pages.day" />
+                  </span>
+                ),
+              },
+              price: {
+                render: (text) => <span>{'¥' + Number((text / 1000) * 0.7).toFixed(3)}</span>,
+              },
+            },
           }}
-          closable={false}
         >
-          {currentRow?.id && (
-            <ProDescriptions<GoodsItem>
-              column={1}
-              title={intl.formatMessage({
-                id: 'pages.goods.detail',
-              })}
-              request={async () => ({
-                data: currentRow || {},
-              })}
-              params={{
-                id: currentRow?.id,
-              }}
-              columns={columns as ProDescriptionsItemProps<GoodsItem>[]}
-            />
-          )}
-        </Drawer>
+          <Drawer
+            width={600}
+            visible={showDetail}
+            onClose={() => {
+              setCurrentRow(undefined);
+              setShowDetail(false);
+            }}
+            closable={false}
+          >
+            {currentRow?.id && (
+              <ProDescriptions<GoodsItem, 'description' | 'price' | 'day' | 'people'>
+                column={1}
+                title={intl.formatMessage({
+                  id: 'pages.goods.detail',
+                })}
+                request={async () => ({
+                  data: currentRow || {},
+                })}
+                params={{
+                  id: currentRow?.id,
+                }}
+                columns={proDescriptions}
+              />
+            )}
+          </Drawer>
+        </ProProvider.Provider>
       </PageContainer>
     </div>
   );
