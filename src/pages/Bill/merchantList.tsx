@@ -29,7 +29,6 @@ const BillList: React.FC = () => {
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
-   // current: 1,
   };
 
   const columns: ProColumns<BillItem>[] = [
@@ -127,7 +126,6 @@ const BillList: React.FC = () => {
           request={queryBillMyList}
           columns={columns}
           onChange={(pagination, filters: any, sorter: any) => {
-            console.log(pagination);
             if (sorter) {
               sorter.order = sorter.order === 'descend' ? 'DESC' : 'ASC';
               const billParams: BillParams = {
