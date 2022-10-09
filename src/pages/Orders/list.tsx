@@ -9,7 +9,7 @@ import {
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType } from '@ant-design/pro-table';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Divider, Drawer, message, Modal } from 'antd';
+import { Drawer, message, Modal } from 'antd';
 import type { FC } from 'react';
 import { useContext, useRef, useState } from 'react';
 import AuditModal from './components/AuditModal';
@@ -57,27 +57,23 @@ export const OrdersList: FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const handleUpdate = async (fields: OrdersParams, currentRow?: OrdersItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     try {
-      const { status } = await updateOrders({
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+
+      const { status, info } = await updateOrders({
         ...currentRow,
         ...fields,
       });
+      loadingHiddle();
       if (status) {
-        message.success(
-          intl.formatMessage({
-            id: 'pages.tip.success',
-          }),
-        );
+        message.success(info);
         actionRef.current?.reload?.();
         return true;
       }
-
       return false;
     } catch (error) {
       message.error(
@@ -96,12 +92,6 @@ export const OrdersList: FC = () => {
    */
 
   const handleRemove = async (selectedRows: OrdersItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     if (!selectedRows) return true;
 
     Modal.confirm({
@@ -119,16 +109,21 @@ export const OrdersList: FC = () => {
       }),
       onOk: async () => {
         try {
-          await removeOrders({
-            id: selectedRows.id,
-          });
-          message.success(
+          const loadingHiddle = message.loading(
             intl.formatMessage({
-              id: 'pages.tip.success',
+              id: 'pages.tip.loading',
             }),
           );
-          actionRef.current?.reload?.();
-          return true;
+          const { status, info } = await removeOrders({
+            id: selectedRows.id,
+          });
+          loadingHiddle();
+          if (status) {
+            message.success(info);
+            actionRef.current?.reload?.();
+            return true;
+          }
+          return false;
         } catch (error) {
           message.error(
             intl.formatMessage({
@@ -151,7 +146,7 @@ export const OrdersList: FC = () => {
       valueType: 'text',
       hideInDescriptions: true,
       hideInTable: true,
-      
+
       width: 60,
     },
 
@@ -181,7 +176,7 @@ export const OrdersList: FC = () => {
       dataIndex: 'linkid',
       valueType: 'text',
       hideInSearch: true,
-      hideInTable:true,
+      hideInTable: true,
       width: 150,
     },
     {
@@ -393,7 +388,6 @@ export const OrdersList: FC = () => {
       dataIndex: 'tstaskCount',
       valueType: 'people',
     },
-   
   ];
 
   const tcolumns: ProColumns<TweetItem>[] = [

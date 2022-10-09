@@ -3,7 +3,7 @@ import ProDescriptions from '@ant-design/pro-descriptions';
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import { useIntl } from '@umijs/max';
+import { FormattedMessage, useIntl } from '@umijs/max';
 import { Drawer, message, Modal } from 'antd';
 import React, { useRef, useState } from 'react';
 import UpdateForm from './components/UpdateForm';
@@ -27,9 +27,7 @@ const UsersList: React.FC = () => {
     setDone(false);
     handleUpdateModalVisible(false);
   };
-
-  /** 国际化配置 */
-
+  
   /**
    * 更新节点
    *
@@ -38,28 +36,23 @@ const UsersList: React.FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const handleUpdate = async (fields: UserParams, currentRow?: UserItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     try {
-      const result = await updateUsers({
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+      const { status, info } = await updateUsers({
         ...currentRow,
         ...fields,
       });
-      if (result.status) {
-        message.success(
-          intl.formatMessage({
-            id: 'pages.tip.success',
-          }),
-        );
+      loadingHiddle();
+      if (status) {
+        message.success(info);
+        actionRef.current?.reload?.();
         return true;
-      } else {
-        message.success(result.info);
-        return false;
       }
+      return false;
     } catch (error) {
       message.error(
         intl.formatMessage({
@@ -92,28 +85,23 @@ const UsersList: React.FC = () => {
         id: 'pages.tip.cancel',
       }),
       onOk: async () => {
-        const loadingShow = message.loading(
-          intl.formatMessage({
-            id: 'pages.tip.loading',
-          }),
-        );
-        loadingShow();
-
         if (!selectedRows) return true;
         try {
-          await removeUsers({
-            id: selectedRows.id,
-          });
-          message.success(
+          const loadingHiddle = message.loading(
             intl.formatMessage({
-              id: 'pages.tip.success',
+              id: 'pages.tip.loading',
             }),
           );
-          if (actionRef.current) {
-            actionRef.current.reload();
+          const { status, info } = await removeUsers({
+            id: selectedRows.id,
+          });
+          loadingHiddle();
+          if (status) {
+            message.success(info);
+            actionRef.current?.reload?.();
+            return true;
           }
-
-          return true;
+          return false;
         } catch (error) {
           message.error(
             intl.formatMessage({
@@ -133,7 +121,7 @@ const UsersList: React.FC = () => {
 
   const columns: ProColumns<UserItem>[] = [
     {
-      title: 'Avatar',
+      title: <FormattedMessage id='pages.user.avatar'/>,
       dataIndex: 'avatar',
       hideInSearch: true,
       valueType: 'image',
@@ -141,7 +129,7 @@ const UsersList: React.FC = () => {
       width: '60',
     },
     {
-      title: '用户名',
+      title:<FormattedMessage id='pages.user.username'/>,
       dataIndex: 'username',
       width: 'md',
       hideInDescriptions: true,
@@ -159,7 +147,7 @@ const UsersList: React.FC = () => {
       },
     },
     {
-      title: 'signature',
+      title: <FormattedMessage id='pages.user.signature'/>,
       dataIndex: 'signature',
       hideInSearch: true,
       valueType: 'text',
@@ -167,14 +155,14 @@ const UsersList: React.FC = () => {
     },
 
     {
-      title: 'group',
+      title: <FormattedMessage id='pages.user.group'/>,
       dataIndex: 'group',
       hideInSearch: true,
       valueType: 'text',
       width: 'md',
     },
     {
-      title: 'phone',
+      title: <FormattedMessage id='pages.user.phone'/>,
       dataIndex: 'phone',
       hideInSearch: true,
       valueType: 'text',
@@ -182,7 +170,7 @@ const UsersList: React.FC = () => {
     },
 
     {
-      title: '简介',
+      title: <FormattedMessage id='pages.user.description'/>,
       dataIndex: 'description',
       width: 'md',
       hideInSearch: true,
@@ -191,7 +179,7 @@ const UsersList: React.FC = () => {
     },
 
     {
-      title: '操作',
+      title: <FormattedMessage id='pages.option'/>,
       dataIndex: 'option',
       valueType: 'option',
       hideInDescriptions: true,
@@ -203,7 +191,7 @@ const UsersList: React.FC = () => {
             setCurrentRow(record);
           }}
         >
-          编辑
+          <FormattedMessage id='pages.edit'/>
         </a>,
         <a
           key="delete"
@@ -212,7 +200,7 @@ const UsersList: React.FC = () => {
             actionRef.current?.reloadAndRest?.();
           }}
         >
-          删除
+          <FormattedMessage id='pages.delete'/>
         </a>,
       ],
     },

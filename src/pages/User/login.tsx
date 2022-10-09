@@ -36,6 +36,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.LoginParams) => {
     try {
       // 登录
+
       const { status, token } = await login({ ...values });
       if (status) {
         const defaultLoginSuccessMessage = intl.formatMessage({
@@ -101,11 +102,7 @@ const Login: React.FC = () => {
             rules={[
               {
                 required: true,
-                message: (
-                  <FormattedMessage
-                    id="pages.login.username.required"
-                  />
-                ),
+                message: <FormattedMessage id="pages.login.username.required" />,
               },
             ]}
           />
@@ -121,11 +118,7 @@ const Login: React.FC = () => {
             rules={[
               {
                 required: true,
-                message: (
-                  <FormattedMessage
-                    id="pages.login.password.required"
-                  />
-                ),
+                message: <FormattedMessage id="pages.login.password.required" />,
               },
             ]}
           />
@@ -136,7 +129,7 @@ const Login: React.FC = () => {
             }}
           >
             <Link to="/user/register" style={{ float: 'left' }}>
-              <FormattedMessage id="pages.register"/>
+              <FormattedMessage id="pages.register" />
             </Link>
 
             <a
@@ -146,7 +139,7 @@ const Login: React.FC = () => {
                 setVisible(true);
               }}
             >
-              <FormattedMessage id="pages.forgotPassword" />
+              <FormattedMessage id="pages.forgotpassword" />
             </a>
           </div>
         </LoginForm>
@@ -166,10 +159,8 @@ const Login: React.FC = () => {
             message.success(info);
             setVisible(false);
             return true;
-          } else {
-            message.error(info);
-            return false;
           }
+          return false;
         }}
       />
     </div>

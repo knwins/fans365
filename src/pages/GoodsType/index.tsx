@@ -39,45 +39,40 @@ const GoodsType: React.FC = () => {
 
   const handleSubmit = async (fields: GoodsTypeItem) => {
     try {
-      console.log(fields?.id);
       const action = fields?.id ? 'update' : 'add';
-      const loadingShow = message.loading(
+      const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
         }),
       );
-      loadingShow();
+
       if (action == 'add') {
-        await addGoodsType({ ...fields });
-         message.success(
-          intl.formatMessage({
-            id: 'pages.tip.success',
-          }),
-        );
-        setVisible(false);
-        setCurrentRow(undefined);
-        if (actionRef.current) {
-          actionRef.current.reloadAndRest?.();
+        const { status, info } = await addGoodsType({ ...fields });
+        loadingHiddle();
+        if (status) {
+          message.success(info);
+          setVisible(false);
+          setCurrentRow(undefined);
+          if (actionRef.current) {
+            actionRef.current.reloadAndRest?.();
+          }
+          return;
         }
-        
         return;
       } else if (action == 'update') {
-        
-        await updateGoodsType({ ...fields });
-         message.success(
-          intl.formatMessage({
-            id: 'pages.tip.success',
-          }),
-        );
-        setVisible(false);
-        setCurrentRow(undefined);
-        if (actionRef.current) {
-          actionRef.current.reloadAndRest?.();
+        const { status, info } = await updateGoodsType({ ...fields });
+        loadingHiddle();
+        if (status) {
+          message.success(info);
+          setVisible(false);
+          setCurrentRow(undefined);
+          if (actionRef.current) {
+            actionRef.current.reloadAndRest?.();
+          }
+          return;
         }
-       
         return;
       }
-     
     } catch (error) {
       message.error(
         intl.formatMessage({
@@ -96,25 +91,33 @@ const GoodsType: React.FC = () => {
    */
 
   const handleRemove = async (selectedRows: GoodsTypeItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     if (!selectedRows) return true;
     try {
-      await removeGoodsType({
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+      const { status, info } = await removeGoodsType({
         id: selectedRows.id,
       });
-       message.success(intl.formatMessage({
-        id: 'pages.tip.success',
-      }),);
-      return true;
+      loadingHiddle();
+      if (status) {
+        message.success(info);
+        setVisible(false);
+        setCurrentRow(undefined);
+        if (actionRef.current) {
+          actionRef.current.reloadAndRest?.();
+        }
+        return true;
+      }
+      return false;
     } catch (error) {
-       message.error(intl.formatMessage({
-        id: 'pages.tip.error',
-      }),);
+      message.error(
+        intl.formatMessage({
+          id: 'pages.tip.error',
+        }),
+      );
       return false;
     }
   };
@@ -136,7 +139,7 @@ const GoodsType: React.FC = () => {
       hideInDescriptions: true,
     },
     {
-      title: <FormattedMessage id="pages.goods.type.name"/>,
+      title: <FormattedMessage id="pages.goods.type.name" />,
       dataIndex: 'name',
       hideInSearch: true,
       valueType: 'text',
@@ -161,7 +164,7 @@ const GoodsType: React.FC = () => {
       hideInForm: true,
     },
     {
-      title: <FormattedMessage id="pages.goods.type.action"/>,
+      title: <FormattedMessage id="pages.goods.type.action" />,
       dataIndex: 'action',
       valueType: 'text',
       hideInSearch: true,
@@ -206,7 +209,7 @@ const GoodsType: React.FC = () => {
             actionRef.current?.reloadAndRest?.();
           }}
         >
-          <FormattedMessage id="pages.delete"/>
+          <FormattedMessage id="pages.delete" />
         </a>,
       ],
     },
@@ -231,11 +234,11 @@ const GoodsType: React.FC = () => {
                 setCurrentRow(undefined);
               }}
             >
-              <PlusOutlined /> <FormattedMessage id="pages.new"/>
+              <PlusOutlined /> <FormattedMessage id="pages.new" />
             </Button>,
           ]}
           onChange={(filters: any, sorter: any) => {
-             if (sorter) {
+            if (sorter) {
               sorter.order = sorter.order === 'descend' ? 'DESC' : 'ASC';
               const goodsTypeParams: GoodsTypeParams = {
                 sorter: sorter.order,

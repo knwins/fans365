@@ -123,17 +123,17 @@ export const Applications: FC<Record<string, any>> = () => {
   });
 
   const addTSTasks = async (fields: any, current?: TSTaskParams) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     try {
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
       const { status, info } = await addTSTask({
         ...current,
         ...fields,
       });
+      loadingHiddle();
       if (status) {
         message.success(info);
         return true;
@@ -215,7 +215,6 @@ export const Applications: FC<Record<string, any>> = () => {
       dataIndex: 'tstaskCount',
       valueType: 'people',
     },
-   
   ];
 
   const params: TweetParams = {

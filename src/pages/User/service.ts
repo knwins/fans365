@@ -30,7 +30,10 @@ export async function queryUserList(
 
 /** 新建 GET /api/users/list */
 export async function getUser(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<UserItem>('https://api.fans365.net/api/users/get', {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/users/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -40,8 +43,6 @@ export async function getUser(data: { [id: string]: any }, options?: { [id: stri
 /** 更新PUT /api/users/update */
 export async function updateUser(data: { [id: string]: any }, options?: { [id: string]: any }) {
   return request<{
-    data: UserItem;
-    /** 列表的内容总数 */
     info?: string;
     status?: boolean;
   }>('https://api.fans365.net/api/users/update', {

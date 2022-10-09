@@ -232,11 +232,7 @@ const Register: FC = () => {
                 username,
               });
               if (status === true) {
-                message.success(
-                  intl.formatMessage({
-                    id: 'pages.register.captcha.get.success',
-                  }),
-                );
+                message.success(info);
                 return;
               } else {
                 throw new Error(info);

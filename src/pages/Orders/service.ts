@@ -92,7 +92,6 @@ export async function updateOrders(data: { [id: string]: any }, options?: { [id:
   return request<{
     status?: boolean;
     info?: string;
-    data: OrdersItem;
   }>('https://api.fans365.net/api/orders/update', {
     data,
     method: 'PUT',
@@ -108,7 +107,6 @@ export async function addOrders(data: { [id: string]: any }, options?: { [id: st
   return request<{
     status?: boolean;
     info?: string;
-    data: OrdersItem;
   }>('https://api.fans365.net/api/orders/add', {
     data,
     method: 'POST',

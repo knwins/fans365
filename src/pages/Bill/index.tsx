@@ -26,12 +26,12 @@ const BillList: React.FC = () => {
   const intl = useIntl();
 
   const handleAdd = async (fields: BillItem) => {
-    const loadingShow = message.loading(
+    const loadingHidde = message.loading(
       intl.formatMessage({
         id: 'pages.tip.loading',
       }),
     );
-    loadingShow();
+    loadingHidde();
     try {
       const { status } = await addBill({
         ...fields,
@@ -76,28 +76,27 @@ const BillList: React.FC = () => {
         id: 'pages.tip.cancel',
       }),
       onOk: async () => {
-        const loadingShow = message.loading(
-          intl.formatMessage({
-            id: 'pages.tip.loading',
-          }),
-        );
-
-        loadingShow();
-
         if (!selectedRows) return true;
         try {
-          await removeBill({
-            id: selectedRows.id,
-          });
-          message.success(
+          const loadingHidde = message.loading(
             intl.formatMessage({
-              id: 'pages.tip.success',
+              id: 'pages.tip.loading',
             }),
           );
-          if (actionRef.current) {
-            actionRef.current.reload();
+
+          const { status, info } = await removeBill({
+            id: selectedRows.id,
+          });
+
+          if (status) {
+            loadingHidde();
+            message.success(info);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+            return true;
           }
-          return true;
+          return false;
         } catch (error) {
           message.error(
             intl.formatMessage({
@@ -118,7 +117,6 @@ const BillList: React.FC = () => {
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
-   
   };
 
   const columns: ProColumns<BillItem>[] = [
@@ -278,7 +276,7 @@ const BillList: React.FC = () => {
           request={queryBillList}
           columns={columns}
           onChange={(pagination, filters: any, sorter: any) => {
-           // console.log(pagination);
+            // console.log(pagination);
             if (sorter) {
               sorter.order = sorter.order === 'descend' ? 'DESC' : 'ASC';
               const billParams: BillParams = {
@@ -322,7 +320,7 @@ const BillList: React.FC = () => {
                 actionRef.current.reload();
                 return true;
               }
-            } 
+            }
             return true;
           }}
         />

@@ -95,7 +95,10 @@ export async function addBind(data: { [key: string]: any }, options?: { [key: st
 
 /** 删除 DELETE /api/bind */
 export async function removeBind(data: { id: string }, options?: { [key: string]: any }) {
-  return request<BindItem>('https://api.fans365.net/api/bind/delete', {
+  return request<{
+    status?: string;
+    info?: string;
+  }>('https://api.fans365.net/api/bind/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

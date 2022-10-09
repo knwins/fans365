@@ -27,7 +27,7 @@ const UpdateModal: FC<UpdateModalProps> = (props) => {
     <ModalForm<UserItem>
       visible={visible}
       title={intl.formatMessage({
-        id: 'pages.forgotPassword.title',
+        id: 'pages.forgotpassword.title',
       })}
       className={styles.standardListForm}
       width={540}
@@ -37,7 +37,7 @@ const UpdateModal: FC<UpdateModalProps> = (props) => {
       submitter={{
         render: (_, dom) => (done ? null : dom),
         searchConfig: {
-          submitText: <FormattedMessage id="pages.forgotPassword.subimt"/>,
+          submitText: <FormattedMessage id="pages.forgotpassword.subimt"/>,
         },
       }}
       trigger={<>{children}</>}
@@ -50,15 +50,17 @@ const UpdateModal: FC<UpdateModalProps> = (props) => {
       <ProFormText
         name="username"
         label={intl.formatMessage({
-          id: 'pages.forgotPassword.username',
+          id: 'pages.forgotpassword.username',
         })}
         fieldProps={{
           size: 'middle',
           prefix: <UserOutlined className={styles.prefixIcon} />,
         }}
-        rules={[{ required: true, message: 'please enter Email' }]}
+        rules={[{ required: true, message: intl.formatMessage({
+          id: 'pages.forgotpassword.username.required',
+        })}]}
         placeholder={intl.formatMessage({
-          id: 'pages.forgotPassword.placeholder',
+          id: 'pages.forgotpassword.username.placeholder',
         })}
       />
 
@@ -71,11 +73,10 @@ const UpdateModal: FC<UpdateModalProps> = (props) => {
           size: 'middle',
         }}
         placeholder={intl.formatMessage({
-          id: 'pages.forgotPassword.captcha.placeholder',
+          id: 'pages.forgotpassword.captcha.placeholder',
         })}
         phoneName="username"
         name="captcha"
-
         captchaTextRender={(timing, count) => {
           if (timing) {
             return `${count} ${intl.formatMessage({
@@ -90,7 +91,7 @@ const UpdateModal: FC<UpdateModalProps> = (props) => {
         rules={[
           {
             required: true,
-            message: <FormattedMessage id="pages.forgotPassword.captcha.required" />,
+            message: <FormattedMessage id="pages.forgotpassword.captcha.required" />,
           },
         ]}
         onGetCaptcha={async (username) => {
@@ -98,14 +99,9 @@ const UpdateModal: FC<UpdateModalProps> = (props) => {
             username,
           });
           if (status === true) {
-            message.success(
-              intl.formatMessage({
-                id: 'pages.register.captcha.get.success',
-              }),
-            );
+            message.success(info);
             return;
           } else {
-            message.error(info);
             throw new Error(info);
           }
         }}

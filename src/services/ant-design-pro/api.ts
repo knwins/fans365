@@ -59,8 +59,8 @@ export async function getNotice(data: { [id: string]: any }, options?: { [id: st
  
 export async function updateNotice(data: { [key: string]: any }, options?: { [key: string]: any }) {
   return request<{
-    data: API.NoticeIconItem;
     status?: boolean;
+    info?: string;
   }>('https://api.fans365.net/api/notice/update', {
     data,
     method: 'PUT',
@@ -72,8 +72,8 @@ export async function updateNotice(data: { [key: string]: any }, options?: { [ke
 
 export async function removeNotice(data: { [key: string]: any }, options?: { [key: string]: any }) {
   return request<{
-    data: API.NoticeIconItem;
     status?: boolean;
+    info?: string;
   }>('https://api.fans365.net/api/notice/delete', {
     data,
     method: 'DELETE',
@@ -82,7 +82,10 @@ export async function removeNotice(data: { [key: string]: any }, options?: { [ke
 }
 
 export async function addNotice(data: { [key: string]: any }, options?: { [key: string]: any }) {
-  return request<API.NoticeIconItem>('https://api.fans365.net/api/notice/add', {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/notice/add', {
     data,
     method: 'POST',
     ...(options || {}),

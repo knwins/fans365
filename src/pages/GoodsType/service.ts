@@ -1,8 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
 
-
-
 import { request } from 'umi';
 import type { GoodsTypeItem } from './data.d';
 
@@ -15,11 +13,10 @@ export async function getGoodsTypeList(
     current?: number;
     /** 页面的容量 */
     pageSize?: number;
-  
   },
-  options?: { 
+  options?: {
     [key: string]: any;
-   },
+  },
 ) {
   return request<{
     data: GoodsTypeItem[];
@@ -53,7 +50,10 @@ export async function updateGoodsType(
   data: { [key: string]: any },
   options?: { [key: string]: any },
 ) {
-  return request<GoodsTypeItem>('https://api.fans365.net/api/goods_type/update', {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/goods_type/update', {
     data,
     method: 'PUT',
 
@@ -63,7 +63,10 @@ export async function updateGoodsType(
 
 /** 新建 POST /api/goodsType */
 export async function addGoodsType(data: { [key: string]: any }, options?: { [key: string]: any }) {
-  return request<GoodsTypeItem>('https://api.fans365.net/api/goods_type/add', {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/goods_type/add', {
     data,
     method: 'POST',
 
@@ -73,7 +76,10 @@ export async function addGoodsType(data: { [key: string]: any }, options?: { [ke
 
 /** 删除 DELETE /api/goodsType */
 export async function removeGoodsType(data: { id: string }, options?: { [key: string]: any }) {
-  return request<GoodsTypeItem>('https://api.fans365.net/api/goods_type/delete', {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/goods_type/delete', {
     data,
     method: 'DELETE',
 

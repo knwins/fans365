@@ -55,15 +55,16 @@ export default {
 
   'pages.password.tip':
     'Please enter at least 6 characters. Please do not use a password that can be easily guessed.',
-  
 
-  'pages.forgotPassword.title': 'Forgot Password',
-  'pages.forgotPassword.username': 'Username',
-  'pages.forgotPassword.placeholder': 'Please enter email',
-  'pages.forgotPassword': 'Forgot Password ?',
-  'pages.forgotPassword.captcha.placeholder': 'Verification Code',
-  'pages.forgotPassword.captcha.get': 'GetCode',
-  'pages.forgotPassword.subimt': 'Subimt',
+  'pages.forgotpassword': 'Forgot Password',
+  'pages.forgotpassword.title': 'Forgot Password',
+  'pages.forgotpassword.username': 'Username',
+  'pages.forgotpassword.username.placeholder': 'Please enter email',
+  'pages.forgotpassword.username.required': 'Please enter email!',
+  'pages.forgotpassword.captcha.placeholder': 'Please enter verification code',
+  'pages.forgotpassword.captcha.required': 'Please enter verification code!',
+  'pages.forgotpassword.captcha.get': 'GetCode',
+  'pages.forgotpassword.subimt': 'Subimt',
 
   'pages.welcome.link': 'Welcome',
   'pages.welcome.alertMessage': 'Faster and stronger heavy-duty components have been released.',
@@ -147,12 +148,10 @@ export default {
   'pages.sort.placeholder': 'Please enter sort',
   'pages.sort.required': 'Please enter sort!',
 
-
   /**单位 */
-  'pages.people': 'People',
-  'pages.day': 'Day',
+  'pages.people': ' people',
+  'pages.day': ' day',
   'pages.money': 'RMB',
-
 
   'pages.description': 'Description',
   'pages.description.label': 'Description',
@@ -335,7 +334,8 @@ export default {
   'pages.account.payimage.upload': ' Pay upload',
 
   'pages.account.password.title': 'Account password',
-  'pages.account.password.description': 'For account security please change your password regularly, please use a password of 6 or more digits + letters + special characters.',
+  'pages.account.password.description':
+    'For account security please change your password regularly, please use a password of 6 or more digits + letters + special characters.',
 
   'pages.account.password.old': 'Account Strong:',
 
@@ -359,8 +359,8 @@ export default {
   'pages.account.binding.wechatpay.description':
     'WeChat Pay is a payment feature integrated into the WeChat app, users can complete payment quickly with smartphones. WeChat has Quick Pay, QR Code Payments, In-App Web-Based Payments, and Native In-App Payments, all to fulfill the full range of scenarios your customers expect to fulfill different payment situation. Combined with WeChat official accounts, WeChat Pay service explores and optimizes o2o consumption experience, provides professional internet solutions for physical business. It is the best choice of mobile payments.',
 
-    'pages.bind.regtime': 'Reg Time',
-    'pages.bind.runtime': 'Run Time',
+  'pages.bind.regtime': 'Reg Time',
+  'pages.bind.runtime': 'Run Time',
   'pages.bind.username': 'Username',
   'pages.bind.username.label': 'Username',
   'pages.bind.username.placeholder': 'Please enter username',
@@ -405,14 +405,17 @@ export default {
   'pages.tweet.useCount': 'Availability',
   'pages.tweet.useCount.required': 'Availability required!',
   'pages.tweet.buy': ' Buy ',
-  'pages.tweet.useCount.tip1': 'Please calculate if the sum of all users is greater than the number of purchasers, and if it is 0, the content will not be used.',
-  'pages.tweet.useCount.tip2': 'If the order is never completed, please check if the number of people is used up.',
+  'pages.tweet.useCount.tip1':
+    'Please calculate if the sum of all users is greater than the number of purchasers, and if it is 0, the content will not be used.',
+  'pages.tweet.useCount.tip2':
+    'If the order is never completed, please check if the number of people is used up.',
 
-  'pages.result.success.twitter.title':'Twitter authorization success',
-  'pages.result.success.twitter.subTitle':'Please go to My Account to view authorized Twitter users.',
-  'pages.result.fail.twitter.title':'Twitter authorization fail',
-  'pages.result.fail.twitter.subTitle':'Please check whether it is a network problem, such as the basis of the problem please contact customer service.',
-
+  'pages.result.success.twitter.title': 'Twitter authorization success',
+  'pages.result.success.twitter.subTitle':
+    'Please go to My Account to view authorized Twitter users.',
+  'pages.result.fail.twitter.title': 'Twitter authorization fail',
+  'pages.result.fail.twitter.subTitle':
+    'Please check whether it is a network problem, such as the basis of the problem please contact customer service.',
 
   'pages.notice.notification': 'Notification',
   'pages.notice.notification.required': 'Notification not allowed to be deleted.',
@@ -432,4 +435,20 @@ export default {
   'pages.notice.description.placeholder': 'Please enter content',
   'pages.notice.description.required': 'Please enter content!',
 
+
+
+  'pages.user.avatar': 'Avatar',
+  'pages.user.username': 'Username',
+  'pages.user.signature': 'Signature',
+  'pages.user.group': 'Group',
+  'pages.user.phone': 'Phone',
+  'pages.user.description': 'Description',
+  'pages.user.description.label': 'Description',
+   'pages.user.username.label': 'Username',
+  'pages.user.username.placeholder': 'Please enter username',
+  'pages.user.username.required': 'Please enter username!',
+   'pages.user.group.label': 'User group',
+  'pages.user.group.user': 'User',
+  'pages.user.group.merchant': 'Merchant',
+  'pages.user.group.admin': 'Admin',
 };

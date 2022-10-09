@@ -45,17 +45,20 @@ export default {
   'pages.password.strength.weak': '密码强度：高',
   'pages.password.strength.medium': '密码强度：中',
   'pages.password.strength.strong': '密码强度：高',
+  'pages.password.tip': '请设置为数字+字母+特殊符号组合6位以上',
 
   /* forgotPassword*/
+  'pages.forgotpassword': '找回密码',
+  'pages.forgotpassword.title': '找回密码',
+  'pages.forgotpassword.username': '用户名',
+  'pages.forgotpassword.username.placeholder': '请输入电子邮件',
+  'pages.forgotpassword.username.required': '请输入电子邮件!',
+  'pages.forgotpassword.captcha.placeholder': '请输入验证码',
+  'pages.forgotpassword.captcha.required': '请输入验证码!',
+  'pages.forgotpassword.captcha.get': '获取验证码',
+  'pages.forgotpassword.subimt': '提交',
+ 
 
-  'pages.password.tip': '请设置为数字+字母+特殊符号组合6位以上',
-  'pages.forgotPassword.title': '找回密码',
-  'pages.forgotPassword.username': '用户名',
-  'pages.forgotPassword.placeholder': '请输入电子邮件',
-  'pages.forgotPassword': '找回密码?',
-  'pages.forgotPassword.subimt': '提交',
-  'pages.forgotPassword.captcha.placeholder': '请输入验证码',
-  'pages.forgotPassword.captcha.get': '获取验证码',
 
   'pages.searchTable.createForm.newRule': '新建规则',
   'pages.searchTable.updateForm.ruleConfig': '规则配置',
@@ -415,4 +418,20 @@ export default {
   'pages.notice.description.label': '内容',
   'pages.notice.description.placeholder': '请输入内容',
   'pages.notice.description.required': '请输入内容!',
+
+  'pages.user.avatar': '头像',
+  'pages.user.username': '用户名称',
+  'pages.user.username.label': '用户名称',
+  'pages.user.username.placeholder': '请输入用户名称',
+  'pages.user.username.required': '请输入用户名称!',
+  'pages.user.signature': '昵称',
+  'pages.user.group': '用户组',
+  'pages.user.group.label': '用户组',
+  'pages.user.group.user': '终端用户',
+  'pages.user.group.merchant': '合作商',
+  'pages.user.group.admin': '管理员',
+  'pages.user.phone': '电话',
+  'pages.user.description': '简介',
+  'pages.user.description.label': '简介',
+  
 };

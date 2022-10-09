@@ -121,17 +121,17 @@ export const Applications: FC<Record<string, any>> = () => {
   });
 
   const addTSTasks = async (fields: any, current?: TSTaskParams) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     try {
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
       const { status, info } = await addTSTask({
         ...current,
         ...fields,
       });
+      loadingHiddle();
       if (status) {
         message.success(info);
         return true;
@@ -183,17 +183,16 @@ export const Applications: FC<Record<string, any>> = () => {
       dataIndex: 'createTime',
       valueType: 'dateTime',
     },
- 
+
     {
       title: <FormattedMessage id="pages.orders.price" />,
-      dataIndex: ['goods','price'],
+      dataIndex: ['goods', 'price'],
       valueType: 'price',
     },
-   
 
     {
       title: <FormattedMessage id="pages.orders.days.label" />,
-      dataIndex: ['goods','days'],
+      dataIndex: ['goods', 'days'],
       valueType: 'day',
     },
 
@@ -214,7 +213,6 @@ export const Applications: FC<Record<string, any>> = () => {
       dataIndex: 'tstaskCount',
       valueType: 'people',
     },
-   
   ];
 
   const params: TweetParams = {
@@ -264,9 +262,12 @@ export const Applications: FC<Record<string, any>> = () => {
             return (
               <>
                 <List.Item key={item.id}>
-                  <Badge.Ribbon text={intl.formatMessage({
+                  <Badge.Ribbon
+                    text={intl.formatMessage({
                       id: 'pages.orders.myPublished',
-                    })} color="green">
+                    })}
+                    color="green"
+                  >
                     <Card
                       hoverable
                       bodyStyle={{ paddingBottom: 20, marginTop: 40 }}
@@ -410,16 +411,12 @@ export const Applications: FC<Record<string, any>> = () => {
                     ),
                   },
                   price: {
-                    render: (text) => (
-                      <span>
-                        {"¥"+Number((text / 1000) * 0.7).toFixed(3)}
-                      </span>
-                    ),
+                    render: (text) => <span>{'¥' + Number((text / 1000) * 0.7).toFixed(3)}</span>,
                   },
                 },
               }}
             >
-              <ProDescriptions<OrdersItem, 'price' |'day' | 'people'>
+              <ProDescriptions<OrdersItem, 'price' | 'day' | 'people'>
                 column={1}
                 title={intl.formatMessage({
                   id: 'pages.detail',

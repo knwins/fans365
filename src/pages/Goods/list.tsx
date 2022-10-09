@@ -59,13 +59,13 @@ const GoodsList: React.FC = () => {
    */
 
   const handleAdd = async (fields: FormValueType) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     try {
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+
       if (fields.goodsTypeId == undefined) {
         message.error(
           intl.formatMessage({
@@ -74,15 +74,12 @@ const GoodsList: React.FC = () => {
         );
         return false;
       }
-      const result = await addGoods({
+      const { status, info } = await addGoods({
         ...fields,
       });
-      if (result.status) {
-        message.success(
-          intl.formatMessage({
-            id: 'pages.tip.success',
-          }),
-        );
+      loadingHiddle();
+      if (status) {
+        message.success(info);
         if (actionRef.current) {
           actionRef.current.reloadAndRest?.();
         }
@@ -106,14 +103,15 @@ const GoodsList: React.FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const handleUpdate = async (fields: FormValueType, currentRow?: GoodsItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     try {
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+
       if (fields.goodsTypeId == undefined) {
+        loadingHiddle();
         message.error(
           intl.formatMessage({
             id: 'pages.goods.typeName.required',
@@ -121,19 +119,14 @@ const GoodsList: React.FC = () => {
         );
         return false;
       }
-
-      const result = await updateGoods({
+      const { status, info } = await updateGoods({
         ...currentRow,
         ...fields,
       });
+      loadingHiddle();
 
-      if (result.status) {
-        message.success(
-          intl.formatMessage({
-            id: 'pages.tip.success',
-          }),
-        );
-
+      if (status) {
+        message.success(info);
         if (actionRef.current) {
           actionRef.current.reload();
         }
@@ -172,27 +165,25 @@ const GoodsList: React.FC = () => {
         id: 'pages.tip.cancel',
       }),
       onOk: async () => {
-        const loadingShow = message.loading(
-          intl.formatMessage({
-            id: 'pages.tip.loading',
-          }),
-        );
-        loadingShow();
         if (!selectedRows) return true;
         try {
-          await removeGoods({
-            id: selectedRows.id,
-          });
-          message.success(
+          const loadingHiddle = message.loading(
             intl.formatMessage({
-              id: 'pages.tip.success',
+              id: 'pages.tip.loading',
             }),
           );
-          if (actionRef.current) {
-            actionRef.current.reload();
+          const { status, info } = await removeGoods({
+            id: selectedRows.id,
+          });
+          loadingHiddle();
+          if (status) {
+            message.success(info);
+            if (actionRef.current) {
+              actionRef.current.reload();
+            }
+            return true;
           }
-
-          return true;
+          return false;
         } catch (error) {
           message.error(
             intl.formatMessage({

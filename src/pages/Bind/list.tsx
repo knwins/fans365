@@ -38,38 +38,29 @@ const Bind: React.FC = () => {
 
   const handleSubmit = async (fields: BindItem) => {
     try {
-      const loadingShow = message.loading(
+      const loadingHidde = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
         }),
       );
-
-      loadingShow();
       const action = fields?.id ? 'update' : 'add';
       if (action == 'add') {
-        const { status } = await addBind({ ...fields });
+        const { status, info } = await addBind({ ...fields });
         if (status) {
-          message.success(
-            intl.formatMessage({
-              id: 'pages.tip.success',
-            }),
-          );
+          loadingHidde();
+          message.success(info);
           setVisible(false);
           setCurrentRow(undefined);
           if (actionRef.current) {
             actionRef.current.reload();
           }
         }
-
         return;
       } else if (action == 'update') {
-        const { status } = await updateBind({ ...fields });
+        const { status, info } = await updateBind({ ...fields });
         if (status) {
-          message.success(
-            intl.formatMessage({
-              id: 'pages.tip.success',
-            }),
-          );
+          loadingHidde();
+          message.success(info);
           setVisible(false);
           setCurrentRow(undefined);
           if (actionRef.current) {
@@ -97,26 +88,23 @@ const Bind: React.FC = () => {
    */
 
   const handleRemove = async (selectedRows: BindItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-
-    loadingShow();
-
     if (!selectedRows) return true;
     try {
-      await removeBind({
-        id: selectedRows.id,
-      });
-      message.success(
+      const loadingHiddle = message.loading(
         intl.formatMessage({
-          id: 'pages.tip.success',
+          id: 'pages.tip.loading',
         }),
       );
-      actionRef.current?.reload?.();
-      return true;
+      const { status, info } = await removeBind({
+        id: selectedRows.id,
+      });
+      if (status) {
+        loadingHiddle();
+        message.success(info);
+        actionRef.current?.reload?.();
+        return true;
+      }
+      return false;
     } catch (error) {
       message.error(
         intl.formatMessage({
@@ -185,7 +173,7 @@ const Bind: React.FC = () => {
       valueType: 'dateTime',
       hideInSearch: true,
       hideInForm: true,
-      hideInTable:true,
+      hideInTable: true,
       width: 180,
       sorter: true,
     },
@@ -254,7 +242,7 @@ const Bind: React.FC = () => {
       }),
       dataIndex: 'dayFollowCount',
       hideInSearch: true,
-      hideInTable:true,
+      hideInTable: true,
       valueType: 'digit',
       width: '60',
     },
@@ -264,7 +252,7 @@ const Bind: React.FC = () => {
       }),
       dataIndex: 'dayLikeCount',
       hideInSearch: true,
-      hideInTable:true,
+      hideInTable: true,
       valueType: 'digit',
       width: '60',
     },
@@ -274,7 +262,7 @@ const Bind: React.FC = () => {
       }),
       dataIndex: 'dayRetweetCount',
       hideInSearch: true,
-      hideInTable:true,
+      hideInTable: true,
       valueType: 'digit',
       width: '60',
     },
@@ -284,7 +272,7 @@ const Bind: React.FC = () => {
       }),
       dataIndex: 'dayQuoteCount',
       hideInSearch: true,
-      hideInTable:true,
+      hideInTable: true,
       valueType: 'digit',
       width: '60',
     },
@@ -295,7 +283,7 @@ const Bind: React.FC = () => {
       }),
       dataIndex: 'dayReplayCount',
       hideInSearch: true,
-      hideInTable:true,
+      hideInTable: true,
       valueType: 'digit',
       width: '60',
     },
@@ -306,7 +294,7 @@ const Bind: React.FC = () => {
       }),
       dataIndex: 'option',
       valueType: 'option',
-      hideInDescriptions:true,
+      hideInDescriptions: true,
       render: (_, record) => [
         <a
           key="edit"

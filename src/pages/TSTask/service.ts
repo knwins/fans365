@@ -69,7 +69,10 @@ export async function getTSTask(data: { [id: string]: any }, options?: { [id: st
 
 /** 新建 PUT /api/tstask */
 export async function updateTSTask(data: { [key: string]: any }, options?: { [key: string]: any }) {
-  return request<TSTaskItem>('https://api.fans365.net/api/tstask/update', {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/tstask/update', {
     data,
     method: 'PUT',
     ...(options || {}),
@@ -90,7 +93,10 @@ export async function addTSTask(data: { [key: string]: any }, options?: { [key: 
 
 /** 删除 DELETE /api/tstask */
 export async function removeTSTask(data: { id: string }, options?: { [key: string]: any }) {
-  return request<TSTaskItem>('https://api.fans365.net/api/tstask/delete', {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/tstask/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

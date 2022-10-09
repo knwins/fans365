@@ -103,23 +103,21 @@ const BaseView: React.FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const handleFinish = async (fields: any, currentRow?: UserParams) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     try {
-      const { status } = await updateUser({
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+
+      const { status, info } = await updateUser({
         ...currentRow,
         ...fields,
       });
+
+      loadingHiddle();
       if (status) {
-        message.success(
-          intl.formatMessage({
-            id: 'pages.tip.success',
-          }),
-        );
+        message.success(info);
         location.reload();
         return true;
       }

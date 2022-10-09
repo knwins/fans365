@@ -26,24 +26,23 @@ const TSTask: React.FC = () => {
    */
 
   const handleRemove = async (selectedRows: TSTaskItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     if (!selectedRows) return true;
     try {
-      await removeTSTask({
-        id: selectedRows.id,
-      });
-      message.success(
+      const loadingHiddle = message.loading(
         intl.formatMessage({
-          id: 'pages.tip.success',
+          id: 'pages.tip.loading',
         }),
       );
-      actionRef.current?.reload?.();
-      return true;
+      const { status, info } = await removeTSTask({
+        id: selectedRows.id,
+      });
+      loadingHiddle();
+      if (status) {
+        message.success(info);
+        actionRef.current?.reload?.();
+        return true;
+      }
+      return false;
     } catch (error) {
       message.error(
         intl.formatMessage({

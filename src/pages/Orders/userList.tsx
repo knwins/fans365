@@ -47,20 +47,16 @@ export const OrdersList: FC = () => {
   };
 
   const handleSubmit = async (fields: OrdersItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     try {
-      const result = await addOrders({ ...fields });
-      if (result.status) {
-        message.success(
-          intl.formatMessage({
-            id: 'pages.tip.success',
-          }),
-        );
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+      const { status, info } = await addOrders({ ...fields });
+      loadingHiddle();
+      if (status) {
+        message.success(info);
         if (actionRef.current) {
           actionRef.current.reloadAndRest?.();
         }
@@ -321,7 +317,6 @@ export const OrdersList: FC = () => {
       dataIndex: 'tstaskCount',
       valueType: 'people',
     },
-    
   ];
 
   const tcolumns: ProColumns<TweetItem>[] = [
@@ -344,7 +339,6 @@ export const OrdersList: FC = () => {
       width: '20%',
     },
   ];
-
 
   const tparams: TweetParams = {
     ordersId: currentRow?.id,

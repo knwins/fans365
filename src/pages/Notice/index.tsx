@@ -38,14 +38,16 @@ const Notice: React.FC = () => {
   const handleSubmit = async (fields: API.NoticeItem) => {
     try {
       const action = fields?.id ? 'update' : 'add';
-      const loadingShow = message.loading(
+      const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
         }),
       );
-      loadingShow();
+
       if (action == 'add') {
         await addNotice({ ...fields });
+
+        loadingHiddle();
         message.success(
           intl.formatMessage({
             id: 'pages.tip.success',
@@ -91,23 +93,23 @@ const Notice: React.FC = () => {
    */
 
   const handleRemove = async (selectedRows: API.NoticeItem) => {
-    const loadingShow = message.loading(
-      intl.formatMessage({
-        id: 'pages.tip.loading',
-      }),
-    );
-    loadingShow();
     if (!selectedRows) return true;
     try {
-      await removeNotice({
-        id: selectedRows.id,
-      });
-      message.success(
+      const loadingHiddle = message.loading(
         intl.formatMessage({
-          id: 'pages.tip.success',
+          id: 'pages.tip.loading',
         }),
       );
-      return true;
+      const { status, info } = await removeNotice({
+        id: selectedRows.id,
+      });
+      loadingHiddle();
+      if (status) {
+        message.success(info);
+        actionRef.current?.reload?.();
+        return true;
+      }
+      return false;
     } catch (error) {
       message.error(
         intl.formatMessage({
@@ -125,8 +127,6 @@ const Notice: React.FC = () => {
   };
 
   const columns: ProColumns<API.NoticeItem>[] = [
-
-
     {
       title: <FormattedMessage id="pages.notice.createTime" />,
       dataIndex: 'createTime',
@@ -143,7 +143,6 @@ const Notice: React.FC = () => {
       width: '80px',
     },
 
-
     {
       title: <FormattedMessage id="pages.notice.type" />,
       dataIndex: 'type',
@@ -156,7 +155,6 @@ const Notice: React.FC = () => {
       valueType: 'text',
       width: '360px',
     },
- 
 
     {
       title: <FormattedMessage id="pages.option" />,
@@ -181,7 +179,7 @@ const Notice: React.FC = () => {
             actionRef.current?.reloadAndRest?.();
           }}
         >
-          <FormattedMessage id="pages.delete"/>
+          <FormattedMessage id="pages.delete" />
         </a>,
       ],
     },
@@ -205,7 +203,7 @@ const Notice: React.FC = () => {
                 setCurrentRow(undefined);
               }}
             >
-              <PlusOutlined /> <FormattedMessage id="pages.new"/>
+              <PlusOutlined /> <FormattedMessage id="pages.new" />
             </Button>,
           ]}
           request={getNoticeList}
