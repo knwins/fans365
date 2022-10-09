@@ -299,6 +299,7 @@ const Bind: React.FC = () => {
       }),
       dataIndex: 'option',
       valueType: 'option',
+      hideInDescriptions:true,
       render: (_, record) => {
         return [
           <a
