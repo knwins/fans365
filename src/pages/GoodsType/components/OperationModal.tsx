@@ -128,27 +128,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
             id: 'pages.goods.type.action.placeholder',
           })}
         />
-        <ProFormSelect
-          name="level"
-          width="xs"
-          label={intl.formatMessage({
-            id: 'pages.goods.type.level.label',
-          })}
-          options={[
-            { label: 'VIP0', value: 'VIP0' },
-            { label: 'VIP1', value: 'VIP1' },
-            { label: 'VIP2', value: 'VIP2' },
-            { label: 'VIP3', value: 'VIP3' },
-          ]}
-          rules={[
-            {
-              required: true,
-              message: intl.formatMessage({
-                id: 'pages.goods.type.level.required',
-              }),
-            },
-          ]}
-        />
+     
         <ProFormDigit
           name="sort"
           label={intl.formatMessage({

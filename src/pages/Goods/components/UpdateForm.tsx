@@ -201,6 +201,32 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             },
           ]}
         />
+
+<ProFormSelect
+          name="level"
+          width="xs"
+          label={intl.formatMessage({
+            id: 'pages.goods.type.level.label',
+          })}
+          options={[
+            { label: 'VIP0', value: 'VIP0' },
+            { label: 'VIP500', value: 'VIP500' },
+            { label: 'VIP1000', value: 'VIP1000' },
+            { label: 'VIP5000', value: 'VIP5000' },
+            { label: 'VIP8000', value: 'VIP8000' },
+            { label: 'VIP10000', value: 'VIP10000' },
+            { label: 'VIP30000', value: 'VIP30000' },
+            { label: 'VIP50000', value: 'VIP50000' },
+          ]}
+          rules={[
+            {
+              required: true,
+              message: intl.formatMessage({
+                id: 'pages.goods.type.level.required',
+              }),
+            },
+          ]}
+        />
         <ProFormDigit
           name="minNumber"
           label={intl.formatMessage({
