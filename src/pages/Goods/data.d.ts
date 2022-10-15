@@ -12,7 +12,7 @@ export type GoodsItem = {
   days: number;
   status: string;
   sort: number;
-  level:string;
+  level: string;
   goodsTypeId: string;
   goodsType: GoodsTypeItem;
 };

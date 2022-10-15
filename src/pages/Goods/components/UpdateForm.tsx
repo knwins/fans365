@@ -58,10 +58,10 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
 
   return (
     <StepsForm
-    stepsProps={{
-      size: 'small',
-      current:1,
-    }}
+      stepsProps={{
+        size: 'small',
+        current: 1,
+      }}
       stepsFormRender={(dom, submitter) => {
         return (
           <Modal
@@ -87,7 +87,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
         values.description = value;
         onSubmit(values);
       }}
-      
+
     >
       <StepsForm.StepForm
         initialValues={current}
@@ -168,19 +168,12 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       </StepsForm.StepForm>
 
       <StepsForm.StepForm
-        initialValues={{
-          price: props.current.price,
-          minNumber: props.current.minNumber,
-          maxNumber: props.current.maxNumber,
-          days: props.current.days,
-          sort: props.current.sort,
-          status: props.current.status,
-        }}
+        initialValues={current}
         title={intl.formatMessage({
           id: 'pages.goods.steps.3',
         })}
       >
-        　
+
         <ProFormMoney
           name="price"
           label={intl.formatMessage({
@@ -202,7 +195,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           ]}
         />
 
-<ProFormSelect
+        <ProFormSelect
           name="level"
           width="xs"
           label={intl.formatMessage({
