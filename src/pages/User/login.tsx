@@ -5,6 +5,7 @@ import { LoginForm, ProFormText } from '@ant-design/pro-form';
 import { FormattedMessage, history, Link, SelectLang, useIntl, useModel } from '@umijs/max';
 import { message } from 'antd';
 import { useState } from 'react';
+import { getLocale  } from '@umijs/max';
 import ForgotPassword from './components/ForgotPassword';
 
 import styles from './login.less';
@@ -36,6 +37,8 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.LoginParams) => {
     try {
       // 登录
+      const lang = getLocale ();
+      values.lang=lang;
 
       const { status, token } = await login({ ...values });
       if (status) {
