@@ -261,6 +261,19 @@ export const OrdersList: FC = () => {
               <FormattedMessage id="pages.replay" />
             </a>,
           ];
+        }  else if (record.goodsTypeId == '19' || record.goodsTypeId == '20') {
+          return [
+            <a
+              key="audit"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentRow(record);
+                handleTweetModalVisible(true);
+              }}
+            >
+              <FormattedMessage id="pages.tweet" />
+            </a>,
+          ];
         } else {
           return ['-'];
         }

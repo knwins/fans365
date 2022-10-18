@@ -192,6 +192,7 @@ const GoodsType: React.FC = () => {
       title: <FormattedMessage id="pages.option" />,
       dataIndex: 'option',
       valueType: 'option',
+      hideInDescriptions:true,
       render: (_, record) => [
         <a
           key="edit"

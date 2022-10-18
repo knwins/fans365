@@ -137,6 +137,7 @@ export default {
   'pages.new': 'New',
   'pages.sort': 'Sort',
   'pages.replay': 'Replay',
+  'pages.tweet': 'Tweet',
   'pages.quote': 'Quote',
   'pages.close': 'Close',
   'pages.index': 'Back Home',

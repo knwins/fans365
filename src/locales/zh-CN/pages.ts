@@ -118,6 +118,7 @@ export default {
   'pages.modify': '修改',
   'pages.binding': '绑定',
   'pages.replay': '回复',
+  'pages.tweet': '推文',
   'pages.quote': '引用',
   'pages.withdraw': '提现',
   'pages.invest': '充值',
