@@ -436,7 +436,9 @@ export const Applications: FC<Record<string, any>> = () => {
             {currentRow.goodsTypeId == '4' ||
             currentRow.goodsTypeId == '15' ||
             currentRow.goodsTypeId == '16' ||
-            currentRow.goodsTypeId == '17' ? (
+            currentRow.goodsTypeId == '17' ||
+            currentRow.goodsTypeId == '19' ||
+            currentRow.goodsTypeId == '20' ? (
               <ProTable<TweetItem, TweetParams>
                 headerTitle={intl.formatMessage({
                   id: 'pages.orders.tweet.title',
