@@ -1,16 +1,16 @@
 import { PlusOutlined } from '@ant-design/icons';
 import type { ProDescriptionsItemProps } from '@ant-design/pro-descriptions';
 import ProDescriptions from '@ant-design/pro-descriptions';
-import { PageContainer } from '@ant-design/pro-layout';
+import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { FormattedMessage, useIntl, useRequest } from '@umijs/max';
-import { Drawer, message } from 'antd';
+import { Drawer, message, Button, Input } from 'antd';
 import React, { useRef, useState } from 'react';
 import { queryCurrent } from '../Account/service';
 import UpdateModal from './components/UpdateModal';
 import type { BindItem, BindParams } from './data';
-import { addBind, getBindMerchantList, removeBind, updateBind } from './service';
+import { addBind, getBindMerchantList, removeBind, updateBind, updateBinds } from './service';
 
 const Bind: React.FC = () => {
   const [done, setDone] = useState<boolean>(false);
@@ -21,6 +21,8 @@ const Bind: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const [currentRow, setCurrentRow] = useState<Partial<BindItem> | undefined>(undefined);
   const [params, setParams] = useState<Partial<BindParams> | undefined>(undefined);
+
+  const [selectedRowsState, setSelectedRows] = useState<BindItem[]>([]);
 
   /** 国际化配置 */
   const intl = useIntl();
@@ -122,6 +124,45 @@ const Bind: React.FC = () => {
     }
   };
 
+
+  /**
+ * 批量修改
+ *
+ * @param selectedRows
+ */
+
+  const UpdateBinds = async (selectedRows: BindItem[],key:any,value:any) => {
+    if (!selectedRows) return true;
+    try {
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+
+      const { status, info } = await updateBinds({
+        ids: selectedRows.map((row) => row.id),
+        key:key,
+        value:value,
+      });
+
+      loadingHiddle();
+      if (status) {
+        message.success(info);
+        actionRef.current?.reload?.();
+        return true;
+      }
+      return;
+    } catch (error) {
+      message.error(
+        intl.formatMessage({
+          id: 'pages.tip.error',
+        }),
+      );
+      return false;
+    }
+  };
+
   const handleDone = () => {
     setDone(false);
     setVisible(false);
@@ -129,12 +170,14 @@ const Bind: React.FC = () => {
   };
 
   const columns: ProColumns<BindItem>[] = [
+
+
     {
       title: intl.formatMessage({
         id: 'pages.bind.username',
       }),
       dataIndex: 'username',
-      align: 'center',
+
       valueType: 'text',
       render: (dom, entity) => {
         return (
@@ -362,7 +405,39 @@ const Bind: React.FC = () => {
           }}
           request={getBindMerchantList}
           columns={columns}
+
+          rowSelection={{
+            onChange: (_, selectedRows) => {
+              setSelectedRows(selectedRows);
+            },
+          }}
         />
+
+
+        {selectedRowsState?.length > 0 && (
+          <FooterToolbar
+            extra={
+              <div>
+                已选择{' '}
+                <a>
+                  {selectedRowsState.length}
+                </a>
+              </div>
+            }
+          >
+            <Button type="primary"
+              onClick={async () => {
+                await UpdateBinds(selectedRowsState,"status","Normal");
+                setSelectedRows([]);
+                actionRef.current?.reloadAndRest?.();
+              }}
+            >
+              批量重置Normal状态
+            </Button>
+            
+          </FooterToolbar>
+        )}
+
       </PageContainer>
 
       <UpdateModal

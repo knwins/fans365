@@ -104,3 +104,17 @@ export async function removeBind(data: { id: string }, options?: { [key: string]
     ...(options || {}),
   });
 }
+
+
+/** 批量修改 /api/bind*/
+
+export async function updateBinds(data: { ids: string[],key:any,value:any }, options?: { [key: string]: any }) {
+  return request<{
+    status?: string;
+    info?: string;
+  }>('https://api.fans365.net/api/bind/updates', {
+    data,
+    method: 'PUT',
+    ...(options || {}),
+  });
+}
