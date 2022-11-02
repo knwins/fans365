@@ -184,6 +184,181 @@ export default {
   'pages.goods.type.level.label': 'Level',
   'pages.goods.type.level.required': 'Please select level!',
 
+
+  /**account type Manage */
+  'pages.account.type.icon': 'ICON',
+  'pages.account.type.icon.label': 'ICON',
+  'pages.account.type.icon.placeholder': 'Please enter ICON',
+  'pages.account.type.icon.required': 'Please enter ICON!',
+
+  'pages.account.type.name': 'Name',
+  'pages.account.type.name.label': 'Name',
+  'pages.account.type.name.placeholder': 'Please enter name',
+  'pages.account.type.name.required': 'Please enter name!',
+
+  'pages.account.type.link': 'Link',
+  'pages.account.type.link.label': 'Link',
+  'pages.account.type.link.placeholder': 'Please enter link',
+  'pages.account.type.link.required': 'Please enter link!',
+
+
+
+
+
+  /**account Manage */
+  'pages.accounts.username': 'Username',
+  'pages.accounts.username.label': 'Username',
+  'pages.accounts.username.placeholder': 'Please enter Username',
+  'pages.accounts.username.required': 'Please enter Username!',
+
+  'pages.accounts.password': 'Password',
+  'pages.accounts.password.label': 'Password',
+  'pages.accounts.password.placeholder': 'Please enter Password',
+  'pages.accounts.password.required': 'Please enter Password!',
+
+  'pages.accounts.telephone': 'Telephone',
+  'pages.accounts.telephone.label': 'Telephone',
+  'pages.accounts.telephone.placeholder': 'Please enter Telephone',
+  'pages.accounts.telephone.required': 'Please enter Telephone!',
+
+
+  'pages.accounts.status': 'Status',
+  'pages.accounts.status.label': 'Status',
+  'pages.accounts.status.placeholder': 'Please select Status',
+  'pages.accounts.status.required': 'Please select Status!',
+
+
+  'pages.accounts.email': 'EMail',
+  'pages.accounts.email.label': 'EMail',
+  'pages.accounts.email.placeholder': 'Please enter EMail',
+  'pages.accounts.email.required': 'Please enter EMail!',
+
+
+  'pages.accounts.typeName': 'Type',
+  'pages.accounts.typeName.label': 'Please select type',
+  'pages.accounts.typeName.required': 'Please select type!',
+
+  'pages.accounts.status.normal': 'Normal',
+  'pages.accounts.status.abnormality': 'Abnormality',
+
+
+  /**Proxy Manage */
+
+  'pages.proxy.provider': 'Provider',
+  'pages.proxy.provider.label': 'Provider',
+  'pages.proxy.provider.placeholder': 'Please select provider',
+  'pages.proxy.provider.required': 'Please select provider!',
+
+  'pages.proxy.ip': 'IP address',
+  'pages.proxy.ip.label': 'IP address',
+  'pages.proxy.ip.placeholder': 'Please enter IP address',
+  'pages.proxy.ip.required': 'Please enter IP address!',
+
+  'pages.proxy.port': 'Port',
+  'pages.proxy.port.label': 'Port',
+  'pages.proxy.port.placeholder': 'Please enter Port',
+  'pages.proxy.port.required': 'Please enter Port!',
+
+  'pages.proxy.username': 'Username',
+  'pages.proxy.username.label': 'Username',
+  'pages.proxy.username.placeholder': 'Please enter Username',
+  'pages.proxy.username.required': 'Please enter Username!',
+
+  'pages.proxy.password': 'Password',
+  'pages.proxy.password.label': 'Password',
+  'pages.proxy.password.placeholder': 'Please enter password',
+  'pages.proxy.password.required': 'Please enter password!',
+
+  'pages.proxy.createtime': 'Create Time',
+  'pages.proxy.createtime.label': 'Create Time',
+
+
+
+  /**Proxy Manage */
+
+  'pages.wallet.name': 'Name',
+  'pages.wallet.name.label': 'Name',
+  'pages.wallet.name.placeholder': 'Please enter Name',
+  'pages.wallet.name.required': 'Please enter Name!',
+
+  'pages.wallet.address': 'Wallet Address',
+  'pages.wallet.address.label': 'Wallet Address',
+  'pages.wallet.address.placeholder': 'Please enter Wallet Address',
+  'pages.wallet.address.required': 'Please enter Wallet Address!',
+
+  'pages.wallet.mnemonic': 'Mnemonic',
+  'pages.wallet.mnemonic.label': 'Mnemonic',
+  'pages.wallet.mnemonic.placeholder': 'Please enter Mnemonic',
+  'pages.wallet.mnemonic.required': 'Please enter Mnemonic!',
+
+  'pages.wallet.privatekey': 'Private key',
+  'pages.wallet.privatekey.label': 'Private key',
+  'pages.wallet.privatekey.placeholder': 'Please enter Private key',
+  'pages.wallet.privatekey.required': 'Please enter Private key!',
+
+  'pages.wallet.network': 'Network',
+  'pages.wallet.network.label': 'Network',
+  'pages.wallet.network.placeholder': 'Please enter Network',
+  'pages.wallet.network.required': 'Please enter Network!',
+
+  'pages.wallet.environment': 'Environment',
+  'pages.wallet.environment.label': 'Environment',
+
+
+  'pages.wallet.createtime': 'Create Time',
+  'pages.wallet.createtime.label': 'Create Time',
+
+
+  /**Wnvironment Manage */
+
+  'pages.environment.name': 'Name',
+  'pages.environment.name.label': 'Name',
+  'pages.environment.name.placeholder': 'Please enter Name',
+  'pages.environment.name.required': 'Please enter Name!',
+
+  'pages.environment.runsoft': 'Run Soft',
+  'pages.environment.runsoft.label': 'Run Soft',
+  'pages.environment.runsoft.placeholder': 'Please select Run Soft',
+  'pages.environment.runsoft.required': 'Please select Run Soft地址!',
+
+  'pages.environment.accounts': 'Account list',
+  'pages.environment.accounts.label': 'Account list',
+
+  'pages.environment.wallets': 'Wallet list',
+  'pages.environment.wallets.label': 'Wallet list',
+
+  'pages.environment.status': 'Status',
+  'pages.environment.status.label': 'Status',
+  'pages.environment.status.placeholder': 'Please select Status',
+  'pages.environment.status.required': 'Please select Status!',
+
+  'pages.environment.status.normal': 'Normal',
+  'pages.environment.status.abnormality': 'Abnormality',
+
+  'pages.environment.createtime': 'Create Time',
+  'pages.environment.createtime.label': 'Create Time',
+
+
+  'pages.environment.proxy.name': 'Proxy',
+  'pages.environment.proxy.name.label': 'Proxy',
+  'pages.environment.proxy.name.placeholder': 'Please select proxy',
+  'pages.environment.proxy.name.required': 'Please select proxy!',
+  'pages.add.accounts': 'Account',
+  'pages.add.wallet': 'Wallet',
+  'pages.add.logs': 'Log',
+
+  'pages.environment.accounts.title': 'Account option',
+  'pages.environment.wallet.title': 'Wallet option',
+
+  /**environment Log Manage */
+
+  'pages.environment.log.title': 'Log option',
+  'pages.environment.log.content': 'Content',
+  'pages.environment.log.content.label': 'Content',
+
+  'pages.environment.log.createtime': 'Create Time',
+  'pages.environment.log.createtime.label': 'Create Time',
+
   /**goods Manage */
 
   'pages.goods.detail': 'Good Detail',
@@ -445,10 +620,10 @@ export default {
   'pages.user.phone': 'Phone',
   'pages.user.description': 'Description',
   'pages.user.description.label': 'Description',
-   'pages.user.username.label': 'Username',
+  'pages.user.username.label': 'Username',
   'pages.user.username.placeholder': 'Please enter username',
   'pages.user.username.required': 'Please enter username!',
-   'pages.user.group.label': 'User group',
+  'pages.user.group.label': 'User group',
   'pages.user.group.user': 'User',
   'pages.user.group.merchant': 'Merchant',
   'pages.user.group.admin': 'Admin',

@@ -57,7 +57,7 @@ export default {
   'pages.forgotpassword.captcha.required': '请输入验证码!',
   'pages.forgotpassword.captcha.get': '获取验证码',
   'pages.forgotpassword.subimt': '提交',
- 
+
 
 
   'pages.searchTable.createForm.newRule': '新建规则',
@@ -171,6 +171,179 @@ export default {
   'pages.goods.type.level': '等级',
   'pages.goods.type.level.label': '等级',
   'pages.goods.type.level.required': '请选择等级!',
+
+
+
+  /**account type Manage */
+  'pages.account.type.icon': '图标',
+  'pages.account.type.icon.label': '图标',
+  'pages.account.type.icon.placeholder': '登陆链接图标',
+  'pages.account.type.icon.required': '登陆链接图标!',
+
+  'pages.account.type.name': '名称',
+  'pages.account.type.name.label': '名称',
+  'pages.account.type.name.placeholder': '请输入名称',
+  'pages.account.type.name.required': '请输入名称!',
+
+  'pages.account.type.link': '登陆链接',
+  'pages.account.type.link.label': '登陆链接',
+  'pages.account.type.link.placeholder': '请输入登陆链接',
+  'pages.account.type.link.required': '请输入登陆链接!',
+
+
+  /**account Manage */
+  'pages.accounts.username': '用户名称',
+  'pages.accounts.username.label': '用户名称',
+  'pages.accounts.username.placeholder': '请输入用户名称',
+  'pages.accounts.username.required': '请输入用户名称!',
+
+  'pages.accounts.password': '用户密码',
+  'pages.accounts.password.label': '用户密码',
+  'pages.accounts.password.placeholder': '请输入用户密码',
+  'pages.accounts.password.required': '请输入用户密码!',
+
+  'pages.accounts.telephone': '电话',
+  'pages.accounts.telephone.label': '电话',
+  'pages.accounts.telephone.placeholder': '请输入电话',
+  'pages.accounts.telephone.required': '请输入电话!',
+
+
+  'pages.accounts.status': '状态',
+  'pages.accounts.status.label': '状态',
+  'pages.accounts.status.placeholder': '请选择状态',
+  'pages.accounts.status.required': '请选择状态!',
+
+
+  'pages.accounts.email': '邮件地址',
+  'pages.accounts.email.label': '邮件地址',
+  'pages.accounts.email.placeholder': '请输入邮件地址',
+  'pages.accounts.email.required': '请输入邮件地址!',
+
+
+  'pages.accounts.typeName': '所属分类',
+  'pages.accounts.typeName.label': '请选择分类',
+  'pages.accounts.typeName.required': '请选择分类!',
+
+  'pages.accounts.status.normal': '正常',
+  'pages.accounts.status.abnormality': '异常',
+
+
+  /**Proxy Manage */
+
+  'pages.proxy.provider': '选择商家',
+  'pages.proxy.provider.label': '选择商家',
+  'pages.proxy.provider.placeholder': '请选择商家',
+  'pages.proxy.provider.required': '请选择商家!',
+
+  'pages.proxy.ip': 'IP地址',
+  'pages.proxy.ip.label': 'IP地址',
+  'pages.proxy.ip.placeholder': '请输入IP地址',
+  'pages.proxy.ip.required': '请输入IP地址!',
+
+  'pages.proxy.port': '端口',
+  'pages.proxy.port.label': '端口',
+  'pages.proxy.port.placeholder': '请输入端口',
+  'pages.proxy.port.required': '请输入端口!',
+
+  'pages.proxy.username': '用户',
+  'pages.proxy.username.label': '用户名',
+  'pages.proxy.username.placeholder': '请输入用户',
+  'pages.proxy.username.required': '请输入用户!',
+
+  'pages.proxy.password': '用户密码',
+  'pages.proxy.password.label': '用户密码',
+  'pages.proxy.password.placeholder': '请输入密码',
+  'pages.proxy.password.required': '请输入密码!',
+
+  'pages.proxy.createtime': '创建时间',
+  'pages.proxy.createtime.label': '创建时间',
+
+
+
+  /**Proxy Manage */
+
+  'pages.wallet.name': '名称',
+  'pages.wallet.name.label': '名称',
+  'pages.wallet.name.placeholder': '请输入名称',
+  'pages.wallet.name.required': '请输入名称!',
+
+  'pages.wallet.address': '钱包地址',
+  'pages.wallet.address.label': '钱包地址',
+  'pages.wallet.address.placeholder': '请输入钱包地址',
+  'pages.wallet.address.required': '请输入钱包地址!',
+
+  'pages.wallet.mnemonic': '助记词',
+  'pages.wallet.mnemonic.label': '助记词',
+  'pages.wallet.mnemonic.placeholder': '请输入助记词',
+  'pages.wallet.mnemonic.required': '请输入助记词!',
+
+  'pages.wallet.privatekey': '私钥',
+  'pages.wallet.privatekey.label': '私钥',
+  'pages.wallet.privatekey.placeholder': '请输入私钥',
+  'pages.wallet.privatekey.required': '请输入私钥!',
+
+  'pages.wallet.network': '区块链网络',
+  'pages.wallet.network.label': '区块链网络',
+  'pages.wallet.network.placeholder': '请输入区块链网络',
+  'pages.wallet.network.required': '请输入区块链网络!',
+
+  'pages.wallet.environment': '所属环境',
+  'pages.wallet.environment.label': '所属环境',
+
+
+  'pages.wallet.createtime': '创建时间',
+  'pages.wallet.createtime.label': '创建时间',
+
+
+  /**Wnvironment Manage */
+
+  'pages.environment.name': '名称',
+  'pages.environment.name.label': '名称',
+  'pages.environment.name.placeholder': '请输入名称',
+  'pages.environment.name.required': '请输入名称!',
+
+  'pages.environment.runsoft': '执行软件',
+  'pages.environment.runsoft.label': '执行软件',
+  'pages.environment.runsoft.placeholder': '选择执行软件',
+  'pages.environment.runsoft.required': '选择执行软件地址!',
+
+  'pages.environment.accounts': '账户列表',
+  'pages.environment.accounts.label': '账户列表',
+
+  'pages.environment.wallets': '钱包列表',
+  'pages.environment.wallets.label': '钱包列表',
+
+  'pages.environment.status': '状态',
+  'pages.environment.status.label': '状态',
+  'pages.environment.status.placeholder': '选择状态',
+  'pages.environment.status.required': '选择状态!',
+
+  'pages.environment.status.normal': '正常',
+  'pages.environment.status.abnormality': '异常',
+
+  'pages.environment.createtime': '创建时间',
+  'pages.environment.createtime.label': '创建时间',
+
+
+  'pages.environment.proxy.name': '代理',
+  'pages.environment.proxy.name.label': '代理',
+  'pages.environment.proxy.name.placeholder': '选择代理',
+  'pages.environment.proxy.name.required': '选择代理!',
+  'pages.add.accounts': '账户',
+  'pages.add.wallet': '钱包',
+  'pages.add.logs': '记录',
+
+  'pages.environment.accounts.title': '账户操作',
+  'pages.environment.wallet.title': '钱包操作',
+
+  /**environment Log Manage */
+
+  'pages.environment.log.title': '操作记录',
+  'pages.environment.log.content': '内容',
+  'pages.environment.log.content.label': '内容',
+
+  'pages.environment.log.createtime': '创建时间',
+  'pages.environment.log.createtime.label': '创建时间',
 
   /**goods Manage */
 
@@ -434,5 +607,5 @@ export default {
   'pages.user.phone': '电话',
   'pages.user.description': '简介',
   'pages.user.description.label': '简介',
-  
+
 };

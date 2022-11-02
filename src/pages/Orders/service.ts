@@ -117,12 +117,12 @@ export async function addOrders(data: { [id: string]: any }, options?: { [id: st
   });
 }
 
-/** 删除 DELETE /api/orders/detele */
+/** 删除 DELETE /api/orders/delete */
 export async function removeOrders(data: { [id: string]: any }, options?: { [id: string]: any }) {
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/orders/detele', {
+  }>('https://api.fans365.net/api/orders/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

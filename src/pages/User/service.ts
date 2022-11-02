@@ -55,12 +55,12 @@ export async function updateUser(data: { [id: string]: any }, options?: { [id: s
   });
 }
 
-/** 删除 DELETE /api/users/detele */
+/** 删除 DELETE /api/users/delete */
 export async function removeUser(data: { [id: string]: any }, options?: { [id: string]: any }) {
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/users/detele', {
+  }>('https://api.fans365.net/api/users/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

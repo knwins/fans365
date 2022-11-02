@@ -37,6 +37,14 @@ export default {
   /*noticeManage */
   'menu.dashboard.noticeManage': '公告管理',
 
+   /*noticeManage */
+   'menu.environment': '环境管理',
+   'menu.environment.environmentManage': '我的环境',
+   'menu.environment.accountTypeManage': '账户分类',
+   'menu.environment.proxyManage': '我的IP代理',
+   
+   
+
   'menu.exception.403': '403',
   'menu.exception.404': '404',
   'menu.exception.500': '500',

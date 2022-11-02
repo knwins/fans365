@@ -94,13 +94,14 @@ const OperationModal: FC<OperationModalProps> = (props) => {
         />
         <ProFormSelect
           name="status"
-          width="lg"
+          width="md"
           label={intl.formatMessage({
             id: 'pages.bind.status.label',
           })}
           options={[
             { label: 'Normal', value: 'Normal' },
             { label: 'Abnormality', value: 'Abnormality' },
+            { label: 'Lock', value: 'Lock' },
           ]}
         />
         <ProFormDigit name="id" hidden />　 　

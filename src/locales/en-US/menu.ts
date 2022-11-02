@@ -37,6 +37,13 @@ export default {
     /*noticeManage */
     'menu.dashboard.noticeManage': 'Notice Manage',
 
+     /*noticeManage */
+   'menu.environment': 'Environment',
+   'menu.environment.environmentManage': 'My Environment',
+   'menu.environment.accountTypeManage': 'Accont Type',
+   'menu.environment.proxyManage': 'My Proxy',
+
+
   'menu.exception.403': '403',
   'menu.exception.404': '404',
   'menu.exception.500': '500',

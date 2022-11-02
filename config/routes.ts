@@ -16,12 +16,12 @@ export default [
     path: '/result',
     layout: false,
     routes: [
-       
+
       {
         path: '/result/fail/twitter',
         component: './result/fail/twitter',
       },
-      
+
       {
         path: '/result/success/twitter',
         component: './result/success/twitter',
@@ -81,6 +81,10 @@ export default [
         path: '/dashboard',
         redirect: '/dashboard/goods/list',
       },
+
+
+
+
 
       //---------------------------------商品管理分類----------------------------
       {
@@ -147,7 +151,7 @@ export default [
         access: 'MerchantGroup',
       },
 
-     
+
 
       //---------------------------------账单管理----------------------------
 
@@ -236,6 +240,77 @@ export default [
         component: '404',
       },
 
+    ],
+  },
+  {
+
+    name: 'environment',
+    icon: 'chrome',
+    path: '/environment',
+    routes: [
+      {
+        path: '/environment',
+        redirect: '/environment/list',
+      },
+      //---------------------------------环境管理----------------------------
+      {
+        name: 'environmentManage',
+        icon: 'smile',
+        path: '/environment/list',
+        component: './Environment/list',
+        access: 'AdminGroup',
+      },
+
+      {
+        name: 'environmentManage',
+        icon: 'smile',
+        path: '/environment/merchantlist',
+        component: './Environment/merchantlist',
+        access: 'MerchantGroup',
+      },
+
+      {
+        name: 'environmentManage',
+        icon: 'smile',
+        path: '/environment/userlist',
+        component: './Environment/userlist',
+        access: 'UserGroup',
+      },
+
+      //---------------------------------管理分類----------------------------
+      {
+        name: 'accountTypeManage',
+        path: '/environment/accountType/list',
+        component: './AccountType',
+        access: 'AdminGroup',
+      },
+
+      //---------------------------------代理管理----------------------------
+      {
+        name: 'proxyManage',
+        icon: 'smile',
+        path: '/environment/proxy/list',
+        component: './Proxy/list',
+        access: 'AdminGroup',
+      },
+      {
+        name: 'proxyManage',
+        icon: 'smile',
+        path: '/environment/proxy/merchantlist',
+        component: './Proxy/merchantlist',
+        access: 'MerchantGroup',
+      },
+      {
+        name: 'proxyManage',
+        icon: 'smile',
+        path: '/environment/proxy/userlist',
+        component: './Proxy/userlist',
+        access: 'UserGroup',
+      },
+
+      {
+        component: '404',
+      },
     ],
   },
 

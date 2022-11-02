@@ -146,7 +146,6 @@ export const OrdersList: FC = () => {
       valueType: 'text',
       hideInDescriptions: true,
       hideInTable: true,
-
       width: 60,
     },
 
