@@ -44,7 +44,7 @@ const TwitterModel: FC<TwitterModelProps> = (props) => {
 
     const pageParams: PageParams = {
       current: 1,
-      pageSize: 10,
+      pageSize: 50,
     };
     const options: BindParams = {
       username: key,

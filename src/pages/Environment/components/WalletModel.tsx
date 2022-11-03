@@ -67,6 +67,9 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         SUI: {
           text: "SUI",
         },
+        ATOM: {
+          text: "ATOM",
+        },
       },
     },
 

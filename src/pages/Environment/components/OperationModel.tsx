@@ -112,7 +112,6 @@ const OperationModel: FC<OperationModelProps> = (props) => {
       <ProFormSelect
         name="runsoft"
         width="md"
-
         label={intl.formatMessage({
           id: 'pages.environment.runsoft.label',
         })}
@@ -124,7 +123,7 @@ const OperationModel: FC<OperationModelProps> = (props) => {
 
       <ProFormSelect
         name="proxyId"
-        initialValue={current?.proxy?.ip + ''}
+        initialValue={current?.proxy?.id + ''}
         label={intl.formatMessage({
           id: 'pages.environment.proxy.name.label',
         })}

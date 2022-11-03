@@ -151,7 +151,6 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
           onClick={async () => {
             record.accountType = undefined;
             await removeAccounts(record);
-
             actionRef.current?.reloadAndRest?.();
           }}
         >
@@ -198,7 +197,6 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
               await updateAccounts(data);
               await waitTime(2000);
             },
-
             onChange: setEditableRowKeys,
             actionRender: (row, config, dom) => [dom.save, dom.cancel],
           }}
@@ -239,6 +237,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
           const success = await importTwittert(value);
           if (success) {
             handleTwitterModelVisible(false);
+            actionRef.current?.reloadAndRest?.();
           }
         }}
       />
