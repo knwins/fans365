@@ -10,7 +10,7 @@ import React, { useRef, useState } from 'react';
 import { queryCurrent } from '../Account/service';
 import UpdateModal from './components/UpdateModal';
 import type { BindItem, BindParams } from './data';
-import { addBind, getBindMerchantList, removeBind, updateBind } from './service';
+import { addBind, getBindMyList, removeBind, updateBind } from './service';
 
 const Bind: React.FC = () => {
   const [done, setDone] = useState<boolean>(false);
@@ -150,15 +150,16 @@ const Bind: React.FC = () => {
     },
     {
       title: intl.formatMessage({
-        id: 'pages.bind.account',
+        id: 'pages.bind.telephone',
       }),
-      dataIndex: 'account',
+      dataIndex: 'telephone',
       valueType: 'text',
       hideInSearch: true,
       hideInForm: true,
       width: 180,
       sorter: true,
     },
+   
     {
       title: intl.formatMessage({
         id: 'pages.bind.regtime',
@@ -357,7 +358,7 @@ const Bind: React.FC = () => {
               setParams(goodsTypeParams);
             }
           }}
-          request={getBindMerchantList}
+          request={getBindMyList}
           columns={columns}
         />
       </PageContainer>

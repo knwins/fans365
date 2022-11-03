@@ -1,7 +1,8 @@
 export type BindItem = {
   id: string;
   uuid: string;
-  account: string;
+  email: string;
+  telephone: string;
   password: string;
   username: string;
   type: string;

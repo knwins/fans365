@@ -16,8 +16,8 @@ const OperationModal: FC<OperationModalProps> = (props) => {
   const { done, visible, current, onDone, onSubmit, children } = props;
 
 
-   /** 国际化配置 */
-   const intl = useIntl();
+  /** 国际化配置 */
+  const intl = useIntl();
   if (!visible) {
     return null;
   }
@@ -47,7 +47,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
       }}
     >
       <>
-      <ProFormSelect
+        <ProFormSelect
           name="type"
           width="lg"
           label={intl.formatMessage({
@@ -59,14 +59,42 @@ const OperationModal: FC<OperationModalProps> = (props) => {
             { label: 'Discord', value: 'Discord' },
           ]}
         />
+
         <ProFormText
-          name="account"
+          name="username"
           label={intl.formatMessage({
-            id: 'pages.bind.account.label',
+            id: 'pages.bind.username.label',
+          })}
+          width="lg"
+          rules={[{
+            required: true, message: intl.formatMessage({
+              id: 'pages.bind.username.required',
+            })
+          }]}
+          placeholder={intl.formatMessage({
+            id: 'pages.bind.username.placeholder',
+          })}
+        />
+
+        <ProFormText
+          name="telephone"
+          label={intl.formatMessage({
+            id: 'pages.bind.telephone.label',
           })}
           width="lg"
           placeholder={intl.formatMessage({
-            id: 'pages.bind.account.placeholder',
+            id: 'pages.bind.telephone.placeholder',
+          })}
+        />
+
+        <ProFormText
+          name="email"
+          label={intl.formatMessage({
+            id: 'pages.bind.email.label',
+          })}
+          width="lg"
+          placeholder={intl.formatMessage({
+            id: 'pages.bind.email.placeholder',
           })}
         />
         <ProFormText
@@ -79,19 +107,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
             id: 'pages.bind.password.placeholder',
           })}
         />
-        <ProFormText
-          name="username"
-          label={intl.formatMessage({
-            id: 'pages.bind.username.label',
-          })}
-          width="lg"
-          rules={[{ required: true, message: intl.formatMessage({
-            id: 'pages.bind.username.required',
-          }) }]}
-          placeholder={intl.formatMessage({
-            id: 'pages.bind.username.placeholder',
-          })}
-        />
+
         <ProFormSelect
           name="status"
           width="md"
@@ -104,7 +120,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
             { label: 'Lock', value: 'Lock' },
           ]}
         />
-        <ProFormDigit name="id" hidden />　 　
+        <ProFormDigit name="id" hidden />
       </>
     </ModalForm>
   );

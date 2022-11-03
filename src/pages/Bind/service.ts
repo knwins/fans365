@@ -4,7 +4,7 @@ import { request } from 'umi';
 import type { BindItem } from './data.d';
 
 /** 获取列表 GET /api/merchant_list */
-export async function getBindMerchantList(
+export async function getBindMyList(
   params: {
     // query
     /** 当前的页码 */
@@ -19,7 +19,7 @@ export async function getBindMerchantList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/bind/merchant_list', {
+  }>('https://api.fans365.net/api/bind/mylist', {
     method: 'GET',
     params: {
       ...params,

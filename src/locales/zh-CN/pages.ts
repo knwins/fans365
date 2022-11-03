@@ -112,6 +112,7 @@ export default {
   'pages.delete': '删除',
   'pages.edit': '编辑',
   'pages.new': '新建',
+  'pages.import': '导入',
   'pages.copy': '复制',
   'pages.author': '推特授权',
   'pages.audit': '审核',
@@ -522,9 +523,14 @@ export default {
   'pages.bind.username.label': '用户名称',
   'pages.bind.username.placeholder': '请输用户名称',
   'pages.bind.username.required': '请输用户名称!',
-  'pages.bind.account': '电话或EMail',
-  'pages.bind.account.label': '电话或EMail',
-  'pages.bind.account.placeholder': '请输入电话或EMail',
+
+  'pages.bind.telephone': '电话号码',
+  'pages.bind.telephone.label': '电话号码',
+  'pages.bind.telephone.placeholder': '请输入电话号码',
+
+  'pages.bind.email': 'EMail',
+  'pages.bind.email.label': 'EMail',
+  'pages.bind.email.placeholder': '请输入EMail',
 
   'pages.bind.password.label': '密码',
   'pages.bind.password.placeholder': '请输密码',
@@ -550,6 +556,12 @@ export default {
   'pages.bind.invest.trcusdt.tip1': '只接收USDT支付',
   'pages.bind.invest.trcusdt.tip2': '钱包地址',
   'pages.bind.invest.tip1': '支付后请联系客服',
+
+  'pages.bind.username.search.label': '推特用户搜索',
+  'pages.bind.username.search.placeholder': '请输入推特用户',
+  
+  'pages.bind.username.search.select.label': '推特用户选择',
+  'pages.bind.username.search.select.required': '请选择推特用户!',
 
   'pages.tstask.info': '备注',
   'pages.tstask.username': '用户名称',

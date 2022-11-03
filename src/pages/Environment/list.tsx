@@ -21,6 +21,7 @@ import EnvironmentLogModel from './components/EnvironmentLogModel';
 import AccountModel from './components/AccountModel';
 import WalletModel from './components/WalletModel';
 
+
 import type { EnvironmentItem, EnvironmentParams, EnvironmentLogItem, EnvironmentLogParams } from './data';
 import { addEnvironment, environmentList, environmentLogList, updateEnvironment } from './service';
 import styles from './style.less';
@@ -127,6 +128,7 @@ export const EnvironmentList: FC = () => {
 
   const handleDone = () => {
     setDone(false);
+    setCurrentRow(undefined);
     handleOperationModelVisible(false);
     handleEnvironmentLogModelVisible(false);
     handleAccountsModelVisible(false);
@@ -171,7 +173,7 @@ export const EnvironmentList: FC = () => {
           {
             record.accountsLabels?.map(({ name, color, icon }) => (
               <Tag key={name} color={color}
-                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' />: icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
+                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
                 {name}
               </Tag>
             ))
@@ -321,7 +323,7 @@ export const EnvironmentList: FC = () => {
           {
             record.accountsLabels?.map(({ name, color, icon }) => (
               <Tag key={name} color={color}
-                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' />: icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
+                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
                 {name}
               </Tag>
             ))
@@ -379,7 +381,7 @@ export const EnvironmentList: FC = () => {
       valueType: 'text',
       hideInSearch: true,
       ellipsis: true,
-      width: '80%',
+      width: '70%',
     },
 
 
@@ -408,6 +410,7 @@ export const EnvironmentList: FC = () => {
                 key="primary"
                 onClick={() => {
                   handleOperationModelVisible(true);
+                  setCurrentRow(undefined);
                 }}
               >
                 <PlusOutlined /> <FormattedMessage id="pages.new" />
@@ -466,8 +469,8 @@ export const EnvironmentList: FC = () => {
         onDone={handleDone}
       />
 
-
-
+      
+ 
       <Drawer
         width={600}
         visible={showDetail}

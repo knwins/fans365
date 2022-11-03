@@ -30,7 +30,7 @@ export async function getTSTaskList(
 }
 
 /** 获取列表 GET /api/tstask/list */
-export async function getTSTaskMerchantList(
+export async function getTSTaskMyList(
   params: {
     // query
     /** 当前的页码 */

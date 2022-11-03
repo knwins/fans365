@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
 import {
   ActionType,
   EditableProTable,
@@ -7,8 +7,8 @@ import {
   ProFormInstance,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Form, message, Space } from 'antd';
-import type { FC } from 'react';
+import { Button, Form, Space } from 'antd';
+
 
 import React, { useRef, useState } from 'react';
 import type { EnvironmentItem, WalletItem, WalletParams } from '../data';
@@ -117,7 +117,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
           key="delete"
           onClick={async () => {
             await removeWallet(record);
-            
+
             actionRef.current?.reloadAndRest?.();
           }}
         >
@@ -181,7 +181,10 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         >
           <FormattedMessage id="pages.new" />
         </Button>
+
       </Space>
+
+      
     </ModalForm>
   );
 };

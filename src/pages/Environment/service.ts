@@ -27,11 +27,11 @@ export async function environmentList(
     ...(options || {}),
   });
 }
- 
+
 
 /** 新建 GET /api/environment/list */
 export async function getEnvironment(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  
+
   return request<EnvironmentItem>('https://api.fans365.net/api/environment/get', {
     data,
     method: 'GET',
@@ -81,6 +81,11 @@ export async function removeEnvironment(data: { [id: string]: any }, options?: {
   });
 }
 
+
+
+
+
+
 //EnvironmentLog
 
 /** 获取列表 GET /api/environment_log/list */
@@ -126,7 +131,7 @@ export async function updateEnvironmentLog(data: { [id: string]: any }, options?
 
 //Wallet
 
- 
+
 export async function getAccountsList(
   params: {
     // query
@@ -151,11 +156,23 @@ export async function getAccountsList(
   });
 }
 
- 
+
 export async function updateAccounts(data: { [id: string]: any }, options?: { [id: string]: any }) {
   return request<EnvironmentItem>('https://api.fans365.net/api/accounts/update', {
     data,
     method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...(options || {}),
+  });
+}
+
+//导入现在TWitter账户
+export async function importTwittert(data: { [id: string]: any }, options?: { [id: string]: any }) {
+  return request<EnvironmentItem>('https://api.fans365.net/api/accounts/import_twitter', {
+    data,
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -176,6 +193,8 @@ export async function removeAccounts(data: { [id: string]: any }, options?: { [i
     ...(options || {}),
   });
 }
+
+
 
 //----------------------------------Wallet----------------------------
 //Wallet
@@ -227,3 +246,5 @@ export async function removeWallet(data: { [id: string]: any }, options?: { [id:
     ...(options || {}),
   });
 }
+
+

@@ -144,15 +144,16 @@ const Bind: React.FC = () => {
     },
     {
       title: intl.formatMessage({
-        id: 'pages.bind.account',
+        id: 'pages.bind.telephone',
       }),
-      dataIndex: 'account',
+      dataIndex: 'telephone',
       valueType: 'text',
       hideInSearch: true,
       hideInForm: true,
       width: 180,
       sorter: true,
     },
+ 
     {
       title: intl.formatMessage({
         id: 'pages.bind.regtime',

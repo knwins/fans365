@@ -159,7 +159,6 @@ const OperationModel: FC<OperationModelProps> = (props) => {
           },
         ]}
       />
-
       <ProFormDigit name="id" hidden />
     </ModalForm>
   );

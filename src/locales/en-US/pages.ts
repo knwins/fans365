@@ -541,9 +541,17 @@ export default {
   'pages.bind.username.label': 'Username',
   'pages.bind.username.placeholder': 'Please enter username',
   'pages.bind.username.required': 'Please enter username!',
-  'pages.bind.account': 'Telephone or Email',
-  'pages.bind.account.label': 'Telephone or Email',
-  'pages.bind.account.placeholder': 'Please enter telephone or email',
+
+
+  'pages.bind.telephone': 'Telephone',
+  'pages.bind.telephone.label': 'Telephone',
+  'pages.bind.telephone.placeholder': 'Please enter telephone',
+
+  'pages.bind.email': 'EMail',
+  'pages.bind.email.label': 'EMail',
+  'pages.bind.email.placeholder': 'Please enter EMail',
+
+
   'pages.bind.password.label': 'Password',
   'pages.bind.password.placeholder': 'Please enter password!',
 

@@ -1,6 +1,6 @@
 
 import { AccountTypeItem } from '@/pages/AccountType/data';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
 import {
   ActionType,
   EditableProTable,
@@ -11,10 +11,10 @@ import {
 import { FormattedMessage, useIntl } from '@umijs/max';
 import { Button, Form, Space } from 'antd';
 import type { FC } from 'react';
-
+import TwitterModel from './TwitterModel';
 import React, { useRef, useState } from 'react';
 import type { EnvironmentItem, AccountsItem, AccountsParams } from '../data';
-import { getAccountsList, removeAccounts, updateAccounts } from '../service';
+import { getAccountsList, importTwittert, removeAccounts, updateAccounts } from '../service';
 import styles from '../style.less';
 
 
@@ -38,7 +38,11 @@ const waitTime = (time: number = 100) => {
 
 
 const AccountsModal: FC<AccountModalProps> = (props) => {
-  // export default () => {
+
+
+
+  const [twitterModelVisible, handleTwitterModelVisible] = useState<boolean>(false);
+
   //接收到数据
   const { done, visible, current, accountTypes, onDone, children } = props;
 
@@ -57,6 +61,10 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
 
     });
   }
+
+  const handleDone = () => {
+    handleTwitterModelVisible(false);
+  };
 
 
   const actionRef = useRef<ActionType>();
@@ -141,9 +149,9 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
         <a
           key="delete"
           onClick={async () => {
-            record.accountType=undefined;
+            record.accountType = undefined;
             await removeAccounts(record);
-            
+
             actionRef.current?.reloadAndRest?.();
           }}
         >
@@ -154,61 +162,87 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
   ];
 
   return (
-    <ModalForm<EnvironmentItem>
-      visible={visible}
-      title={intl.formatMessage({
-        id: 'pages.environment.accounts.title',
-      })}
-      formRef={formRef}
-      className={styles.standardListForm}
-      width="70%"
-      submitter={false}
-      trigger={<>{children}</>}
-      modalProps={{
-        onCancel: () => onDone(),
-        destroyOnClose: true,
-        bodyStyle: done ? { padding: '72px 0' } : {},
-      }}
-    >
-      <EditableProTable<AccountsItem, AccountsParams>
-        rowKey="id"
-        actionRef={actionRef}
-        maxLength={5}
-        // 关闭默认的新建按钮
-        recordCreatorProps={false}
-        columns={columns}
-        params={params}
-        request={getAccountsList}
-        value={dataSource}
-        onChange={setDataSource}
-        editable={{
-          form,
-          editableKeys,
-          onSave: async (rowKey, data) => {
-            data.environmentId = current?.id;
-            await updateAccounts(data);
-            await waitTime(2000);
-          },
+    <>
+      <ModalForm<EnvironmentItem>
+        visible={visible}
+        title={intl.formatMessage({
+          id: 'pages.environment.accounts.title',
+        })}
+        formRef={formRef}
+        className={styles.standardListForm}
+        width="70%"
+        submitter={false}
+        trigger={<>{children}</>}
+        modalProps={{
+          onCancel: () => onDone(),
+          destroyOnClose: true,
+          bodyStyle: done ? { padding: '72px 0' } : {},
+        }}
+      >
+        <EditableProTable<AccountsItem, AccountsParams>
+          rowKey="id"
+          actionRef={actionRef}
+          maxLength={5}
+          // 关闭默认的新建按钮
+          recordCreatorProps={false}
+          columns={columns}
+          params={params}
+          request={getAccountsList}
+          value={dataSource}
+          onChange={setDataSource}
+          editable={{
+            form,
+            editableKeys,
+            onSave: async (rowKey, data) => {
+              data.environmentId = current?.id;
+              await updateAccounts(data);
+              await waitTime(2000);
+            },
 
-          onChange: setEditableRowKeys,
-          actionRender: (row, config, dom) => [dom.save, dom.cancel],
+            onChange: setEditableRowKeys,
+            actionRender: (row, config, dom) => [dom.save, dom.cancel],
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => {
+              actionRef.current?.addEditRecord?.({
+                id: (Math.random() * 1000000).toFixed(0),
+                title: <FormattedMessage id="pages.new" />,
+              });
+            }}
+            icon={<PlusOutlined />}
+          >
+            <FormattedMessage id="pages.new" />
+          </Button>
+
+          <Button
+            type="primary"
+            onClick={() => {
+              handleTwitterModelVisible(true);
+            }}
+            icon={<VerticalAlignBottomOutlined />}
+          >
+            <FormattedMessage id="pages.import" />
+          </Button>
+
+        </Space>
+      </ModalForm>
+
+      <TwitterModel
+        done={done}
+        onDone={handleDone}
+        current={current}
+        visible={twitterModelVisible}
+        onSubmit={async (value) => {
+          const success = await importTwittert(value);
+          if (success) {
+            handleTwitterModelVisible(false);
+          }
         }}
       />
-      <Space>
-        <Button
-          type="primary"
-          onClick={() => {
-            actionRef.current?.addEditRecord?.({
-              id: (Math.random() * 1000000).toFixed(0),
-              title: <FormattedMessage id="pages.new" />,
-            });
-          }}
-          icon={<PlusOutlined />}
-        >
-          <FormattedMessage id="pages.new" />
-        </Button>
-      </Space>
-    </ModalForm>
+    </>
   );
 };
 

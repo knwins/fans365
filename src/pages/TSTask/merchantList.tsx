@@ -4,7 +4,7 @@ import ProTable from '@ant-design/pro-table';
 import { FormattedMessage } from '@umijs/max';
 import React, { useRef, useState } from 'react';
 import type { TSTaskItem, TSTaskParams } from './data';
-import { getTSTaskMerchantList } from './service';
+import { getTSTaskMyList } from './service';
 
 const TSTask: React.FC = () => {
   const actionRef = useRef<ActionType>();
@@ -89,7 +89,7 @@ const TSTask: React.FC = () => {
               setParams(goodsTypeParams);
             }
           }}
-          request={getTSTaskMerchantList}
+          request={getTSTaskMyList}
           columns={columns}
         />
       </PageContainer>
