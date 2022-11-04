@@ -50,6 +50,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   }
   const params: WalletParams = {
     environmentId: current?.id,
+    sorter: 'ASC',
+    filter:'createtime',
   };
 
   const columns: ProColumns<WalletItem>[] = [
@@ -166,6 +168,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
             data.environmentId = current?.id;
             await updateWallet(data);
             await waitTime(2000);
+            actionRef.current?.reloadAndRest?.();
           },
           onDelete: async (rowKey, data) => {
             await removeWallet(data);

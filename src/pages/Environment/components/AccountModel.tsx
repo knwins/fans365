@@ -76,6 +76,8 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
   }
   const params: AccountsParams = {
     environmentId: current?.id,
+    sorter: 'ASC',
+    filter:'createtime',
   };
 
   const columns: ProColumns<AccountsItem>[] = [
@@ -192,6 +194,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
               data.environmentId = current?.id;
               await updateAccounts(data);
               await waitTime(2000);
+              actionRef.current?.reloadAndRest?.();
             },
             onDelete: async (rowKey, data) => {
               data.accountType = undefined;

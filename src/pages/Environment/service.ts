@@ -115,7 +115,11 @@ export async function environmentLogList(
 
 /** 新建 PUT /api/environment/update */
 export async function updateEnvironmentLog(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<EnvironmentItem>('https://api.fans365.net/api/environment_log/update', {
+  return request<{
+    data: EnvironmentItem;
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/environment_log/update', {
     data,
     method: 'PUT',
     headers: {
@@ -124,6 +128,11 @@ export async function updateEnvironmentLog(data: { [id: string]: any }, options?
     ...(options || {}),
   });
 }
+
+
+
+
+
 
 /** 删除 DELETE /api/environment/delete */
 export async function removeEnvironmentLog(data: { [id: string]: any }, options?: { [id: string]: any }) {
@@ -168,7 +177,11 @@ export async function getAccountsList(
 
 
 export async function updateAccounts(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<EnvironmentItem>('https://api.fans365.net/api/accounts/update', {
+  return request<{
+    data: AccountsItem;
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/accounts/update', {
     data,
     method: 'PUT',
     headers: {
@@ -180,7 +193,10 @@ export async function updateAccounts(data: { [id: string]: any }, options?: { [i
 
 //导入现在TWitter账户
 export async function importTwittert(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<EnvironmentItem>('https://api.fans365.net/api/accounts/import_twitter', {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/accounts/import_twitter', {
     data,
     method: 'POST',
     headers: {
@@ -236,7 +252,11 @@ export async function getWalletList(
 
 /** 新建 PUT /api/orders/update */
 export async function updateWallet(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<EnvironmentItem>('https://api.fans365.net/api/wallet/update', {
+  return request<{
+    data: WalletItem;
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/wallet/update', {
     data,
     method: 'PUT',
     headers: {

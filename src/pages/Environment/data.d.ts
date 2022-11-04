@@ -54,8 +54,8 @@ export type EnvironmentLogPagination = {
 
 export type EnvironmentLogParams = {
   environmentId?: string;
-  filter?: Record<string, any[]>;
-  sorter?: Record<string, any>;
+  filter?: string;
+  sorter?: string;
 };
 
 
@@ -87,8 +87,8 @@ export type AccountsData = {
 export type AccountsParams = {
   key?: string;
   environmentId?: string;
-  filter?: Record<string, any[]>;
-  sorter?: Record<string, any>;
+  filter?: string;
+  sorter?: string;
 };
 
 export type TagItem={
@@ -127,8 +127,8 @@ export type WalletData = {
 
 export type WalletParams = {
   environmentId?: string;
-  filter?: Record<string, any[]>;
-  sorter?: Record<string, any>;
+  filter?: string;
+  sorter?: string;
 };
 
 

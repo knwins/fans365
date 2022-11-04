@@ -11,7 +11,7 @@ import { Button, Form, Space } from 'antd';
 import type { FC } from 'react';
 import React, { useRef, useState } from 'react';
 import type { EnvironmentItem, EnvironmentLogItem, EnvironmentLogParams } from '../data';
-import { environmentLogList, removeEnvironment, removeEnvironmentLog, updateEnvironmentLog } from '../service';
+import { environmentLogList, removeEnvironmentLog, updateEnvironmentLog } from '../service';
 import styles from '../style.less';
 
 type EnvironmentLogModalProps = {
@@ -33,6 +33,7 @@ const columns: ProColumns<EnvironmentLogItem>[] = [
   {
     title: <FormattedMessage id="pages.environment.log.content" />,
     dataIndex: 'content',
+    valueType: 'textarea',
     formItemProps: {
       rules: [
         {
@@ -42,7 +43,13 @@ const columns: ProColumns<EnvironmentLogItem>[] = [
       ],
     },
   },
- 
+  {
+
+    dataIndex: 'id',
+    valueType: 'text',
+    hideInTable: true,
+
+  },
 
 
   {
@@ -88,9 +95,18 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
   if (!visible) {
     return null;
   }
+
+
+
   const params: EnvironmentLogParams = {
     environmentId: current?.id,
+    sorter: 'ASC',
+    filter:'createtime',
   };
+ 
+  
+
+ 
   return (
     <ModalForm<EnvironmentItem>
       visible={visible}
@@ -124,11 +140,14 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
           editableKeys,
           onSave: async (rowKey, data) => {
             data.environmentId = current?.id;
+
+            
             await updateEnvironmentLog(data);
             await waitTime(2000);
+            actionRef.current?.reloadAndRest?.();
           },
           onDelete: async (rowKey, data) => {
-             await removeEnvironmentLog(data);
+            await removeEnvironmentLog(data,params);
             actionRef.current?.reloadAndRest?.();
           },
           deletePopconfirmMessage: <FormattedMessage id="pages.row.delete" />,
