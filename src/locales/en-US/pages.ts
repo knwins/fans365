@@ -148,6 +148,7 @@ export default {
   'pages.sort.label': 'Sort',
   'pages.sort.placeholder': 'Please enter sort',
   'pages.sort.required': 'Please enter sort!',
+  'pages.row.delete': 'delete this row',
 
   /**单位 */
   'pages.people': ' people',

@@ -7,7 +7,7 @@ import {
   ProFormInstance,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Form, Space } from 'antd';
+import { Button, Form, message, Space } from 'antd';
 
 
 import React, { useRef, useState } from 'react';
@@ -116,16 +116,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
           </a>
         </EditableProTable.RecordCreator>,
 
-        <a
-          key="delete"
-          onClick={async () => {
-            await removeWallet(record);
 
-            actionRef.current?.reloadAndRest?.();
-          }}
-        >
-          <FormattedMessage id="pages.delete" />
-        </a>,
       ],
     },
   ];
@@ -162,13 +153,27 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
           form,
           editableKeys,
           onSave: async (rowKey, data) => {
+
+
+            if (data.network == undefined) {
+              message.error(intl.formatMessage({
+                id: 'pages.wallet.network.required',
+              }));
+              return;
+            }
+
+
             data.environmentId = current?.id;
             await updateWallet(data);
             await waitTime(2000);
           },
+          onDelete: async (rowKey, data) => {
+            await removeWallet(data);
+            actionRef.current?.reloadAndRest?.();
+          },
+          deletePopconfirmMessage: <FormattedMessage id="pages.row.delete" />,
           onChange: setEditableRowKeys,
-
-          actionRender: (row, config, dom) => [dom.save, dom.cancel],
+          actionRender: (row, config, dom) => [dom.save, dom.cancel, dom.delete],
         }}
       />
       <Space>
@@ -187,7 +192,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
       </Space>
 
-      
+
     </ModalForm>
   );
 };

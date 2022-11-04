@@ -11,7 +11,7 @@ import { Button, Form, Space } from 'antd';
 import type { FC } from 'react';
 import React, { useRef, useState } from 'react';
 import type { EnvironmentItem, EnvironmentLogItem, EnvironmentLogParams } from '../data';
-import { environmentLogList, updateEnvironmentLog } from '../service';
+import { environmentLogList, removeEnvironment, removeEnvironmentLog, updateEnvironmentLog } from '../service';
 import styles from '../style.less';
 
 type EnvironmentLogModalProps = {
@@ -127,8 +127,13 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
             await updateEnvironmentLog(data);
             await waitTime(2000);
           },
+          onDelete: async (rowKey, data) => {
+             await removeEnvironmentLog(data);
+            actionRef.current?.reloadAndRest?.();
+          },
+          deletePopconfirmMessage: <FormattedMessage id="pages.row.delete" />,
           onChange: setEditableRowKeys,
-          actionRender: (row, config, dom) => [dom.save, dom.cancel],
+          actionRender: (row, config, dom) => [dom.save, dom.cancel, dom.delete],
         }}
       />
       <Space>

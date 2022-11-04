@@ -368,6 +368,8 @@ export const EnvironmentList: FC = () => {
       title: <FormattedMessage id="pages.environment.log.createtime" />,
       dataIndex: 'createtime',
       valueType: 'dateTime',
+      width: '150px',
+      fieldProps: { size: 'small' },
       hideInSearch: true,
       ellipsis: true,
     },
@@ -378,7 +380,7 @@ export const EnvironmentList: FC = () => {
       valueType: 'text',
       hideInSearch: true,
       ellipsis: true,
-      width: '80%',
+      
     },
 
 

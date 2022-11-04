@@ -125,7 +125,17 @@ export async function updateEnvironmentLog(data: { [id: string]: any }, options?
   });
 }
 
-
+/** 删除 DELETE /api/environment/delete */
+export async function removeEnvironmentLog(data: { [id: string]: any }, options?: { [id: string]: any }) {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/environment_log/delete', {
+    data,
+    method: 'DELETE',
+    ...(options || {}),
+  });
+}
 
 //-------------------------------Accounts-----------------------------------//
 

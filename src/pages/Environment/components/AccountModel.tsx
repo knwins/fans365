@@ -9,7 +9,7 @@ import {
   ProFormInstance,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Form, Space } from 'antd';
+import { Button, Form, message, Space } from 'antd';
 import type { FC } from 'react';
 import TwitterModel from './TwitterModel';
 import React, { useRef, useState } from 'react';
@@ -89,7 +89,6 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
     {
       title: <FormattedMessage id="pages.accounts.username" />,
       dataIndex: 'username',
-
     },
 
     {
@@ -146,16 +145,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
           </a>
         </EditableProTable.RecordCreator>,
 
-        <a
-          key="delete"
-          onClick={async () => {
-            record.accountType = undefined;
-            await removeAccounts(record);
-            actionRef.current?.reloadAndRest?.();
-          }}
-        >
-          <FormattedMessage id="pages.delete" />
-        </a>,
+
       ],
     },
   ];
@@ -193,12 +183,24 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
             form,
             editableKeys,
             onSave: async (rowKey, data) => {
+              if (data.accountTypeId == undefined) {
+                message.error(intl.formatMessage({
+                  id: 'pages.accounts.typeName.required',
+                }));
+                return;
+              }
               data.environmentId = current?.id;
               await updateAccounts(data);
               await waitTime(2000);
             },
+            onDelete: async (rowKey, data) => {
+              data.accountType = undefined;
+              await removeAccounts(data);
+              actionRef.current?.reloadAndRest?.();
+            },
+            deletePopconfirmMessage: <FormattedMessage id="pages.row.delete" />,
             onChange: setEditableRowKeys,
-            actionRender: (row, config, dom) => [dom.save, dom.cancel],
+            actionRender: (row, config, dom) => [dom.save, dom.cancel, dom.delete],
           }}
         />
         <Space>

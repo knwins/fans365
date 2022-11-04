@@ -137,6 +137,7 @@ export default {
   'pages.select.all': '全部',
   'pages.expand': '展开',
   'pages.collapse': '收起',
+  'pages.row.delete': '删除此行',
 
   /**单位 */
   'pages.people': '人',
@@ -228,6 +229,8 @@ export default {
   'pages.accounts.status.normal': '正常',
   'pages.accounts.status.abnormality': '异常',
 
+ 
+
 
   /**Proxy Manage */
 
@@ -285,8 +288,8 @@ export default {
 
   'pages.wallet.network': '区块链网络',
   'pages.wallet.network.label': '区块链网络',
-  'pages.wallet.network.placeholder': '请输入区块链网络',
-  'pages.wallet.network.required': '请输入区块链网络!',
+  'pages.wallet.network.placeholder': '请选择区块链网络',
+  'pages.wallet.network.required': '请选择区块链网络!',
 
   'pages.wallet.environment': '所属环境',
   'pages.wallet.environment.label': '所属环境',
