@@ -77,7 +77,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
   const params: AccountsParams = {
     environmentId: current?.id,
     sorter: 'DESC',
-    filter:'createtime',
+    filter:'id',
   };
 
   const columns: ProColumns<AccountsItem>[] = [
