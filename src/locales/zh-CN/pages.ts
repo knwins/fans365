@@ -111,6 +111,8 @@ export default {
   'pages.option': '操作',
   'pages.delete': '删除',
   'pages.edit': '编辑',
+  'pages.goup': '上移',
+  'pages.godown': '下移',
   'pages.new': '新建',
   'pages.import': '导入',
   'pages.copy': '复制',

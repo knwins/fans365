@@ -12,7 +12,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType } from '@ant-design/pro-table';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, message, Space, Tag } from 'antd';
+import { Button, Drawer, Dropdown, message, Space, Tag, Menu, } from 'antd';
 import 'antd/dist/antd.css';
 import type { FC } from 'react';
 import { useRef, useState } from 'react';
@@ -27,7 +27,8 @@ import styles from './style.less';
 import { useRequest } from 'umi';
 import { getAccountTypeList } from '../AccountType/service';
 
-import { createFromIconfontCN, WalletFilled, MailFilled, TwitterOutlined, PhoneOutlined, GoogleOutlined } from '@ant-design/icons';
+import { createFromIconfontCN, WalletFilled, MailFilled, TwitterOutlined, PhoneOutlined, GoogleOutlined, ArrowUpOutlined, ArrowDownOutlined, DownOutlined } from '@ant-design/icons';
+
 const Icon = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_3745975_od931newm2.js', // 在 iconfont.cn 上生成
 });
@@ -124,6 +125,48 @@ export const EnvironmentList: FC = () => {
     }
   };
 
+  const MoreBtn: React.FC<{
+    item: EnvironmentItem;
+  }> = ({ item }) => (
+    <Dropdown
+      overlay={
+        <Menu
+          onClick={async ({ key }) => {
+            if (key == "edit") {
+              setCurrentRow(item);
+              handleOperationModelVisible(true);
+            }
+            else if (key == "goUp") {
+              item.sortAction = "sortUp";
+              const { status, info } = await updateEnvironment(item);
+              if (status) {
+                message.success(info);
+                actionRef.current?.reloadAndRest?.();
+              }
+            }
+            else if (key == "goDown") {
+              item.sortAction = "sortDown";
+              const { status, info } = await updateEnvironment(item);
+              if (status) {
+                message.success(info);
+                actionRef.current?.reloadAndRest?.();
+              }
+            }
+          }}
+        >
+          <Menu.Item key="edit"><FormattedMessage id="pages.edit" /></Menu.Item>
+          <Menu.Item key="goUp">上移</Menu.Item>
+          <Menu.Item key="goDown">下移</Menu.Item>
+        </Menu>
+      }
+    >
+      <a>
+        更多 <DownOutlined />
+      </a>
+    </Dropdown>
+  );
+
+
   const handleDone = () => {
     setDone(false);
     handleOperationModelVisible(false);
@@ -170,7 +213,7 @@ export const EnvironmentList: FC = () => {
           {
             record.accountsLabels?.map(({ name, color, icon }) => (
               <Tag key={name} color={color}
-                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' />: icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
+                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
                 {name}
               </Tag>
             ))
@@ -243,8 +286,6 @@ export const EnvironmentList: FC = () => {
       align: 'center',
       render: (_, record) => {
         return [
-
-
           <a
             key="addAccounts"
             onClick={(e) => {
@@ -255,7 +296,6 @@ export const EnvironmentList: FC = () => {
           >
             <FormattedMessage id="pages.add.accounts" />
           </a>,
-
           <a
             key="addWallet"
             onClick={(e) => {
@@ -266,7 +306,6 @@ export const EnvironmentList: FC = () => {
           >
             <FormattedMessage id="pages.add.wallet" />
           </a>,
-
           <a
             key="addLog"
             onClick={(e) => {
@@ -278,16 +317,7 @@ export const EnvironmentList: FC = () => {
             <FormattedMessage id="pages.add.logs" />
           </a>,
 
-          <a
-            key="edit"
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentRow(record);
-              handleOperationModelVisible(true);
-            }}
-          >
-            <FormattedMessage id="pages.edit" />
-          </a>,
+          <MoreBtn key="more" item={record} />,
         ];
       },
     },
@@ -312,7 +342,7 @@ export const EnvironmentList: FC = () => {
     {
       title: <FormattedMessage id="pages.environment.accounts" />,
       dataIndex: 'accounts',
-      hideInSearch:true,
+      hideInSearch: true,
       ellipsis: true,
       render: (_, record) => (
         <Space size={[12, 12]} wrap>
@@ -320,7 +350,7 @@ export const EnvironmentList: FC = () => {
           {
             record.accountsLabels?.map(({ name, color, icon }) => (
               <Tag key={name} color={color}
-                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' />: icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
+                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
                 {name}
               </Tag>
             ))
@@ -334,10 +364,9 @@ export const EnvironmentList: FC = () => {
       fieldProps: { size: 'small' },
       ellipsis: false,
       copyable: true,
-      hideInSearch:true,
+      hideInSearch: true,
       render: (_, record) => (
         <Space size={[12, 12]} wrap>
-
           {
             record.walletLabels?.map(({ name, color, icon }) => (
               <Tag color={color} key={name} icon={<WalletFilled />}>
@@ -380,7 +409,7 @@ export const EnvironmentList: FC = () => {
       valueType: 'text',
       hideInSearch: true,
       ellipsis: true,
-      
+
     },
 
 

@@ -123,6 +123,8 @@ export default {
   'pages.option': 'option',
   'pages.delete': 'Delete',
   'pages.edit': 'Edit',
+  'pages.goup': 'Move Up',
+  'pages.godown': 'Move Down',
   'pages.link': 'Link',
   'pages.detail': 'Detail',
   'pages.rushing': 'Rushing',

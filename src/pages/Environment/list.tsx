@@ -12,7 +12,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType } from '@ant-design/pro-table';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, message, Space, Tag } from 'antd';
+import { Button, Drawer, Dropdown, message, Space, Tag, Menu, } from 'antd';
 import 'antd/dist/antd.css';
 import type { FC } from 'react';
 import { useRef, useState } from 'react';
@@ -21,18 +21,17 @@ import EnvironmentLogModel from './components/EnvironmentLogModel';
 import AccountModel from './components/AccountModel';
 import WalletModel from './components/WalletModel';
 
-
 import type { EnvironmentItem, EnvironmentParams, EnvironmentLogItem, EnvironmentLogParams } from './data';
 import { addEnvironment, environmentList, environmentLogList, updateEnvironment } from './service';
 import styles from './style.less';
 import { useRequest } from 'umi';
 import { getAccountTypeList } from '../AccountType/service';
 
-import { createFromIconfontCN, WalletFilled, MailFilled, TwitterOutlined, PhoneOutlined, GoogleOutlined } from '@ant-design/icons';
+import { createFromIconfontCN, WalletFilled, MailFilled, TwitterOutlined, PhoneOutlined, GoogleOutlined, ArrowUpOutlined, ArrowDownOutlined, DownOutlined } from '@ant-design/icons';
+
 const Icon = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_3745975_od931newm2.js', // 在 iconfont.cn 上生成
 });
-
 export type PageParams = {
   /** 当前的页码 */
   current?: number;
@@ -126,9 +125,50 @@ export const EnvironmentList: FC = () => {
     }
   };
 
+  const MoreBtn: React.FC<{
+    item: EnvironmentItem;
+  }> = ({ item }) => (
+    <Dropdown
+      overlay={
+        <Menu
+          onClick={async ({ key }) => {
+            if (key == "edit") {
+              setCurrentRow(item);
+              handleOperationModelVisible(true);
+            }
+            else if (key == "goUp") {
+              item.sortAction = "sortUp";
+              const { status, info } = await updateEnvironment(item);
+              if (status) {
+                message.success(info);
+                actionRef.current?.reloadAndRest?.();
+              }
+            }
+            else if (key == "goDown") {
+              item.sortAction = "sortDown";
+              const { status, info } = await updateEnvironment(item);
+              if (status) {
+                message.success(info);
+                actionRef.current?.reloadAndRest?.();
+              }
+            }
+          }}
+        >
+          <Menu.Item key="edit"><FormattedMessage id="pages.edit" /></Menu.Item>
+          <Menu.Item key="goUp">上移</Menu.Item>
+          <Menu.Item key="goDown">下移</Menu.Item>
+        </Menu>
+      }
+    >
+      <a>
+        更多 <DownOutlined />
+      </a>
+    </Dropdown>
+  );
+
+
   const handleDone = () => {
     setDone(false);
-    setCurrentRow(undefined);
     handleOperationModelVisible(false);
     handleEnvironmentLogModelVisible(false);
     handleAccountsModelVisible(false);
@@ -246,8 +286,6 @@ export const EnvironmentList: FC = () => {
       align: 'center',
       render: (_, record) => {
         return [
-
-
           <a
             key="addAccounts"
             onClick={(e) => {
@@ -258,7 +296,6 @@ export const EnvironmentList: FC = () => {
           >
             <FormattedMessage id="pages.add.accounts" />
           </a>,
-
           <a
             key="addWallet"
             onClick={(e) => {
@@ -269,7 +306,6 @@ export const EnvironmentList: FC = () => {
           >
             <FormattedMessage id="pages.add.wallet" />
           </a>,
-
           <a
             key="addLog"
             onClick={(e) => {
@@ -281,16 +317,7 @@ export const EnvironmentList: FC = () => {
             <FormattedMessage id="pages.add.logs" />
           </a>,
 
-          <a
-            key="edit"
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentRow(record);
-              handleOperationModelVisible(true);
-            }}
-          >
-            <FormattedMessage id="pages.edit" />
-          </a>,
+          <MoreBtn key="more" item={record} />,
         ];
       },
     },
@@ -340,7 +367,6 @@ export const EnvironmentList: FC = () => {
       hideInSearch: true,
       render: (_, record) => (
         <Space size={[12, 12]} wrap>
-
           {
             record.walletLabels?.map(({ name, color, icon }) => (
               <Tag color={color} key={name} icon={<WalletFilled />}>
@@ -371,6 +397,8 @@ export const EnvironmentList: FC = () => {
       title: <FormattedMessage id="pages.environment.log.createtime" />,
       dataIndex: 'createtime',
       valueType: 'dateTime',
+      width: '150px',
+      fieldProps: { size: 'small' },
       hideInSearch: true,
       ellipsis: true,
     },
@@ -381,7 +409,7 @@ export const EnvironmentList: FC = () => {
       valueType: 'text',
       hideInSearch: true,
       ellipsis: true,
-      width: '70%',
+
     },
 
 
@@ -410,7 +438,6 @@ export const EnvironmentList: FC = () => {
                 key="primary"
                 onClick={() => {
                   handleOperationModelVisible(true);
-                  setCurrentRow(undefined);
                 }}
               >
                 <PlusOutlined /> <FormattedMessage id="pages.new" />
@@ -469,8 +496,8 @@ export const EnvironmentList: FC = () => {
         onDone={handleDone}
       />
 
-      
- 
+
+
       <Drawer
         width={600}
         visible={showDetail}

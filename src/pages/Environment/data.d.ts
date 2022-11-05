@@ -15,6 +15,8 @@ export type EnvironmentItem = {
   user: UserItem;
   accountsLabels?:TagItem[];
   walletLabels?:TagItem[];
+
+  sortAction?:string;
 };
 
 export type EnvironmentPagination = {
