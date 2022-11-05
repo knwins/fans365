@@ -50,8 +50,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   }
   const params: WalletParams = {
     environmentId: current?.id,
-    sorter: 'ASC',
-    filter:'createtime',
+    sorter: 'DESC',
+    filter: 'createtime',
   };
 
   const columns: ProColumns<WalletItem>[] = [

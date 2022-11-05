@@ -92,6 +92,8 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   const [dataSource, setDataSource] = useState<EnvironmentLogItem[]>([]);
   const [form] = Form.useForm();
+
+
   if (!visible) {
     return null;
   }
@@ -100,7 +102,7 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
 
   const params: EnvironmentLogParams = {
     environmentId: current?.id,
-    sorter: 'ASC',
+    sorter: 'DESC',
     filter:'createtime',
   };
  
@@ -131,6 +133,7 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
         // 关闭默认的新建按钮
         recordCreatorProps={false}
         columns={columns}
+        
         params={params}
         request={environmentLogList}
         value={dataSource}
@@ -140,8 +143,6 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
           editableKeys,
           onSave: async (rowKey, data) => {
             data.environmentId = current?.id;
-
-            
             await updateEnvironmentLog(data);
             await waitTime(2000);
             actionRef.current?.reloadAndRest?.();
