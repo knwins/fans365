@@ -106,7 +106,11 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
     filter:'createtime',
   };
  
-  
+  const paginationProps = {
+    showSizeChanger: true,
+    showQuickJumper: true,
+    //current: 1,
+  };
 
  
   return (
@@ -133,7 +137,7 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
         // 关闭默认的新建按钮
         recordCreatorProps={false}
         columns={columns}
-        
+        pagination={paginationProps}
         params={params}
         request={environmentLogList}
         value={dataSource}
