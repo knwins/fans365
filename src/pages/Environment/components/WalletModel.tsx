@@ -72,6 +72,9 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         ATOM: {
           text: "ATOM",
         },
+        StarkNet: {
+          text: "StarkNet",
+        },
       },
     },
 
