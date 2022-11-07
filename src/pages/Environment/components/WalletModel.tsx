@@ -75,6 +75,9 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         StarkNet: {
           text: "StarkNet",
         },
+        APT: {
+          text: "APT",
+        },
       },
     },
 
