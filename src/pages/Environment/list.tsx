@@ -32,6 +32,8 @@ import { createFromIconfontCN, WalletFilled, MailFilled, TwitterOutlined, PhoneO
 const Icon = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_3745975_od931newm2.js', // 在 iconfont.cn 上生成
 });
+
+
 export type PageParams = {
   /** 当前的页码 */
   current?: number;
@@ -350,7 +352,8 @@ export const EnvironmentList: FC = () => {
           {
             record.accountsLabels?.map(({ name, color, icon }) => (
               <Tag key={name} color={color}
-                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
+                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? 
+                <Icon type='icon-discord' /> : icon == "Steam" ? <Icon type='icon-steam' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
                 {name}
               </Tag>
             ))
