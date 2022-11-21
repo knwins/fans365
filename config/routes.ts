@@ -285,28 +285,7 @@ export default [
         access: 'AdminGroup',
       },
 
-      //---------------------------------代理管理----------------------------
-      {
-        name: 'proxyManage',
-        icon: 'smile',
-        path: '/environment/proxy/list',
-        component: './Proxy/list',
-        access: 'AdminGroup',
-      },
-      {
-        name: 'proxyManage',
-        icon: 'smile',
-        path: '/environment/proxy/merchantlist',
-        component: './Proxy/merchantlist',
-        access: 'MerchantGroup',
-      },
-      {
-        name: 'proxyManage',
-        icon: 'smile',
-        path: '/environment/proxy/userlist',
-        component: './Proxy/userlist',
-        access: 'UserGroup',
-      },
+      
 
       {
         component: '404',

@@ -123,7 +123,7 @@ const OperationModel: FC<OperationModelProps> = (props) => {
 
       <ProFormSelect
         name="proxyId"
-        initialValue={current?.proxy?.id + ''}
+        
         label={intl.formatMessage({
           id: 'pages.environment.proxy.name.label',
         })}
@@ -137,6 +137,7 @@ const OperationModel: FC<OperationModelProps> = (props) => {
           },
         ]}
         options={dataListOptions}
+        initialValue={current?.proxy?.id + ''}
       />
 
       <ProFormSelect

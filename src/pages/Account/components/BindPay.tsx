@@ -66,7 +66,7 @@ const AvatarView = ({ avatar }: { avatar: any }) => {
         name="imageFile"
         onChange={handleChange}
         headers={{
-          token: localStorage.getItem('token'),
+          'token': localStorage.getItem('token'),
         }}
       >
         <div className={styles.button_view}>
