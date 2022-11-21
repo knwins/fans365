@@ -13,7 +13,7 @@ import { useRequest } from 'umi';
 
 import type { EnvironmentItem } from '../data';
 import styles from '../style.less';
-import { getProxyList } from '@/pages/Proxy/service';
+
 
 export type pageParams = {
   /** 当前的页码 */
@@ -39,26 +39,7 @@ const OperationModel: FC<OperationModelProps> = (props) => {
   //国际化
   const intl = useIntl();
 
-  //查找所有IP
-  const { data: proxyListData } = useRequest(() => {
-    return getProxyList({
-      current: 1,
-    });
-  });
-
-  const dataList = proxyListData || [];
-  const dataListOptions = [];
-  if (dataList) {
-    for (let i = 0; i < dataList.length; i += 1) {
-      const item = dataList[i];
-      if (item) {
-        dataListOptions.push({
-          label: item.ip,
-          value: item.id,
-        });
-      }
-    }
-  }
+ 
 
   if (!visible) {
     return null;
@@ -121,24 +102,17 @@ const OperationModel: FC<OperationModelProps> = (props) => {
         ]}
       />
 
-      <ProFormSelect
-        name="proxyId"
-        
+<ProFormText
+        name="proxy"
         label={intl.formatMessage({
-          id: 'pages.environment.proxy.name.label',
+          id: 'pages.environment.proxy.label',
         })}
         width="md"
-        rules={[
-          {
-            required: true,
-            message: intl.formatMessage({
-              id: 'pages.environment.proxy.name.required',
-            }),
-          },
-        ]}
-        options={dataListOptions}
-        initialValue={current?.proxy?.id + ''}
+        placeholder={intl.formatMessage({
+          id: 'pages.environment.proxy.placeholder',
+        })}
       />
+
 
       <ProFormSelect
         name="status"

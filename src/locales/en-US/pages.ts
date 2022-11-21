@@ -245,37 +245,7 @@ export default {
   'pages.accounts.status.abnormality': 'Abnormality',
 
 
-  /**Proxy Manage */
-
-  'pages.proxy.provider': 'Provider',
-  'pages.proxy.provider.label': 'Provider',
-  'pages.proxy.provider.placeholder': 'Please select provider',
-  'pages.proxy.provider.required': 'Please select provider!',
-
-  'pages.proxy.ip': 'IP address',
-  'pages.proxy.ip.label': 'IP address',
-  'pages.proxy.ip.placeholder': 'Please enter IP address',
-  'pages.proxy.ip.required': 'Please enter IP address!',
-
-  'pages.proxy.port': 'Port',
-  'pages.proxy.port.label': 'Port',
-  'pages.proxy.port.placeholder': 'Please enter Port',
-  'pages.proxy.port.required': 'Please enter Port!',
-
-  'pages.proxy.username': 'Username',
-  'pages.proxy.username.label': 'Username',
-  'pages.proxy.username.placeholder': 'Please enter Username',
-  'pages.proxy.username.required': 'Please enter Username!',
-
-  'pages.proxy.password': 'Password',
-  'pages.proxy.password.label': 'Password',
-  'pages.proxy.password.placeholder': 'Please enter password',
-  'pages.proxy.password.required': 'Please enter password!',
-
-  'pages.proxy.createtime': 'Create Time',
-  'pages.proxy.createtime.label': 'Create Time',
-
-
+ 
 
   /**Proxy Manage */
 
@@ -342,10 +312,10 @@ export default {
   'pages.environment.createtime.label': 'Create Time',
 
 
-  'pages.environment.proxy.name': 'Proxy',
-  'pages.environment.proxy.name.label': 'Proxy',
-  'pages.environment.proxy.name.placeholder': 'Please select proxy',
-  'pages.environment.proxy.name.required': 'Please select proxy!',
+  'pages.environment.proxy': 'Proxy',
+  'pages.environment.proxy.label': 'Proxy',
+  'pages.environment.proxy.placeholder': 'Please select proxy',
+  'pages.environment.proxy.required': 'Please select proxy!',
   'pages.add.accounts': 'Account',
   'pages.add.wallet': 'Wallet',
   'pages.add.logs': 'Log',

@@ -234,36 +234,6 @@ export default {
  
 
 
-  /**Proxy Manage */
-
-  'pages.proxy.provider': '选择商家',
-  'pages.proxy.provider.label': '选择商家',
-  'pages.proxy.provider.placeholder': '请选择商家',
-  'pages.proxy.provider.required': '请选择商家!',
-
-  'pages.proxy.ip': 'IP地址',
-  'pages.proxy.ip.label': 'IP地址',
-  'pages.proxy.ip.placeholder': '请输入IP地址',
-  'pages.proxy.ip.required': '请输入IP地址!',
-
-  'pages.proxy.port': '端口',
-  'pages.proxy.port.label': '端口',
-  'pages.proxy.port.placeholder': '请输入端口',
-  'pages.proxy.port.required': '请输入端口!',
-
-  'pages.proxy.username': '用户',
-  'pages.proxy.username.label': '用户名',
-  'pages.proxy.username.placeholder': '请输入用户',
-  'pages.proxy.username.required': '请输入用户!',
-
-  'pages.proxy.password': '用户密码',
-  'pages.proxy.password.label': '用户密码',
-  'pages.proxy.password.placeholder': '请输入密码',
-  'pages.proxy.password.required': '请输入密码!',
-
-  'pages.proxy.createtime': '创建时间',
-  'pages.proxy.createtime.label': '创建时间',
-
 
 
   /**Proxy Manage */
@@ -331,10 +301,11 @@ export default {
   'pages.environment.createtime.label': '创建时间',
 
 
-  'pages.environment.proxy.name': '代理',
-  'pages.environment.proxy.name.label': '代理',
-  'pages.environment.proxy.name.placeholder': '选择代理',
-  'pages.environment.proxy.name.required': '选择代理!',
+  'pages.environment.proxy': '代理',
+  'pages.environment.proxy.label': '代理',
+  'pages.environment.proxy.placeholder': '选择代理',
+  'pages.environment.proxy.required': '选择代理!',
+
   'pages.add.accounts': '账户',
   'pages.add.wallet': '钱包',
   'pages.add.logs': '记录',
