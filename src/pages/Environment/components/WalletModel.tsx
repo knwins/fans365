@@ -161,21 +161,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       } ,
     },
 
-    {
-      title: <FormattedMessage id="pages.wallet.password" />,
-      dataIndex: 'password',
-      valueType: 'text',
-      hideInTable: true,
-      render: (text, record, _, action) =>{
-        if(record.password){
-          return [
-            <Paragraph copyable>{record.password}</Paragraph>
-          ]
-        }
-        return "-";
-      } ,
-    },
-
+     
     {
       title: <FormattedMessage id="pages.option" />,
       valueType: 'option',

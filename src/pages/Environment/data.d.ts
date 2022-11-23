@@ -111,7 +111,6 @@ export type WalletItem = {
   mnemonic?: string;
   privatekey?: string;
   publickey?: string;
-  password?: string;
   network?: string;
   createtime?: Date;
   environmentId?:string;
