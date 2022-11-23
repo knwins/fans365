@@ -95,7 +95,8 @@ export const EnvironmentList: FC = () => {
           message.success(info);
           setCurrentRow(undefined);
           if (actionRef.current) {
-            actionRef.current.reloadAndRest?.();
+           // actionRef.current.reloadAndRest?.();
+            actionRef.current.reload();
           }
           return true;
         }
@@ -108,7 +109,8 @@ export const EnvironmentList: FC = () => {
           message.success(info);
           setCurrentRow(undefined);
           if (actionRef.current) {
-            actionRef.current.reloadAndRest?.();
+            //actionRef.current.reloadAndRest?.();
+            actionRef.current.reload();
           }
           return true;
         }
