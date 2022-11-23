@@ -1,4 +1,4 @@
-import { PlusOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
+import { PlusOutlined,  } from '@ant-design/icons';
 import {
   ActionType,
   EditableProTable,
@@ -9,8 +9,8 @@ import {
   ProFormInstance,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, Form, message, Space } from 'antd';
-
+import { Button, Drawer, Form, message, Space ,Typography} from 'antd';
+const { Paragraph } = Typography;
 
 import React, { useRef, useState } from 'react';
 import type { EnvironmentItem, WalletItem, WalletParams } from '../data';
@@ -62,7 +62,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   };
 
 
- 
+
 
 
   const columns: ProColumns<WalletItem>[] = [
@@ -106,41 +106,81 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
     {
       title: <FormattedMessage id="pages.wallet.address" />,
+      valueType: 'text',
       dataIndex: 'address',
-     
+      render: (text, record, _, action) =>{
+        if(record.address){
+          return [
+            <Paragraph copyable>{record.address}</Paragraph>
+          ]
+        }
+        return "-";
+      } ,
     },
 
     {
       title: <FormattedMessage id="pages.wallet.mnemonic" />,
       dataIndex: 'mnemonic',
       valueType: 'textarea',
+      render: (text, record, _, action) =>{
+        if(record.mnemonic){
+          return [
+            <Paragraph copyable>{record.mnemonic}</Paragraph>
+          ]
+        }
+        return "-";
+      } ,
     },
 
     {
       title: <FormattedMessage id="pages.wallet.privatekey" />,
       dataIndex: 'privatekey',
       valueType: 'textarea',
+      render: (text, record, _, action) =>{
+        if(record.privatekey){
+          return [
+            <Paragraph copyable>{record.privatekey}</Paragraph>
+          ]
+        }
+        return "-";
+      } ,
     },
 
     {
       title: <FormattedMessage id="pages.wallet.publickey" />,
       dataIndex: 'publickey',
       valueType: 'text',
-      hideInTable:true,
+      hideInTable: true,
+      render: (text, record, _, action) =>{
+        if(record.publickey){
+          return [
+            <Paragraph copyable>{record.publickey}</Paragraph>
+          ]
+        }
+        return "-";
+      } ,
     },
 
     {
       title: <FormattedMessage id="pages.wallet.password" />,
       dataIndex: 'password',
       valueType: 'text',
-      hideInTable:true,
+      hideInTable: true,
+      render: (text, record, _, action) =>{
+        if(record.password){
+          return [
+            <Paragraph copyable>{record.password}</Paragraph>
+          ]
+        }
+        return "-";
+      } ,
     },
 
     {
       title: <FormattedMessage id="pages.option" />,
       valueType: 'option',
       width: '160px',
-      hideInDescriptions:true,
+      hideInDescriptions: true,
       render: (text, record, _, action) => [
         <a
           key="editable"
@@ -150,19 +190,6 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         >
           <FormattedMessage id="pages.edit" />
         </a>,
-        <EditableProTable.RecordCreator
-          key="copy"
-          record={{
-            ...record,
-            id: (Math.random() * 1000000).toFixed(0),
-          }}
-        >
-          <a>
-            <FormattedMessage id="pages.copy" />
-          </a>
-        </EditableProTable.RecordCreator>,
-
-
       ],
     },
   ];
@@ -278,8 +305,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               params={{
                 id: currentRow?.id,
               }}
-              
-             columns={columns as ProDescriptionsItemProps<WalletItem>[]}
+
+              columns={columns as ProDescriptionsItemProps<WalletItem>[]}
             />
           </>
         )}

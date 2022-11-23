@@ -110,7 +110,7 @@ export type WalletItem = {
   address?: string;
   mnemonic?: string;
   privatekey?: string;
-  publicKey?: string;
+  publickey?: string;
   password?: string;
   network?: string;
   createtime?: Date;

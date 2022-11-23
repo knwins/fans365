@@ -272,7 +272,7 @@ export default {
   'pages.wallet.createtime.label': '创建时间',
 
   'pages.wallet.publickey': '公钥',
-  'pages.wallet.password': '钱包密码',
+  'pages.wallet.password': '密码',
 
 
   /**Wnvironment Manage */

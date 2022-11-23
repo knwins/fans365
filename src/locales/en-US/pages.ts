@@ -271,7 +271,7 @@ export default {
   'pages.wallet.privatekey.required': 'Please enter Private key!',
 
   'pages.wallet.publickey': 'Publickey key',
-  'pages.wallet.password': 'Wallet password',
+  'pages.wallet.password': 'Password',
  
   'pages.wallet.network': 'Network',
   'pages.wallet.network.label': 'Network',
