@@ -99,6 +99,8 @@ const OperationModal: FC<OperationModalProps> = (props) => {
           options={[
             { label: 'Normal', value: 'Normal' },
             { label: 'Abnormality', value: 'Abnormality' },
+            { label: 'Use', value: 'Use' },
+            { label: 'Lock', value: 'Lock' },
           ]}
         />
         <ProFormSelect
