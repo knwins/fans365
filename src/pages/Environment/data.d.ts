@@ -110,8 +110,10 @@ export type WalletItem = {
   address?: string;
   mnemonic?: string;
   privatekey?: string;
+  publicKey?: string;
+  password?: string;
   network?: string;
-  createtime: Date;
+  createtime?: Date;
   environmentId?:string;
   lang?: string;
 };

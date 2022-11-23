@@ -151,6 +151,7 @@ export default {
   'pages.sort.placeholder': 'Please enter sort',
   'pages.sort.required': 'Please enter sort!',
   'pages.row.delete': 'delete this row',
+  'pages.create.eth.wallet': 'Create ETH Wallet',
 
   /**单位 */
   'pages.people': ' people',
@@ -269,6 +270,9 @@ export default {
   'pages.wallet.privatekey.placeholder': 'Please enter Private key',
   'pages.wallet.privatekey.required': 'Please enter Private key!',
 
+  'pages.wallet.publickey': 'Publickey key',
+  'pages.wallet.password': 'Wallet password',
+ 
   'pages.wallet.network': 'Network',
   'pages.wallet.network.label': 'Network',
   'pages.wallet.network.placeholder': 'Please enter Network',
@@ -314,8 +318,8 @@ export default {
 
   'pages.environment.proxy': 'Proxy',
   'pages.environment.proxy.label': 'Proxy',
-  'pages.environment.proxy.placeholder': 'Please select proxy',
-  'pages.environment.proxy.required': 'Please select proxy!',
+  'pages.environment.proxy.placeholder': 'ip:post:username:password',
+  'pages.environment.proxy.required': 'Please enter proxy!',
   'pages.add.accounts': 'Account',
   'pages.add.wallet': 'Wallet',
   'pages.add.logs': 'Log',

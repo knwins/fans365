@@ -9,7 +9,7 @@ import { useIntl } from '@umijs/max';
 
 import type { FC } from 'react';
 import { useRef } from 'react';
-import { useRequest } from 'umi';
+
 
 import type { EnvironmentItem } from '../data';
 import styles from '../style.less';
@@ -39,7 +39,7 @@ const OperationModel: FC<OperationModelProps> = (props) => {
   //国际化
   const intl = useIntl();
 
- 
+
 
   if (!visible) {
     return null;
@@ -99,15 +99,16 @@ const OperationModel: FC<OperationModelProps> = (props) => {
         options={[
           { label: 'AdsPower', value: 'AdsPower' },
           { label: 'Hubstudio', value: 'Hubstudio' },
+          { label: 'BitBrowser', value: 'BitBrowser' },
         ]}
       />
 
-<ProFormText
+      <ProFormText
         name="proxy"
         label={intl.formatMessage({
           id: 'pages.environment.proxy.label',
         })}
-        width="md"
+        width="lg"
         placeholder={intl.formatMessage({
           id: 'pages.environment.proxy.placeholder',
         })}

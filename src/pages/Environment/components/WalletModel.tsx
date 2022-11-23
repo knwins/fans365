@@ -4,15 +4,17 @@ import {
   EditableProTable,
   ModalForm,
   ProColumns,
+  ProDescriptions,
+  ProDescriptionsItemProps,
   ProFormInstance,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Form, message, Space } from 'antd';
+import { Button, Drawer, Form, message, Space } from 'antd';
 
 
 import React, { useRef, useState } from 'react';
 import type { EnvironmentItem, WalletItem, WalletParams } from '../data';
-import { getWalletList, removeWallet, updateWallet } from '../service';
+import { createWallet, getWalletList, removeWallet, updateWallet } from '../service';
 import styles from '../style.less';
 
 
@@ -44,6 +46,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   const actionRef = useRef<ActionType>();
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   const [dataSource, setDataSource] = useState<WalletItem[]>([]);
+
+  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [currentRow, setCurrentRow] = useState<WalletItem>();
+
+
   const [form] = Form.useForm();
   if (!visible) {
     return null;
@@ -53,6 +60,10 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
     sorter: 'DESC',
     filter: 'createtime',
   };
+
+
+ 
+
 
   const columns: ProColumns<WalletItem>[] = [
     {
@@ -79,11 +90,24 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
           text: "APT",
         },
       },
+      render: (dom, entity) => {
+        return (
+          <a
+            onClick={() => {
+              setCurrentRow(entity);
+              setShowDetail(true);
+            }}
+          >
+            {dom}
+          </a>
+        );
+      },
     },
 
     {
       title: <FormattedMessage id="pages.wallet.address" />,
       dataIndex: 'address',
+     
     },
 
     {
@@ -99,15 +123,29 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
     },
 
     {
+      title: <FormattedMessage id="pages.wallet.publickey" />,
+      dataIndex: 'publickey',
+      valueType: 'text',
+      hideInTable:true,
+    },
+
+    {
+      title: <FormattedMessage id="pages.wallet.password" />,
+      dataIndex: 'password',
+      valueType: 'text',
+      hideInTable:true,
+    },
+
+    {
       title: <FormattedMessage id="pages.option" />,
       valueType: 'option',
       width: '160px',
-
+      hideInDescriptions:true,
       render: (text, record, _, action) => [
         <a
           key="editable"
           onClick={() => {
-            action?.startEditable?.(record.id);
+            action?.startEditable?.(record?.id);
           }}
         >
           <FormattedMessage id="pages.edit" />
@@ -130,79 +168,126 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   ];
 
   return (
-    <ModalForm<EnvironmentItem>
-      visible={visible}
-      title={intl.formatMessage({
-        id: 'pages.environment.wallet.title',
-      })}
-      formRef={formRef}
-      className={styles.standardListForm}
-      width="70%"
-      submitter={false}
-      trigger={<>{children}</>}
-      modalProps={{
-        onCancel: () => onDone(),
-        destroyOnClose: true,
-        bodyStyle: done ? { padding: '72px 0' } : {},
-      }}
-    >
-      <EditableProTable<WalletItem, WalletParams>
-        rowKey="id"
-        actionRef={actionRef}
-        maxLength={5}
-        // 关闭默认的新建按钮
-        recordCreatorProps={false}
-        columns={columns}
-        params={params}
-        request={getWalletList}
-        value={dataSource}
-        onChange={setDataSource}
-        editable={{
-          form,
-          editableKeys,
-          onSave: async (rowKey, data) => {
+    <>
 
-
-            if (data.network == undefined) {
-              message.error(intl.formatMessage({
-                id: 'pages.wallet.network.required',
-              }));
-              return;
-            }
-
-
-            data.environmentId = current?.id;
-            await updateWallet(data);
-            await waitTime(2000);
-            actionRef.current?.reloadAndRest?.();
-          },
-          onDelete: async (rowKey, data) => {
-            await removeWallet(data);
-            actionRef.current?.reloadAndRest?.();
-          },
-          deletePopconfirmMessage: <FormattedMessage id="pages.row.delete" />,
-          onChange: setEditableRowKeys,
-          actionRender: (row, config, dom) => [dom.save, dom.cancel, dom.delete],
+      <ModalForm<EnvironmentItem>
+        visible={visible}
+        title={intl.formatMessage({
+          id: 'pages.environment.wallet.title',
+        })}
+        formRef={formRef}
+        className={styles.standardListForm}
+        width="70%"
+        submitter={false}
+        trigger={<>{children}</>}
+        modalProps={{
+          onCancel: () => onDone(),
+          destroyOnClose: true,
+          bodyStyle: done ? { padding: '72px 0' } : {},
         }}
-      />
-      <Space>
-        <Button
-          type="primary"
-          onClick={() => {
-            actionRef.current?.addEditRecord?.({
-              id: (Math.random() * 1000000).toFixed(0),
-              title: <FormattedMessage id="pages.new" />,
-            });
+      >
+        <EditableProTable<WalletItem, WalletParams>
+          rowKey="id"
+          actionRef={actionRef}
+          maxLength={5}
+          // 关闭默认的新建按钮
+          recordCreatorProps={false}
+          columns={columns}
+          params={params}
+          request={getWalletList}
+          value={dataSource}
+          onChange={setDataSource}
+          editable={{
+            form,
+            editableKeys,
+            onSave: async (rowKey, data) => {
+
+
+              if (data.network == undefined) {
+                message.error(intl.formatMessage({
+                  id: 'pages.wallet.network.required',
+                }));
+                return;
+              }
+
+
+              data.environmentId = current?.id;
+              await updateWallet(data);
+              await waitTime(2000);
+              actionRef.current?.reloadAndRest?.();
+            },
+            onDelete: async (rowKey, data) => {
+              await removeWallet(data);
+              actionRef.current?.reloadAndRest?.();
+            },
+            deletePopconfirmMessage: <FormattedMessage id="pages.row.delete" />,
+            onChange: setEditableRowKeys,
+            actionRender: (row, config, dom) => [dom.save, dom.cancel, dom.delete],
           }}
-          icon={<PlusOutlined />}
-        >
-          <FormattedMessage id="pages.new" />
-        </Button>
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => {
+              actionRef.current?.addEditRecord?.({
+                id: (Math.random() * 1000000).toFixed(0),
+                title: <FormattedMessage id="pages.new" />,
+              });
+            }}
+            icon={<PlusOutlined />}
+          >
+            <FormattedMessage id="pages.new" />
+          </Button>
 
-      </Space>
+          <Button
+            type="primary"
+            onClick={async () => {
+              const walletItem: WalletItem = {
+                environmentId: current?.id,
+                id: "0",
+              };
+              await createWallet(walletItem);
+              actionRef.current?.reloadAndRest?.();
+            }}
+            icon={<PlusOutlined />}
+          >
+            <FormattedMessage id="pages.create.eth.wallet" />
+          </Button>
+        </Space>
 
 
-    </ModalForm>
+      </ModalForm>
+      <Drawer
+        width={600}
+        visible={showDetail}
+        onClose={() => {
+          setCurrentRow(undefined);
+          setShowDetail(false);
+        }}
+        closable={false}
+      >
+        {currentRow?.id && (
+          <>
+
+            <ProDescriptions<WalletItem>
+              column={1}
+              title={currentRow?.name}
+              request={async () => ({
+                data: currentRow || {},
+              })}
+              params={{
+                id: currentRow?.id,
+              }}
+              
+             columns={columns as ProDescriptionsItemProps<WalletItem>[]}
+            />
+          </>
+        )}
+      </Drawer></>
+
+
+
+
   );
 };
 

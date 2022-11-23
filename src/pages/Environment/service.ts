@@ -266,6 +266,23 @@ export async function updateWallet(data: { [id: string]: any }, options?: { [id:
   });
 }
 
+/** 新建  */
+export async function createWallet(data: { [id: string]: any }, options?: { [id: string]: any }) {
+  return request<{
+    data: WalletItem;
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/wallet/create', {
+    data,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...(options || {}),
+  });
+}
+
+
 export async function removeWallet(data: { [id: string]: any }, options?: { [id: string]: any }) {
   return request<{
     status?: boolean;

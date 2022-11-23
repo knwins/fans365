@@ -140,6 +140,7 @@ export default {
   'pages.expand': '展开',
   'pages.collapse': '收起',
   'pages.row.delete': '删除此行',
+  'pages.create.eth.wallet': '生成ETH钱包',
 
   /**单位 */
   'pages.people': '人',
@@ -270,6 +271,9 @@ export default {
   'pages.wallet.createtime': '创建时间',
   'pages.wallet.createtime.label': '创建时间',
 
+  'pages.wallet.publickey': '公钥',
+  'pages.wallet.password': '钱包密码',
+
 
   /**Wnvironment Manage */
 
@@ -303,8 +307,8 @@ export default {
 
   'pages.environment.proxy': '代理',
   'pages.environment.proxy.label': '代理',
-  'pages.environment.proxy.placeholder': '选择代理',
-  'pages.environment.proxy.required': '选择代理!',
+  'pages.environment.proxy.placeholder': 'ip:post:username:password',
+  'pages.environment.proxy.required': '请输入代理!',
 
   'pages.add.accounts': '账户',
   'pages.add.wallet': '钱包',

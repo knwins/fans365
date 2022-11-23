@@ -441,6 +441,7 @@ export const EnvironmentList: FC = () => {
                 key="primary"
                 onClick={() => {
                   handleOperationModelVisible(true);
+                  setCurrentRow(undefined);
                 }}
               >
                 <PlusOutlined /> <FormattedMessage id="pages.new" />
