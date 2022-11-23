@@ -48,6 +48,7 @@ const TwitterModel: FC<TwitterModelProps> = (props) => {
     };
     const options: BindParams = {
       username: key,
+      status:'Normal',
     };
     const { data: listData } = await getBindMyList({
       ...pageParams,

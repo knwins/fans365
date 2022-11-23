@@ -26,6 +26,7 @@ export type BindData = {
 export type BindParams = {
   userId?: string;
   username?: string;
+  status?:string;
   filter?: Record<string, any[]>;
   sorter?: Record<string, any>;
 };
