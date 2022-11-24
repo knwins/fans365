@@ -1,7 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
-import type { AccountsItem, EnvironmentItem, EnvironmentLogItem, WalletItem } from './data.d';
+import type { AccountsItem, EnvironmentItem, EnvironmentLogItem, WalletItem, WalletTokenItem } from './data.d';
 
 /** 获取列表 GET /api/environment/list */
 export async function environmentList(
@@ -294,4 +294,72 @@ export async function removeWallet(data: { [id: string]: any }, options?: { [id:
   });
 }
 
+//----------------------------------WalletToken----------------------------
+
+/** 获取列表 GET /api/wallet_token/list */
+export async function getWalletTokenList(
+  params: {
+    // query
+    /** 当前的页码 */
+    current?: number;
+    /** 页面的容量 */
+    pageSize?: number;
+  },
+  options?: { [key: string]: any },
+) {
+  return request<{
+    data: WalletTokenItem[];
+    /** 列表的内容总数 */
+    total?: number;
+    status?: boolean;
+  }>('https://api.fans365.net/api/wallet_token/list', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 新建 */
+export async function addWalletToken(data: { [id: string]: any }, options?: { [id: string]: any }) {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/wallet_token/add', {
+    data,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...(options || {}),
+  });
+}
+
+
+/** 刷新 */
+export async function refreshWalletToken(data: { [id: string]: any }, options?: { [id: string]: any }) {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/wallet_token/refresh', {
+    data,
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...(options || {}),
+  });
+}
+
+export async function removeWalletToken(data: { [id: string]: any }, options?: { [id: string]: any }) {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/wallet_token/delete', {
+    data,
+    method: 'DELETE',
+    ...(options || {}),
+  });
+}
 

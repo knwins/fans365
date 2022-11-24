@@ -135,6 +135,37 @@ export type WalletParams = {
 };
 
 
+//WalletToken
+
+export type WalletTokenItem = {
+  id: string;
+  symbol?: string;
+  contract?: string;
+  balance?: number;
+  network?: string;
+  updatetime?: Date;
+  walletId?:string;
+  lang?: string;
+};
+
+export type WalletTokenPagination = {
+  total: number;
+  pageSize: number;
+  current: number;
+};
+
+export type WalletTokenData = {
+  list: WalletTokenItem[];
+  pagination: Partial<WalletTokenPagination>;
+};
+
+export type WalletTokenParams = {
+  walletId?: string;
+  filter?: string;
+  sorter?: string;
+};
+
+
 
 
 

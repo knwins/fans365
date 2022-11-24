@@ -1,4 +1,4 @@
-import { PlusOutlined,  } from '@ant-design/icons';
+import { PlusOutlined, } from '@ant-design/icons';
 import {
   ActionType,
   EditableProTable,
@@ -7,17 +7,17 @@ import {
   ProDescriptions,
   ProDescriptionsItemProps,
   ProFormInstance,
+  ProTable,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, Form, message, Space ,Typography} from 'antd';
+import { Button, Drawer, Form, message, Space, Typography } from 'antd';
 const { Paragraph } = Typography;
 
 import React, { useRef, useState } from 'react';
-import type { EnvironmentItem, WalletItem, WalletParams } from '../data';
-import { createWallet, getWalletList, removeWallet, updateWallet } from '../service';
+import type { EnvironmentItem, WalletItem, WalletParams, WalletTokenItem, WalletTokenParams } from '../data';
+import { addWalletToken, createWallet, getWalletList, getWalletTokenList, refreshWalletToken, removeWallet, removeWalletToken, updateWallet } from '../service';
 import styles from '../style.less';
-
-
+import WalletTokenModel from './WalletTokenModel';
 
 type WalletModelProps = {
   done: boolean;
@@ -44,11 +44,13 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   //国际化
   const intl = useIntl();
   const actionRef = useRef<ActionType>();
+  const actionRefToken = useRef<ActionType>();
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   const [dataSource, setDataSource] = useState<WalletItem[]>([]);
 
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<WalletItem>();
+  const [tokenUI, setTokenUI] = useState<boolean>(false);
 
 
   const [form] = Form.useForm();
@@ -71,23 +73,18 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       dataIndex: 'network',
       valueType: 'select',
       valueEnum: {
-        ETH: {
-          text: "ETH",
+        EthereumFormat: {
+          text: "EthereumFormat",
         },
-        BSC: {
-          text: "BSC",
+        SuiFormat: {
+          text: "SuiFormat",
         },
-        SUI: {
-          text: "SUI",
+        AtomFormat: {
+          text: "AtomFormat",
         },
-        ATOM: {
-          text: "ATOM",
-        },
-        StarkNet: {
-          text: "StarkNet",
-        },
-        APT: {
-          text: "APT",
+
+        APTFormat: {
+          text: "APTFormat",
         },
       },
       render: (dom, entity) => {
@@ -108,42 +105,42 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.address" />,
       valueType: 'text',
       dataIndex: 'address',
-      render: (text, record, _, action) =>{
-        if(record.address){
+      render: (text, record, _, action) => {
+        if (record.address) {
           return [
             <Paragraph copyable>{record.address}</Paragraph>
           ]
         }
         return "-";
-      } ,
+      },
     },
 
     {
       title: <FormattedMessage id="pages.wallet.mnemonic" />,
       dataIndex: 'mnemonic',
       valueType: 'textarea',
-      render: (text, record, _, action) =>{
-        if(record.mnemonic){
+      render: (text, record, _, action) => {
+        if (record.mnemonic) {
           return [
             <Paragraph copyable>{record.mnemonic}</Paragraph>
           ]
         }
         return "-";
-      } ,
+      },
     },
 
     {
       title: <FormattedMessage id="pages.wallet.privatekey" />,
       dataIndex: 'privatekey',
       valueType: 'textarea',
-      render: (text, record, _, action) =>{
-        if(record.privatekey){
+      render: (text, record, _, action) => {
+        if (record.privatekey) {
           return [
             <Paragraph copyable>{record.privatekey}</Paragraph>
           ]
         }
         return "-";
-      } ,
+      },
     },
 
     {
@@ -151,22 +148,23 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       dataIndex: 'publickey',
       valueType: 'text',
       hideInTable: true,
-      render: (text, record, _, action) =>{
-        if(record.publickey){
+      render: (text, record, _, action) => {
+        if (record.publickey) {
           return [
             <Paragraph copyable>{record.publickey}</Paragraph>
           ]
         }
         return "-";
-      } ,
+      },
     },
 
-     
+
     {
       title: <FormattedMessage id="pages.option" />,
       valueType: 'option',
       width: '160px',
       hideInDescriptions: true,
+      align:'center',
       render: (text, record, _, action) => [
         <a
           key="editable"
@@ -176,9 +174,138 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         >
           <FormattedMessage id="pages.edit" />
         </a>,
+
       ],
     },
   ];
+
+
+  //------------------------------------walletToken-----------------------
+
+
+
+  /**
+  * 添加
+  *
+  * @param fields
+  */
+
+  const handleSubmit = async (fields: WalletTokenItem) => {
+    try {
+      const loadingHiddle = message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        }),
+      );
+      //walletId
+      fields.walletId = currentRow?.id;
+      const { status, info } = await addWalletToken({ ...fields });
+      loadingHiddle();
+      if (status) {
+        message.success(info);
+        if (actionRefToken.current) {
+          actionRefToken.current.reload();
+        }
+        handleDone();
+        return;
+      }
+      return;
+    } catch (error) {
+      message.error(
+        intl.formatMessage({
+          id: 'pages.tip.error',
+        }),
+      );
+      handleDone();
+      return;
+    }
+  };
+
+
+  const walletTokenColumns: ProColumns<WalletTokenItem>[] = [
+
+    {
+      title: <FormattedMessage id="pages.wallet.token.updatetime" />,
+      dataIndex: 'updatetime',
+      valueType: 'dateTime',
+      width: '150px',
+      fieldProps: { size: 'small' },
+    },
+
+    {
+      title: <FormattedMessage id="pages.wallet.token.network" />,
+      dataIndex: 'network',
+      valueType: 'text',
+      align: 'center'
+    },
+
+    {
+      title: <FormattedMessage id="pages.wallet.token.balance" />,
+      dataIndex: 'balance',
+      valueType: 'text',
+      align: 'center',
+      render: (text, record, _, action) => {
+        if (record.balance) {
+          return [
+            <Paragraph> {record.balance} <small>{record.symbol}</small></Paragraph>
+          ]
+        }
+        return "-";
+      },
+
+    },
+
+    {
+      title: <FormattedMessage id="pages.option" />,
+      valueType: 'option',
+      width: '160px',
+      align: 'center',
+      render: (text, record, _, action) => [
+        <a
+          key="refresh"
+          onClick={async () => {
+            const { status, info } = await refreshWalletToken(record);
+            if (status) {
+              message.success(info);
+              if (actionRefToken.current) {
+                actionRefToken.current.reload();
+              }
+            }
+            return;
+          }}
+        >
+          <FormattedMessage id="pages.refresh" />
+        </a>,
+
+        <a
+          key="delete"
+          onClick={async () => {
+            const { status, info } = await removeWalletToken(record);
+            if (status) {
+              message.success(info);
+              if (actionRefToken.current) {
+                actionRefToken.current.reload();
+              }
+            }
+            return;
+          }}
+        >
+          <FormattedMessage id="pages.delete" />
+        </a>,
+      ],
+    },
+  ];
+
+  const walletTokenParams: WalletTokenParams = {
+    walletId: currentRow?.id,
+  };
+
+
+  const handleDone = () => {
+    setTokenUI(false);
+  };
+
+  //------------------------------------walletToken end-----------------------
 
   return (
     <>
@@ -214,16 +341,12 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
             form,
             editableKeys,
             onSave: async (rowKey, data) => {
-
-
               if (data.network == undefined) {
                 message.error(intl.formatMessage({
                   id: 'pages.wallet.network.required',
                 }));
                 return;
               }
-
-
               data.environmentId = current?.id;
               await updateWallet(data);
               await waitTime(2000);
@@ -267,8 +390,6 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
             <FormattedMessage id="pages.create.eth.wallet" />
           </Button>
         </Space>
-
-
       </ModalForm>
       <Drawer
         width={600}
@@ -281,7 +402,6 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       >
         {currentRow?.id && (
           <>
-
             <ProDescriptions<WalletItem>
               column={1}
               title={currentRow?.name}
@@ -291,16 +411,49 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               params={{
                 id: currentRow?.id,
               }}
-
               columns={columns as ProDescriptionsItemProps<WalletItem>[]}
             />
+
+            {currentRow ? (
+              <ProTable<WalletTokenItem, WalletTokenParams>
+                headerTitle={intl.formatMessage({
+                  id: 'pages.wallet.token.title',
+                })}
+                search={false}
+                options={false}
+                actionRef={actionRefToken}
+                params={walletTokenParams}
+                rowKey={(record) => record.id}
+                request={getWalletTokenList}
+                columns={walletTokenColumns}
+              />
+            ) : (
+              ''
+            )}
+
+            <Space>
+              <Button
+                type="primary"
+                onClick={() => {
+                  setTokenUI(true);
+                }}
+                icon={<PlusOutlined />}
+              >
+                <FormattedMessage id="pages.wallet.token.contract.new" />
+              </Button>
+            </Space>
+
           </>
         )}
-      </Drawer></>
+      </Drawer>
 
-
-
-
+      <WalletTokenModel
+        done={done}
+        visible={tokenUI}
+        onDone={handleDone}
+        onSubmit={handleSubmit}
+      />
+    </>
   );
 };
 

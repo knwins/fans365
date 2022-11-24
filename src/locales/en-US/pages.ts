@@ -152,6 +152,7 @@ export default {
   'pages.sort.required': 'Please enter sort!',
   'pages.row.delete': 'delete this row',
   'pages.create.eth.wallet': 'Create ETH Wallet',
+  'pages.wallet.token.contract.new': 'New Token Contract',
 
   /**单位 */
   'pages.people': ' people',
@@ -246,7 +247,7 @@ export default {
   'pages.accounts.status.abnormality': 'Abnormality',
 
 
- 
+
 
   /**Proxy Manage */
 
@@ -272,7 +273,7 @@ export default {
 
   'pages.wallet.publickey': 'Publickey key',
   'pages.wallet.password': 'Password',
- 
+
   'pages.wallet.network': 'Network',
   'pages.wallet.network.label': 'Network',
   'pages.wallet.network.placeholder': 'Please enter Network',
@@ -284,6 +285,31 @@ export default {
 
   'pages.wallet.createtime': 'Create Time',
   'pages.wallet.createtime.label': 'Create Time',
+
+
+  /**Wallet Token Manage */
+  'pages.wallet.token.title': 'Token balance',
+  'pages.wallet.token.symbol': 'Symbol',
+  'pages.wallet.token.symbol.label': 'Symbol',
+  'pages.wallet.token.symbol.placeholder': 'Please enter symbol',
+  'pages.wallet.token.symbol.required': 'Please enter symbol!',
+
+  'pages.wallet.token.contract': 'Contract address',
+  'pages.wallet.token.contract.label': 'Contract address',
+  'pages.wallet.token.contract.placeholder': 'Please enter contract address',
+  'pages.wallet.token.contract.required': 'Please enter contract address!',
+
+  'pages.wallet.token.network': 'Network',
+  'pages.wallet.token.network.label': 'Network',
+  'pages.wallet.token.network.placeholder': 'Please enter Network',
+  'pages.wallet.token.network.required': 'Please enter Network!',
+
+  'pages.wallet.token.updatetime': 'Update time',
+  'pages.wallet.token.updatetime.label': 'Update time',
+
+  'pages.wallet.token.balance': 'Balance',
+  'pages.wallet.token.balance.label': 'Balance',
+
 
 
   /**Wnvironment Manage */

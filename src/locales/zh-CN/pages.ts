@@ -141,6 +141,7 @@ export default {
   'pages.collapse': '收起',
   'pages.row.delete': '删除此行',
   'pages.create.eth.wallet': '生成ETH钱包',
+  'pages.wallet.token.contract.new': '添加代码合约',
 
   /**单位 */
   'pages.people': '人',
@@ -232,12 +233,12 @@ export default {
   'pages.accounts.status.normal': '正常',
   'pages.accounts.status.abnormality': '异常',
 
- 
 
 
 
 
-  /**Proxy Manage */
+
+  /**Wallet Manage */
 
   'pages.wallet.name': '名称',
   'pages.wallet.name.label': '名称',
@@ -273,6 +274,30 @@ export default {
 
   'pages.wallet.publickey': '公钥',
   'pages.wallet.password': '密码',
+
+  /**Wallet Token Manage */
+  'pages.wallet.token.title': '代币余额',
+  'pages.wallet.token.symbol': '代币符号',
+  'pages.wallet.token.symbol.label': '代币符号',
+  'pages.wallet.token.symbol.placeholder': '请输入代币符号',
+  'pages.wallet.token.symbol.required': '请输入代币符号!',
+
+  'pages.wallet.token.contract': '合约地址',
+  'pages.wallet.token.contract.label': '合约地址',
+  'pages.wallet.token.contract.placeholder': '请输入合约地址',
+  'pages.wallet.token.contract.required': '请输入合约地址!',
+
+  'pages.wallet.token.network': '区块链网络',
+  'pages.wallet.token.network.label': '区块链网络',
+  'pages.wallet.token.network.placeholder': '请选择区块链网络',
+  'pages.wallet.token.network.required': '请选择区块链网络!',
+
+  'pages.wallet.token.updatetime': '更新时间',
+  'pages.wallet.token.updatetime.label': '更新时间',
+
+  'pages.wallet.token.balance': '余额',
+  'pages.wallet.token.balance.label': '余额',
+
 
 
   /**Wnvironment Manage */
@@ -539,7 +564,7 @@ export default {
 
   'pages.bind.username.search.label': '推特用户搜索',
   'pages.bind.username.search.placeholder': '请输入推特用户',
-  
+
   'pages.bind.username.search.select.label': '推特用户选择',
   'pages.bind.username.search.select.required': '请选择推特用户!',
 
