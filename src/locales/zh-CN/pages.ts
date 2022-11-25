@@ -299,6 +299,21 @@ export default {
   'pages.wallet.token.balance.label': '余额',
 
 
+  'pages.wallet.token.transfer.receive': '接收地址',
+  'pages.wallet.token.transfer.receive.label': '接收地址',
+  'pages.wallet.token.transfer.receive.placeholder': '请输入接收地址',
+  'pages.wallet.token.transfer.receive.required': '请输入接收地址!',
+
+  'pages.wallet.token.transfer.value': '转账金额',
+  'pages.wallet.token.transfer.value.label': '转账金额',
+  'pages.wallet.token.transfer.value.placeholder': '请输入转账金额',
+  'pages.wallet.token.transfer.value.required': '请输入转账金额!',
+
+  'pages.wallet.token.transfer.slippage': '滑点',
+  'pages.wallet.token.transfer.slippage.label': '滑点',
+  'pages.wallet.token.transfer.slippage.placeholder': '请输入滑点',
+  'pages.wallet.token.transfer.slippage.required': '请输入滑点!',
+  
 
   /**Wnvironment Manage */
 

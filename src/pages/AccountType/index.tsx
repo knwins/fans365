@@ -43,7 +43,7 @@ const AccountType: React.FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
 
       if (action == 'add') {
@@ -96,7 +96,7 @@ const AccountType: React.FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
       const { status, info } = await removeAccountType({
         id: selectedRows.id,

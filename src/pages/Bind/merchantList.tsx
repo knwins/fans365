@@ -47,7 +47,7 @@ const Bind: React.FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
 
       const action = fields?.id ? 'update' : 'add';
@@ -101,7 +101,7 @@ const Bind: React.FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
       const { status, info } = await removeBind({
         id: selectedRows.id,
@@ -137,7 +137,7 @@ const Bind: React.FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
 
       const { status, info } = await updateBinds({

@@ -33,86 +33,90 @@ const WalletTokenModel: FC<WalletTokenModelProps> = (props) => {
   if (!visible) {
     return null;
   }
-
+ 
 
   return (
-    <ModalForm<WalletTokenItem>
-      visible={visible}
-      title={intl.formatMessage({
-        id: 'pages.new',
-      })}
-      formRef={formRef}
-      className={styles.standardListForm}
-      width={640}
-      onFinish={async (values) => {
-        onSubmit(values);
-      }}
-      submitter={{
-        render: (_, dom) => (done ? null : dom),
-      }}
-      trigger={<>{children}</>}
-      modalProps={{
-        onCancel: () => onDone(),
-        destroyOnClose: true,
-        bodyStyle: done ? { padding: '72px 0' } : {},
-      }}
-    >
+    <>
+      <ModalForm<WalletTokenItem>
+        visible={visible}
+        title={intl.formatMessage({
+          id: 'pages.new',
+        })}
+        formRef={formRef}
+        className={styles.standardListForm}
+        width={640}
+        onFinish={async (values) => {
+          onSubmit(values);
+        }}
+        submitter={{
+          render: (_, dom) => (done ? null : dom),
+        }}
+        trigger={<>{children}</>}
+        modalProps={{
+          onCancel: () => onDone(),
+          destroyOnClose: true,
+          bodyStyle: done ? { padding: '72px 0' } : {},
+        }}
+      >
 
-      <ProFormText
-        name="symbol"
-        label={intl.formatMessage({
-          id: 'pages.wallet.token.symbol.label',
-        })}
-        width="md"
-        rules={[
-          {
-            required: true,
-            message: intl.formatMessage({
-              id: 'pages.wallet.token.symbol.required',
-            }),
-          },
-        ]}
-        placeholder={intl.formatMessage({
-          id: 'pages.wallet.token.symbol.placeholder',
-        })}
-      />
+        <ProFormText
+          name="symbol"
+          label={intl.formatMessage({
+            id: 'pages.wallet.token.symbol.label',
+          })}
+          width="md"
+          rules={[
+            {
+              required: true,
+              message: intl.formatMessage({
+                id: 'pages.wallet.token.symbol.required',
+              }),
+            },
+          ]}
+          placeholder={intl.formatMessage({
+            id: 'pages.wallet.token.symbol.placeholder',
+          })}
+        />
 
 
-      <ProFormSelect
-        name="network"
-        width="md"
-        label={intl.formatMessage({
-          id: 'pages.wallet.token.network.label',
-        })}
-        options={[
-          { label: 'EthereumMainNet', value: 'EthereumMainNet' },
-          { label: 'EthereumGoerli', value: 'EthereumGoerli'},
-          { label: 'ArbitrumMainNet', value: 'ArbitrumMainNet' },
-          { label: 'ArbitrumGoerli', value: 'ArbitrumGoerli' },
-          { label: 'OptimismMainNet', value: 'OptimismMainNet' },
-          { label: 'OptimismGoerli', value: 'OptimismGoerli' },
-          { label: 'PolygonMainNet', value: 'PolygonMainNet' },
-          { label: 'PolygonMumbai', value: 'PolygonMumbai' },
-          { label: 'BSC', value: 'BSC' },
-          { label: 'AvalancheMainNet', value: 'AvalancheMainNet' },
-          { label: 'AvalancheFuji', value: 'AvalancheFuji' },
-          { label: 'StarknetMainNet', value: 'StarknetMainNet' },
-          { label: 'StarknetGoerli', value: 'StarknetGoerli' },
-        ]}
-      />
+        <ProFormSelect
+          name="network"
+          width="md"
+          label={intl.formatMessage({
+            id: 'pages.wallet.token.network.label',
+          })}
+          options={[
+            { label: 'EthereumMainNet', value: 'EthereumMainNet' },
+            { label: 'EthereumGoerli', value: 'EthereumGoerli' },
+            { label: 'ArbitrumMainNet', value: 'ArbitrumMainNet' },
+            { label: 'ArbitrumGoerli', value: 'ArbitrumGoerli' },
+            { label: 'OptimismMainNet', value: 'OptimismMainNet' },
+            { label: 'OptimismGoerli', value: 'OptimismGoerli' },
+            { label: 'PolygonMainNet', value: 'PolygonMainNet' },
+            { label: 'PolygonMumbai', value: 'PolygonMumbai' },
+            { label: 'BSC', value: 'BSC' },
+            { label: 'AvalancheMainNet', value: 'AvalancheMainNet' },
+            { label: 'AvalancheFuji', value: 'AvalancheFuji' },
+            { label: 'StarknetMainNet', value: 'StarknetMainNet' },
+            { label: 'StarknetGoerli', value: 'StarknetGoerli' },
+          ]}
+        />
 
-      <ProFormText
-        name="contract"
-        label={intl.formatMessage({
-          id: 'pages.wallet.token.contract.label',
-        })}
-        width="lg"
-        placeholder={intl.formatMessage({
-          id: 'pages.wallet.token.contract.placeholder',
-        })}
-      />
-      <ProFormDigit name="id" hidden />
-    </ModalForm>
+        <ProFormText
+          name="contract"
+          label={intl.formatMessage({
+            id: 'pages.wallet.token.contract.label',
+          })}
+          width="lg"
+          placeholder={intl.formatMessage({
+            id: 'pages.wallet.token.contract.placeholder',
+          })}
+        />
+        <ProFormDigit name="id" hidden />
+      </ModalForm>
+
+      
+    </>
   );
 };
 

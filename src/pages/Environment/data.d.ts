@@ -13,10 +13,10 @@ export type EnvironmentItem = {
   createtime: Date;
   proxy: ProxyItem;
   user: UserItem;
-  accountsLabels?:TagItem[];
-  walletLabels?:TagItem[];
+  accountsLabels?: TagItem[];
+  walletLabels?: TagItem[];
 
-  sortAction?:string;
+  sortAction?: string;
 };
 
 export type EnvironmentPagination = {
@@ -93,10 +93,10 @@ export type AccountsParams = {
   sorter?: string;
 };
 
-export type TagItem={
+export type TagItem = {
   name: string;
-  color:string;
-  icon?:string;
+  color: string;
+  icon?: string;
 }
 
 
@@ -113,7 +113,7 @@ export type WalletItem = {
   publickey?: string;
   network?: string;
   createtime?: Date;
-  environmentId?:string;
+  environmentId?: string;
   lang?: string;
 };
 
@@ -144,7 +144,7 @@ export type WalletTokenItem = {
   balance?: number;
   network?: string;
   updatetime?: Date;
-  walletId?:string;
+  walletId?: string;
   lang?: string;
 };
 
@@ -163,6 +163,15 @@ export type WalletTokenParams = {
   walletId?: string;
   filter?: string;
   sorter?: string;
+};
+
+
+export type WalletTokenTransferItem = {
+  value?: number;
+  receive:string;
+  slippage?:string;
+  walletTokenId?: string;
+  lang?: string;
 };
 
 

@@ -352,6 +352,23 @@ export async function refreshWalletToken(data: { [id: string]: any }, options?: 
   });
 }
 
+
+/** 转账 */
+export async function transferWalletToken(data: { [id: string]: any }, options?: { [id: string]: any }) {
+  return request<{
+    status?: boolean;
+    info?: string;
+  }>('https://api.fans365.net/api/wallet_token/transfer', {
+    data,
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...(options || {}),
+  });
+}
+
+
 export async function removeWalletToken(data: { [id: string]: any }, options?: { [id: string]: any }) {
   return request<{
     status?: boolean;

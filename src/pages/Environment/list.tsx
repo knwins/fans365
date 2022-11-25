@@ -87,7 +87,7 @@ export const EnvironmentList: FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
 
       if (action == 'add') {

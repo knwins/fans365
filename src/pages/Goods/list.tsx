@@ -63,7 +63,7 @@ const GoodsList: React.FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
 
       if (fields.goodsTypeId == undefined) {
@@ -107,7 +107,7 @@ const GoodsList: React.FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
 
       if (fields.goodsTypeId == undefined) {

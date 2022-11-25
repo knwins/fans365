@@ -61,7 +61,7 @@ export const OrdersList: FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
 
       const { status, info } = await updateOrders({

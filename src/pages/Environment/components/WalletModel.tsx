@@ -14,10 +14,12 @@ import { Button, Drawer, Form, message, Space, Typography } from 'antd';
 const { Paragraph } = Typography;
 
 import React, { useRef, useState } from 'react';
-import type { EnvironmentItem, WalletItem, WalletParams, WalletTokenItem, WalletTokenParams } from '../data';
-import { addWalletToken, createWallet, getWalletList, getWalletTokenList, refreshWalletToken, removeWallet, removeWalletToken, updateWallet } from '../service';
+import type { EnvironmentItem, WalletItem, WalletParams, WalletTokenItem, WalletTokenParams, WalletTokenTransferItem } from '../data';
+import { addWalletToken, createWallet, getWalletList, getWalletTokenList, refreshWalletToken, removeWallet, removeWalletToken, transferWalletToken, updateWallet } from '../service';
 import styles from '../style.less';
 import WalletTokenModel from './WalletTokenModel';
+import WalletTokenTransferModel from './WalletTokenTransferModel';
+
 
 type WalletModelProps = {
   done: boolean;
@@ -51,6 +53,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<WalletItem>();
   const [tokenUI, setTokenUI] = useState<boolean>(false);
+
+  const [currentRowToken, setCurrentRowToken] = useState<WalletTokenItem>();
+
+  const [transferStatusUI, setTransferStatusUI] = useState<boolean>(false);
+
 
 
   const [form] = Form.useForm();
@@ -164,7 +171,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       valueType: 'option',
       width: '160px',
       hideInDescriptions: true,
-      align:'center',
+      align: 'center',
       render: (text, record, _, action) => [
         <a
           key="editable"
@@ -195,7 +202,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
       //walletId
       fields.walletId = currentRow?.id;
@@ -221,6 +228,40 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
     }
   };
 
+  /**
+* 添加
+*
+* @param fields
+*/
+
+  const handleTransferSubmit = async (fields: WalletTokenTransferItem) => {
+    try {
+      const loadingShow= message.loading(
+        intl.formatMessage({
+          id: 'pages.tip.loading',
+        },),0
+      );
+      const { status, info } = await transferWalletToken({ ...fields });
+      loadingShow();
+      if (status) {
+        message.success(info);
+        if (actionRefToken.current) {
+          actionRefToken.current.reload(); 
+        }
+        handleDone();
+      }
+      return;
+
+    } catch (error) {
+      message.error(
+        intl.formatMessage({
+          id: 'pages.tip.error',
+        }),
+      );
+      handleDone();
+      return;
+    }
+  };
 
   const walletTokenColumns: ProColumns<WalletTokenItem>[] = [
 
@@ -278,6 +319,18 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         </a>,
 
         <a
+          key="refresh"
+          onClick={async () => { 
+            setTransferStatusUI(true);
+            setCurrentRowToken(record);
+            return;
+          }}
+        >
+          <FormattedMessage id="pages.withdraw" />
+        </a>,
+
+
+        <a
           key="delete"
           onClick={async () => {
             const { status, info } = await removeWalletToken(record);
@@ -303,6 +356,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
   const handleDone = () => {
     setTokenUI(false);
+    setTransferStatusUI(false);
   };
 
   //------------------------------------walletToken end-----------------------
@@ -389,6 +443,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
           >
             <FormattedMessage id="pages.create.eth.wallet" />
           </Button>
+
+
         </Space>
       </ModalForm>
       <Drawer
@@ -441,6 +497,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               >
                 <FormattedMessage id="pages.wallet.token.contract.new" />
               </Button>
+
+
             </Space>
 
           </>
@@ -452,6 +510,14 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         visible={tokenUI}
         onDone={handleDone}
         onSubmit={handleSubmit}
+      />
+
+      <WalletTokenTransferModel
+        done={done}
+        visible={transferStatusUI}
+        current={currentRowToken}
+        onDone={handleDone}
+        onSubmit={handleTransferSubmit}
       />
     </>
   );

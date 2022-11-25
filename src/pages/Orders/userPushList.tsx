@@ -125,7 +125,7 @@ export const Applications: FC<Record<string, any>> = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),
+        }),0
       );
       const { status, info } = await addTSTask({
         ...current,
