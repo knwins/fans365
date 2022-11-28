@@ -143,7 +143,7 @@ export const EnvironmentList: FC = () => {
               const { status, info } = await updateEnvironment(item);
               if (status) {
                 message.success(info);
-                actionRef.current?.reloadAndRest?.();
+                actionRef.current?.reload();
               }
             }
             else if (key == "goDown") {
@@ -151,7 +151,7 @@ export const EnvironmentList: FC = () => {
               const { status, info } = await updateEnvironment(item);
               if (status) {
                 message.success(info);
-                actionRef.current?.reloadAndRest?.();
+                actionRef.current?.reload();
               }
             }
           }}
