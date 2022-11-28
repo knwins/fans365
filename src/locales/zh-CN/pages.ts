@@ -384,6 +384,11 @@ export default {
   'pages.goods.name.placeholder': '请输入商品名称',
   'pages.goods.name.required': '请输入商品名称!',
 
+  'pages.goods.runBindStatus': '指定账号状态',
+  'pages.goods.runBindStatus.label': '指定账号状态',
+  'pages.goods.runBindStatus.placeholder': '请选择账号状态',
+  'pages.goods.runBindStatus.required': '请选择执行账号状态!',
+
   'pages.goods.description': '商品详情',
   'pages.goods.description.label': '商品详情',
   'pages.goods.description.placeholder': '请输入商品详情',

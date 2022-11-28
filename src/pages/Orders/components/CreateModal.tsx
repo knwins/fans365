@@ -129,7 +129,7 @@ const CreateModal: FC<CreateModalProps> = (props) => {
         bodyStyle: done ? { padding: '72px 0' } : {},
       }}
     >
-      　
+
       <ProFormSelect
         name="goodsTypeId"
         label={intl.formatMessage({
@@ -145,11 +145,11 @@ const CreateModal: FC<CreateModalProps> = (props) => {
           },
         ]}
         options={dataListOptions}
-        /**fieldProps={{
-              optionItemRender(item) {
-                return item.label + ' - ' + item.value;
-              },
-            }}*/
+      /**fieldProps={{
+            optionItemRender(item) {
+              return item.label + ' - ' + item.value;
+            },
+          }}*/
       />
       <ProFormSelect
         name="goodsId"
@@ -175,6 +175,27 @@ const CreateModal: FC<CreateModalProps> = (props) => {
           },
         }}
       />
+
+      <ProFormSelect
+        name="runBindStatus"
+        width="lg"
+        label={intl.formatMessage({
+          id: 'pages.goods.runBindStatus.label',
+        })}
+        options={[
+          { label: 'Abnormality', value: 'Abnormality' },
+          { label: 'Use', value: 'Use' },
+        ]}
+        rules={[
+          {
+            required: true,
+            message: intl.formatMessage({
+              id: 'pages.orders.runBindStatus.required',
+            }),
+          },
+        ]}
+      />
+
       <ProFormText
         name="link"
         width="lg"
