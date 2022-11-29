@@ -86,7 +86,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     links: isDev
       ? [
           <a
-            href="https://t.me/adong136"
+            href="https://t.me/adong8848"
             target="_blank"
             rel="noopener noreferrer"
             key="Telegram"
@@ -106,7 +106,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         ]
       : [
         <a
-          href="https://t.me/adong136"
+          href="https://t.me/adong8848"
           target="_blank"
           rel="noopener noreferrer"
           key="Telegram"
