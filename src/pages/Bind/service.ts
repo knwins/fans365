@@ -1,6 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
+import host from '../../host';
 import type { BindItem } from './data.d';
 
 /** 获取列表 GET /api/merchant_list */
@@ -19,7 +20,7 @@ export async function getBindMyList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/bind/mylist', {
+  }>(host.api+'api/bind/mylist', {
     method: 'GET',
     params: {
       ...params,
@@ -44,7 +45,7 @@ export async function getBindList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/bind/list', {
+  }>(host.api+'api/bind/list', {
     method: 'GET',
     params: {
       ...params,
@@ -58,7 +59,7 @@ export async function getBind(data: { [id: string]: any }, options?: { [id: stri
   return request<{
     data: BindItem;
     status?: boolean;
-  }>('https://api.fans365.net/api/bind/get', {
+  }>(host.api+'api/bind/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -70,7 +71,7 @@ export async function updateBind(data: { [key: string]: any }, options?: { [key:
   return request<{
     status?: string;
     info?: string;
-  }>('https://api.fans365.net/api/bind/update', {
+  }>(host.api+'api/bind/update', {
     data,
     method: 'PUT',
     headers: {
@@ -86,7 +87,7 @@ export async function addBind(data: { [key: string]: any }, options?: { [key: st
   return request<{
     status?: string;
     info?: string;
-  }>('https://api.fans365.net/api/bind/add', {
+  }>(host.api+'api/bind/add', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -98,7 +99,7 @@ export async function removeBind(data: { id: string }, options?: { [key: string]
   return request<{
     status?: string;
     info?: string;
-  }>('https://api.fans365.net/api/bind/delete', {
+  }>(host.api+'api/bind/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),
@@ -112,7 +113,7 @@ export async function updateBinds(data: { ids: string[],key:any,value:any }, opt
   return request<{
     status?: string;
     info?: string;
-  }>('https://api.fans365.net/api/bind/updates', {
+  }>(host.api+'api/bind/updates', {
     data,
     method: 'PUT',
     ...(options || {}),

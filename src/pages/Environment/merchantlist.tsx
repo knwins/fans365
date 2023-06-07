@@ -27,7 +27,10 @@ import styles from './style.less';
 import { useRequest } from 'umi';
 import { getAccountTypeList } from '../AccountType/service';
 
-import { createFromIconfontCN, WalletFilled, MailFilled, TwitterOutlined, PhoneOutlined, GoogleOutlined, ArrowUpOutlined, ArrowDownOutlined, DownOutlined } from '@ant-design/icons';
+import {
+  createFromIconfontCN, WalletFilled, MailFilled, TwitterOutlined, PhoneOutlined, GoogleOutlined,
+  ArrowUpOutlined, ArrowDownOutlined, SketchOutlined, DownOutlined
+} from '@ant-design/icons';
 
 const Icon = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_3745975_od931newm2.js', // 在 iconfont.cn 上生成
@@ -85,7 +88,7 @@ export const EnvironmentList: FC = () => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),0
+        }), 0
       );
 
       if (action == 'add') {
@@ -95,7 +98,7 @@ export const EnvironmentList: FC = () => {
           message.success(info);
           setCurrentRow(undefined);
           if (actionRef.current) {
-           // actionRef.current.reloadAndRest?.();
+            // actionRef.current.reloadAndRest?.();
             actionRef.current.reload();
           }
           return true;
@@ -146,7 +149,8 @@ export const EnvironmentList: FC = () => {
                 actionRef.current?.reload();
               }
             }
-            else if (key == "goDown") {
+           // else if (key == "goDown") {
+            else{
               item.sortAction = "sortDown";
               const { status, info } = await updateEnvironment(item);
               if (status) {
@@ -214,8 +218,8 @@ export const EnvironmentList: FC = () => {
 
           {
             record.accountsLabels?.map(({ name, color, icon }) => (
-              <Tag key={name} color={color}
-                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
+              <Tag color={color}
+                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : icon == "Alchemy" ? <SketchOutlined /> : <PhoneOutlined />}>
                 {name}
               </Tag>
             ))
@@ -352,7 +356,7 @@ export const EnvironmentList: FC = () => {
           {
             record.accountsLabels?.map(({ name, color, icon }) => (
               <Tag key={name} color={color}
-                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : <PhoneOutlined />}>
+                icon={icon == "Twitter" ? <TwitterOutlined /> : icon == "Discord" ? <Icon type='icon-discord' /> : icon == "Google" ? <GoogleOutlined /> : icon == "Mail" ? <MailFilled /> : icon == "Alchemy" ? <SketchOutlined /> : <PhoneOutlined />}>
                 {name}
               </Tag>
             ))

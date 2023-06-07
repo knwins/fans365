@@ -1,6 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from '@umijs/max';
+import host from '../../host';
 import type { TSTaskItem } from './data';
 
 /** 获取列表 GET /api/tstask/list */
@@ -19,7 +20,7 @@ export async function getTSTaskList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/tstask/list', {
+  }>(host.api+'api/tstask/list', {
     method: 'GET',
 
     params: {
@@ -45,7 +46,7 @@ export async function getTSTaskMyList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/tstask/mylist', {
+  }>(host.api+'api/tstask/mylist', {
     method: 'GET',
 
     params: {
@@ -60,7 +61,7 @@ export async function getTSTask(data: { [id: string]: any }, options?: { [id: st
   return request<{
     data: TSTaskItem;
     status?: boolean;
-  }>('https://api.fans365.net/api/tstask/get', {
+  }>(host.api+'api/tstask/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -72,7 +73,7 @@ export async function updateTSTask(data: { [key: string]: any }, options?: { [ke
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/tstask/update', {
+  }>(host.api+'api/tstask/update', {
     data,
     method: 'PUT',
     ...(options || {}),
@@ -84,7 +85,7 @@ export async function addTSTask(data: { [key: string]: any }, options?: { [key: 
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/tstask/add', {
+  }>(host.api+'api/tstask/add', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -96,7 +97,7 @@ export async function removeTSTask(data: { id: string }, options?: { [key: strin
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/tstask/delete', {
+  }>(host.api+'api/tstask/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

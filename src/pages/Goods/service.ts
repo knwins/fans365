@@ -1,6 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
+import host from '../../host';
 import { GoodsItem } from './data';
 
 /** 获取列表 GET /api/goods_list */
@@ -19,7 +20,7 @@ export async function queryGoodsList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/goods/list', {
+  }>(host.api+'api/goods/list', {
     method: 'GET',
     params: {
       ...params,
@@ -34,7 +35,7 @@ export async function getGoods(data: { [id: string]: any }, options?: { [id: str
     data: GoodsItem;
     status?: boolean;
     info?: number;
-  }>('https://api.fans365.net/api/goods/get', {
+  }>(host.api+'api/goods/get', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -46,7 +47,7 @@ export async function updateGoods(data: { [id: string]: any }, options?: { [id: 
   return request<{
     status?: boolean;
     info?: number;
-  }>('https://api.fans365.net/api/goods/update', {
+  }>(host.api+'api/goods/update', {
     data,
     method: 'PUT',
     ...(options || {}),
@@ -58,7 +59,7 @@ export async function addGoods(data: { [id: string]: any }, options?: { [id: str
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/goods/add', {
+  }>(host.api+'api/goods/add', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -70,7 +71,7 @@ export async function removeGoods(data: { [id: string]: any }, options?: { [id: 
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/goods/delete', {
+  }>(host.api+'api/goods/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

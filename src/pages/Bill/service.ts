@@ -1,6 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
+import host from '../../host';
 import { BillItem } from './data';
 
 /** 获取列表 GET /api/bill_list */
@@ -19,7 +20,7 @@ export async function queryBillList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/bill/list', {
+  }>(host.api+'api/bill/list', {
     method: 'GET',
     params: {
       ...params,
@@ -44,7 +45,7 @@ export async function queryBillMyList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/bill/mylist', {
+  }>(host.api+'api/bill/mylist', {
     method: 'GET',
     params: {
       ...params,
@@ -59,7 +60,7 @@ export async function latestBill() {
     data: BillItem;
     status?: boolean;
     info?: number;
-  }>('https://api.fans365.net/api/bill/latest', {
+  }>(host.api+'api/bill/latest', {
     method: 'GET',
   });
 }
@@ -70,7 +71,7 @@ export async function getBill(data: { [id: string]: any }, options?: { [id: stri
     data: BillItem;
     status?: boolean;
     info?: number;
-  }>('https://api.fans365.net/api/bill/get', {
+  }>(host.api+'api/bill/get', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -82,7 +83,7 @@ export async function updateBill(data: { [id: string]: any }, options?: { [id: s
   return request<{
     status?: boolean;
     info?: number;
-  }>('https://api.fans365.net/api/bill/update', {
+  }>(host.api+'api/bill/update', {
     data,
     method: 'PUT',
     ...(options || {}),
@@ -94,7 +95,7 @@ export async function addBill(data: { [id: string]: any }, options?: { [id: stri
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/bill/add', {
+  }>(host.api+'api/bill/add', {
     data,
     method: 'POST',
     ...(options || {}),
@@ -106,7 +107,7 @@ export async function removeBill(data: { [id: string]: any }, options?: { [id: s
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/bill/delete', {
+  }>(host.api+'api/bill/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),

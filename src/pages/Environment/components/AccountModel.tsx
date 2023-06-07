@@ -9,7 +9,8 @@ import {
   ProFormInstance,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Form, message, Space } from 'antd';
+import { Button, Form, message, Space ,Typography} from 'antd';
+const { Paragraph } = Typography;
 import type { FC } from 'react';
 import TwitterModel from './TwitterModel';
 import React, { useRef, useState } from 'react';
@@ -24,7 +25,7 @@ type AccountModalProps = {
   visible: boolean;
   accountTypes: Partial<AccountTypeItem[]> | undefined;
   current: Partial<EnvironmentItem> | undefined;
-  onDone: () => void;
+  onDone: () => void ;
 };
 
 const waitTime = (time: number = 100) => {
@@ -54,7 +55,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
   if (listData) {
     listData.map((item) => {
       if (item) {
-        dataListOptions[item?.id] = {
+        dataListOptions[item?.name] = {
           text: item?.name,
         };
       }
@@ -83,7 +84,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
   const columns: ProColumns<AccountsItem>[] = [
     {
       title: <FormattedMessage id="pages.accounts.typeName" />,
-      dataIndex: "accountTypeId",
+      dataIndex: "accountTypeName",
       valueType: 'select',
       valueEnum: dataListOptions,
       render: (_, row) => row?.accountType?.name
@@ -91,22 +92,54 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
     {
       title: <FormattedMessage id="pages.accounts.username" />,
       dataIndex: 'username',
+      render: (text, record, _, action) => {
+        if (record.username) {
+          return [
+            <Paragraph copyable>{record.username}</Paragraph>
+          ]
+        }
+        return "-";
+      },
     },
 
     {
       title: <FormattedMessage id="pages.accounts.password" />,
       dataIndex: 'password',
+      render: (text, record, _, action) => {
+        if (record.password) {
+          return [
+            <Paragraph copyable>{record.password}</Paragraph>
+          ]
+        }
+        return "-";
+      },
     },
 
     {
       title: <FormattedMessage id="pages.accounts.telephone" />,
       dataIndex: 'telephone',
+      render: (text, record, _, action) => {
+        if (record.telephone) {
+          return [
+            <Paragraph copyable>{record.telephone}</Paragraph>
+          ]
+        }
+        return "-";
+      },
     },
 
     {
       title: <FormattedMessage id="pages.accounts.email" />,
       dataIndex: 'email',
       valueType: 'text',
+      render: (text, record, _, action) => {
+        if (record.email) {
+          return [
+            <Paragraph copyable>{record.email}</Paragraph>
+          ]
+        }
+        return "-";
+      },
     },
     {
       title: <FormattedMessage id="pages.accounts.status" />,
@@ -146,8 +179,6 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
             <FormattedMessage id="pages.copy" />
           </a>
         </EditableProTable.RecordCreator>,
-
-
       ],
     },
   ];
@@ -165,7 +196,10 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
         submitter={false}
         trigger={<>{children}</>}
         modalProps={{
-          onCancel: () => onDone(),
+          onCancel: () => { 
+            setEditableRowKeys([]); // 把 EditableProTable 组件中 setEditableRowKeys(可编辑行的key)的值清空
+            onDone();
+          },
           destroyOnClose: true,
           bodyStyle: done ? { padding: '72px 0' } : {},
         }}
@@ -185,7 +219,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
             form,
             editableKeys,
             onSave: async (rowKey, data) => {
-              if (data.accountTypeId == undefined) {
+              if (data.accountTypeName == undefined) {
                 message.error(intl.formatMessage({
                   id: 'pages.accounts.typeName.required',
                 }));
@@ -203,7 +237,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
             },
             deletePopconfirmMessage: <FormattedMessage id="pages.row.delete" />,
             onChange: setEditableRowKeys,
-            actionRender: (row, config, dom) => [dom.save, dom.cancel, dom.delete],
+            actionRender: (row, config, doms) => [doms.save, doms.cancel, doms.delete],
           }}
         />
         <Space>

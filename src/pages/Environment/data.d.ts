@@ -71,7 +71,7 @@ export type AccountsItem = {
   status?: string;
   lang?: string;
   accountType?: AccountTypeItem;
-  accountTypeId?: string;
+  accountTypeName?: string;
   environmentId?: string;
 };
 

@@ -2,6 +2,7 @@
 /* eslint-disable */
 
 import { request } from 'umi';
+import host from '../../host';
 import type { AccountTypeItem } from './data.d';
 
 //国际化
@@ -23,7 +24,7 @@ export async function getAccountTypeList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/account_type/list', {
+  }>(host.api+'api/account_type/list', {
     method: 'GET',
     params: {
       ...params,
@@ -37,7 +38,7 @@ export async function getAccountType(data: { [id: string]: any }, options?: { [i
   return request<{
     data: AccountTypeItem;
     status?: boolean;
-  }>('https://api.fans365.net/api/account_type/get', {
+  }>(host.api+'api/account_type/get', {
     data,
     method: 'GET',
 
@@ -53,7 +54,7 @@ export async function updateAccountType(
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/account_type/update', {
+  }>(host.api+'api/account_type/update', {
     data,
     method: 'PUT',
 
@@ -66,7 +67,7 @@ export async function addAccountType(data: { [key: string]: any }, options?: { [
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/account_type/add', {
+  }>(host.api+'api/account_type/add', {
     data,
     method: 'POST',
 
@@ -79,7 +80,7 @@ export async function removeAccountType(data: { id: string }, options?: { [key: 
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/account_type/delete', {
+  }>(host.api+'api/account_type/delete', {
     data,
     method: 'DELETE',
 

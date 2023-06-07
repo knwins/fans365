@@ -6,7 +6,8 @@ import { Button, Input, message, Upload } from 'antd';
 import React from 'react';
 import { useRequest } from 'umi';
 import { queryCurrent, updateUser } from '../service';
-
+import host from './host';
+//console.log(host.api);
 import styles from './BaseView.less';
 
 const validatorPhone = (rule: any, value: string[], callback: (message?: string) => void) => {
@@ -62,7 +63,7 @@ const AvatarView = ({ avatar }: { avatar: string }) => {
       </div>
       <Upload
         accept="image/png, image/jpeg"
-        action="https://api.fans365.net/api/users/upload_image"
+        action="http://192.168.1.6:8081/api/users/upload_image"
         showUploadList={false}
         beforeUpload={beforeUpload}
         name="imageFile"

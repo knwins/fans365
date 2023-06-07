@@ -375,7 +375,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         submitter={false}
         trigger={<>{children}</>}
         modalProps={{
-          onCancel: () => onDone(),
+          //onCancel: () => onDone(),
+          onCancel: () => { 
+            setEditableRowKeys([]); // 把 EditableProTable 组件中 setEditableRowKeys(可编辑行的key)的值清空
+            onDone();
+          },
           destroyOnClose: true,
           bodyStyle: done ? { padding: '72px 0' } : {},
         }}

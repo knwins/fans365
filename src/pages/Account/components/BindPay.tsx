@@ -1,4 +1,5 @@
 import { UploadOutlined } from '@ant-design/icons';
+import host from '../../../host';
 import { ModalForm, ProFormText } from '@ant-design/pro-form';
 import { FormattedMessage, history, useIntl } from '@umijs/max';
 import { Button, message, Upload } from 'antd';
@@ -60,7 +61,7 @@ const AvatarView = ({ avatar }: { avatar: any }) => {
 
       <Upload
         accept="image/png, image/jpeg"
-        action={'https://api.fans365.net/api/users/upload_image?payname=' + avatar.payname}
+        action={host.api+'api/users/upload_image?payname=' + avatar.payname}
         showUploadList={false}
         beforeUpload={beforeUpload}
         name="imageFile"

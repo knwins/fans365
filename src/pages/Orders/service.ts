@@ -1,6 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
+import host from '../../host';
 import type { OrdersItem, TweetItem } from './data.d';
 
 /** 获取列表 GET /api/orders/list */
@@ -19,7 +20,7 @@ export async function ordersList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/orders/list', {
+  }>(host.api+'api/orders/list', {
     method: 'GET',
     params: {
       ...params,
@@ -44,7 +45,7 @@ export async function ordersMyList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/orders/mylist', {
+  }>(host.api+'api/orders/mylist', {
     method: 'GET',
     params: {
       ...params,
@@ -69,7 +70,7 @@ export async function ordersDisplay(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/orders/display', {
+  }>(host.api+'api/orders/display', {
     method: 'GET',
     params: {
       ...params,
@@ -80,7 +81,7 @@ export async function ordersDisplay(
 
 /** 新建 GET /api/orders/list */
 export async function getOrders(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<OrdersItem>('https://api.fans365.net/api/orders/get', {
+  return request<OrdersItem>(host.api+'api/orders/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -92,7 +93,7 @@ export async function updateOrders(data: { [id: string]: any }, options?: { [id:
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/orders/update', {
+  }>(host.api+'api/orders/update', {
     data,
     method: 'PUT',
     headers: {
@@ -107,7 +108,7 @@ export async function addOrders(data: { [id: string]: any }, options?: { [id: st
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/orders/add', {
+  }>(host.api+'api/orders/add', {
     data,
     method: 'POST',
     headers: {
@@ -122,7 +123,7 @@ export async function removeOrders(data: { [id: string]: any }, options?: { [id:
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/orders/delete', {
+  }>(host.api+'api/orders/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),
@@ -147,7 +148,7 @@ export async function tweetList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/tweet/list', {
+  }>(host.api+'api/tweet/list', {
     method: 'GET',
     params: {
       ...params,
@@ -158,7 +159,7 @@ export async function tweetList(
 
 /** 新建 PUT /api/orders/update */
 export async function updateTweet(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<OrdersItem>('https://api.fans365.net/api/tweet/update', {
+  return request<OrdersItem>(host.api+'api/tweet/update', {
     data,
     method: 'PUT',
     headers: {

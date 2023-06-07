@@ -1,6 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from '@umijs/max';
+import host from '../../host';
 import type { UserItem } from './data';
 
 /** 获取列表 GET /api/users/list */
@@ -19,7 +20,7 @@ export async function queryUsersList(
     /** 列表的内容总数 */
     total?: number;
     status?: boolean;
-  }>('https://api.fans365.net/api/users/list', {
+  }>(host.api+'api/users/list', {
     method: 'GET',
     params: {
       ...params,
@@ -30,7 +31,7 @@ export async function queryUsersList(
 
 /** 新建 GET /api/users/list */
 export async function getUsers(data: { [id: string]: any }, options?: { [id: string]: any }) {
-  return request<UserItem>('https://api.fans365.net/api/users/get', {
+  return request<UserItem>(host.api+'api/users/get', {
     data,
     method: 'GET',
     ...(options || {}),
@@ -44,7 +45,7 @@ export async function updateUsers(data: { [id: string]: any }, options?: { [id: 
     /** 列表的内容总数 */
     info?: string;
     status?: boolean;
-  }>('https://api.fans365.net/api/users/update', {
+  }>(host.api+'api/users/update', {
     data,
     method: 'PUT',
     headers: {
@@ -59,7 +60,7 @@ export async function removeUsers(data: { [id: string]: any }, options?: { [id: 
   return request<{
     status?: boolean;
     info?: string;
-  }>('https://api.fans365.net/api/users/delete', {
+  }>(host.api+'api/users/delete', {
     data,
     method: 'DELETE',
     ...(options || {}),
