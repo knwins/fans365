@@ -14,7 +14,7 @@ import { Button, Drawer, Form, message, Space, Typography } from 'antd';
 const { Paragraph } = Typography;
 
 import React, { useRef, useState } from 'react';
-import type { EnvironmentItem, WalletItem, WalletParams, WalletTokenItem, WalletTokenParams, WalletTokenTransferItem,WalletLogItem, WalletLogParams } from '../data';
+import type { EnvironmentItem, WalletItem, WalletParams, WalletTokenItem, WalletTokenParams, WalletTokenTransferItem, WalletLogItem, WalletLogParams } from '../data';
 import { addWalletToken, createWallet, getWalletList, getWalletLogList, getWalletTokenList, refreshWalletToken, removeWallet, removeWalletLog, removeWalletToken, transferWalletToken, updateWallet } from '../service';
 import styles from '../style.less';
 import WalletTokenModel from './WalletTokenModel';
@@ -47,7 +47,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   const intl = useIntl();
   const actionRef = useRef<ActionType>();
   const actionRefToken = useRef<ActionType>();
-  const actionRefLog= useRef<ActionType>();
+  const actionRefLog = useRef<ActionType>();
 
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   const [dataSource, setDataSource] = useState<WalletItem[]>([]);
@@ -56,7 +56,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   const [currentRow, setCurrentRow] = useState<WalletItem>();
 
   const [showLogs, setShowLogs] = useState<boolean>(false);
-  
+
 
   const [tokenUI, setTokenUI] = useState<boolean>(false);
 
@@ -209,11 +209,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
           <FormattedMessage id="pages.edit" />
         </a>,
         <a
-        onClick={() => {
-          setCurrentRow(record);
-          setShowLogs(true);
-        }}
-      >
+          onClick={() => {
+            setCurrentRow(record);
+            setShowLogs(true);
+          }}
+        >
           <FormattedMessage id="pages.logs" />
         </a>
       ],
@@ -233,7 +233,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),0
+        }), 0
       );
       //walletId
       fields.walletId = currentRow?.id;
@@ -267,17 +267,17 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
   const handleTransferSubmit = async (fields: WalletTokenTransferItem) => {
     try {
-      const loadingShow= message.loading(
+      const loadingShow = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        },),0
+        },), 0
       );
       const { status, info } = await transferWalletToken({ ...fields });
       loadingShow();
       if (status) {
         message.success(info);
         if (actionRefToken.current) {
-          actionRefToken.current.reload(); 
+          actionRefToken.current.reload();
         }
         handleDone();
       }
@@ -353,7 +353,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
         <a
           key="refresh"
-          onClick={async () => { 
+          onClick={async () => {
             setTransferStatusUI(true);
             setCurrentRowToken(record);
             return;
@@ -398,8 +398,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
   //------------------------------------walletLog-----------------------
   const walletLogColumns: ProColumns<WalletLogItem>[] = [
-    
-     
+
+
 
     {
       title: <FormattedMessage id="pages.wallet.log.createTime" />,
@@ -416,8 +416,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       fieldProps: { size: 'small' },
       align: 'center',
       render: (text, record) => {
-        return [<Paragraph copyable title={record.content} ellipsis>{record.content}</Paragraph>];
-    },
+        return [<Paragraph title={record.content} ellipsis>{record.content}</Paragraph>];
+      },
     },
 
     {
@@ -427,11 +427,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       align: 'center',
       fieldProps: { size: 'small' },
       render: (text, record) => {
-          return [<Paragraph copyable title={record.walletTXType.name} ellipsis>{record.walletTXType.name}</Paragraph>];
+        return [<Paragraph title={record.walletTXType.name} ellipsis>{record.walletTXType.name}</Paragraph>];
       },
     },
 
- 
+
     {
       title: <FormattedMessage id="pages.option" />,
       valueType: 'option',
@@ -439,7 +439,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       align: 'center',
       fieldProps: { size: 'small' },
       render: (text, record, _, action) => [
-         
+
         <a
           key="delete"
           onClick={async () => {
@@ -463,7 +463,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
     walletId: currentRow?.id,
   };
 
- 
+
 
   //------------------------------------walletLog end-----------------------
 
@@ -482,7 +482,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         trigger={<>{children}</>}
         modalProps={{
           //onCancel: () => onDone(),
-          onCancel: () => { 
+          onCancel: () => {
             setEditableRowKeys([]); // 把 EditableProTable 组件中 setEditableRowKeys(可编辑行的key)的值清空
             onDone();
           },
