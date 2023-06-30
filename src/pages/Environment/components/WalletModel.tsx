@@ -405,7 +405,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.log.createTime" />,
       dataIndex: 'createTime',
       valueType: 'dateTime',
-      width: '130px',
+      width:'140px',
       fieldProps: { size: 'small' },
     },
 
@@ -414,10 +414,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       dataIndex: 'content',
       valueType: 'text',
       fieldProps: { size: 'small' },
-      align: 'center',
-      render: (text, record) => {
-        return [<Paragraph title={record.content} ellipsis>{record.content}</Paragraph>];
-      },
+      align: 'left',
+      width:'200px',
     },
 
     {
@@ -425,21 +423,23 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       dataIndex: 'walletTXTypeName',
       valueType: 'text',
       align: 'center',
+      width:'80px',
       fieldProps: { size: 'small' },
       render: (text, record) => {
-        return [<Paragraph title={record.walletTXType.name} ellipsis>{record.walletTXType.name}</Paragraph>];
+        return [
+          <Paragraph ellipsis><small>{record.walletTXType.name}</small></Paragraph>
+        ]
       },
+     
     },
 
 
     {
       title: <FormattedMessage id="pages.option" />,
       valueType: 'option',
-      width: '100px',
       align: 'center',
       fieldProps: { size: 'small' },
       render: (text, record, _, action) => [
-
         <a
           key="delete"
           onClick={async () => {
