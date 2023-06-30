@@ -119,10 +119,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.address" />,
       valueType: 'text',
       dataIndex: 'address',
+      fieldProps: { size: 'small' },
       render: (text, record, _, action) => {
         if (record.address) {
           return [
-            <Paragraph copyable><small>{record.address}</small></Paragraph>
+            <Paragraph copyable title={record.address} ellipsis>{record.address}</Paragraph>
           ]
         }
         return "-";
@@ -133,10 +134,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.mnemonic" />,
       dataIndex: 'mnemonic',
       valueType: 'textarea',
+      fieldProps: { size: 'small' },
       render: (text, record, _, action) => {
         if (record.mnemonic) {
           return [
-            <Paragraph copyable><small>{record.mnemonic}</small></Paragraph>
+            <Paragraph copyable title={record.mnemonic} ellipsis>{record.mnemonic}</Paragraph>
           ]
         }
         return "-";
@@ -147,10 +149,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.privatekey" />,
       dataIndex: 'privatekey',
       valueType: 'textarea',
+      fieldProps: { size: 'small' },
       render: (text, record, _, action) => {
         if (record.privatekey) {
           return [
-            <Paragraph copyable><small>{record.privatekey}</small></Paragraph>
+            <Paragraph copyable title={record.privatekey} ellipsis>{record.privatekey}</Paragraph>
           ]
         }
         return "-";
@@ -182,7 +185,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       render: (text, record, _, action) => {
         if (record.publickey) {
           return [
-            <Paragraph copyable><small>{record.publickey}</small></Paragraph>
+            <Paragraph copyable>{record.publickey}</Paragraph>
           ]
         }
         return "-";
@@ -402,7 +405,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.log.createTime" />,
       dataIndex: 'createTime',
       valueType: 'dateTime',
-      width: '120px',
+      width: '130px',
       fieldProps: { size: 'small' },
     },
 
@@ -410,7 +413,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.log.content" />,
       dataIndex: 'content',
       valueType: 'text',
-      align: 'center'
+      fieldProps: { size: 'small' },
+      align: 'center',
+      render: (text, record) => {
+        return [<small><Paragraph>{record.content}</Paragraph></small>];
+    },
     },
 
     {
@@ -418,8 +425,9 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       dataIndex: 'walletTXTypeName',
       valueType: 'text',
       align: 'center',
+      fieldProps: { size: 'small' },
       render: (text, record) => {
-          return [<Paragraph><small>{record.walletTXType.name}</small></Paragraph>];
+          return [<small><Paragraph>{record.walletTXType.name}</Paragraph></small>];
       },
     },
 
