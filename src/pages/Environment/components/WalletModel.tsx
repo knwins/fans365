@@ -416,7 +416,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       fieldProps: { size: 'small' },
       align: 'center',
       render: (text, record) => {
-        return [<small><Paragraph>{record.content}</Paragraph></small>];
+        return [<Paragraph copyable title={record.content} ellipsis>{record.content}</Paragraph>];
     },
     },
 
@@ -427,7 +427,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       align: 'center',
       fieldProps: { size: 'small' },
       render: (text, record) => {
-          return [<small><Paragraph>{record.walletTXType.name}</Paragraph></small>];
+          return [<Paragraph copyable title={record.walletTXType.name} ellipsis>{record.walletTXType.name}</Paragraph>];
       },
     },
 
@@ -437,6 +437,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       valueType: 'option',
       width: '100px',
       align: 'center',
+      fieldProps: { size: 'small' },
       render: (text, record, _, action) => [
          
         <a
