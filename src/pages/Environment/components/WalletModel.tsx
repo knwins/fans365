@@ -413,9 +413,14 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.log.content" />,
       dataIndex: 'content',
       valueType: 'text',
-      fieldProps: { size: 'small' },
+      fieldProps: { size: 'small',width:'200px'},
       align: 'left',
-      width:'200px',
+      width: 200,
+      render: (text, record) => {
+        return [
+          <Paragraph copyable ellipsis>{record.content}</Paragraph>
+        ]
+      },
     },
 
     {
@@ -423,11 +428,12 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       dataIndex: 'walletTXTypeName',
       valueType: 'text',
       align: 'center',
-      width:'80px',
+      width: 100,
+      ellipsis: true,
       fieldProps: { size: 'small' },
       render: (text, record) => {
         return [
-          <Paragraph ellipsis><small>{record.walletTXType.name}</small></Paragraph>
+          <Paragraph><small>{record.walletTXType.name}</small></Paragraph>
         ]
       },
      
