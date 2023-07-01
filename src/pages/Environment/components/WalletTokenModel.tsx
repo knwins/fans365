@@ -33,7 +33,7 @@ const WalletTokenModel: FC<WalletTokenModelProps> = (props) => {
   if (!visible) {
     return null;
   }
- 
+
 
   return (
     <>
@@ -59,24 +59,7 @@ const WalletTokenModel: FC<WalletTokenModelProps> = (props) => {
         }}
       >
 
-        <ProFormText
-          name="symbol"
-          label={intl.formatMessage({
-            id: 'pages.wallet.token.symbol.label',
-          })}
-          width="md"
-          rules={[
-            {
-              required: true,
-              message: intl.formatMessage({
-                id: 'pages.wallet.token.symbol.required',
-              }),
-            },
-          ]}
-          placeholder={intl.formatMessage({
-            id: 'pages.wallet.token.symbol.placeholder',
-          })}
-        />
+
 
 
         <ProFormSelect
@@ -86,22 +69,33 @@ const WalletTokenModel: FC<WalletTokenModelProps> = (props) => {
             id: 'pages.wallet.token.network.label',
           })}
           options={[
-            { label: 'EthereumMainNet', value: 'EthereumMainNet' },
+            { label: 'EthereumMainnet', value: 'EthereumMainnet' },
             { label: 'EthereumGoerli', value: 'EthereumGoerli' },
-            { label: 'ArbitrumMainNet', value: 'ArbitrumMainNet' },
+            { label: 'ArbitrumMainnet', value: 'ArbitrumMainnet' },
             { label: 'ArbitrumGoerli', value: 'ArbitrumGoerli' },
-            { label: 'OptimismMainNet', value: 'OptimismMainNet' },
+            { label: 'OptimismMainnet', value: 'OptimismMainnet' },
             { label: 'OptimismGoerli', value: 'OptimismGoerli' },
-            { label: 'PolygonMainNet', value: 'PolygonMainNet' },
+            { label: 'PolygonMainnet', value: 'PolygonMainnet' },
             { label: 'PolygonMumbai', value: 'PolygonMumbai' },
-            { label: 'BSC', value: 'BSC' },
-            { label: 'AvalancheMainNet', value: 'AvalancheMainNet' },
+            { label: 'BSCMainnet', value: 'BSCMainnet' },
+            { label: 'AvalancheMainnet', value: 'AvalancheMainnet' },
             { label: 'AvalancheFuji', value: 'AvalancheFuji' },
-            { label: 'StarknetMainNet', value: 'StarknetMainNet' },
+            { label: 'StarknetMainnet', value: 'StarknetMainnet' },
             { label: 'StarknetGoerli', value: 'StarknetGoerli' },
-            { label: 'ZKSyncMainNet', value: 'ZKSyncMainNet' },
+            { label: 'ZKSyncMainnet', value: 'ZKSyncMainnet' },
             { label: 'ZKSyncDevNet', value: 'ZKSyncDevNet' },
           ]}
+        />
+
+        <ProFormText
+          name="symbol"
+          label={intl.formatMessage({
+            id: 'pages.wallet.token.symbol.label',
+          })}
+          width="md"
+          placeholder={intl.formatMessage({
+            id: 'pages.wallet.token.symbol.placeholder',
+          })}
         />
 
         <ProFormText
@@ -117,7 +111,7 @@ const WalletTokenModel: FC<WalletTokenModelProps> = (props) => {
         <ProFormDigit name="id" hidden />
       </ModalForm>
 
-      
+
     </>
   );
 };
