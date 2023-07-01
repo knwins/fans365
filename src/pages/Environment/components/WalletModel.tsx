@@ -583,7 +583,48 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               params={{
                 id: currentRow?.id,
               }}
-              columns={columns as ProDescriptionsItemProps<WalletItem>[]}
+              columns={[
+                {
+                  title: <FormattedMessage id="pages.wallet.network" />,
+                  dataIndex: 'network',
+                  valueType: 'select',
+                  fieldProps: { size: 'small' },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.address" />,
+                  valueType: 'text',
+                  dataIndex: 'address',
+                  fieldProps: { size: 'small' },
+                  render: (text, record, _, action) => {
+                    if (record.address) {
+                      return [
+                        <Paragraph copyable title={record.address} ellipsis>{record.address}</Paragraph>
+                      ]
+                    }
+                    return "-";
+                  },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.autotx" />,
+                  dataIndex: 'autoTx',
+                  valueType: 'text',
+                },
+            
+                {
+                  title: <FormattedMessage id="pages.wallet.publickey" />,
+                  dataIndex: 'publickey',
+                  valueType: 'text',
+                  hideInTable: true,
+                  render: (text, record, _, action) => {
+                    if (record.publickey) {
+                      return [
+                        <Paragraph copyable>{record.publickey}</Paragraph>
+                      ]
+                    }
+                    return "-";
+                  },
+                },
+              ]}
             />
 
             {currentRow ? (
@@ -642,7 +683,28 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               params={{
                 id: currentRow?.id,
               }}
-              columns={columns as ProDescriptionsItemProps<WalletItem>[]}
+              columns={[
+                {
+                  title: <FormattedMessage id="pages.wallet.network" />,
+                  dataIndex: 'network',
+                  valueType: 'select',
+                  fieldProps: { size: 'small' },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.address" />,
+                  valueType: 'text',
+                  dataIndex: 'address',
+                  fieldProps: { size: 'small' },
+                  render: (text, record, _, action) => {
+                    if (record.address) {
+                      return [
+                        <Paragraph copyable title={record.address} ellipsis>{record.address}</Paragraph>
+                      ]
+                    }
+                    return "-";
+                  },
+                },
+              ]}
             />
 
             {currentRow ? (
