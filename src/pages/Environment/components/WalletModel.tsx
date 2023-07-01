@@ -418,7 +418,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       width: 200,
       render: (text, record) => {
         return [
-          <Paragraph copyable ellipsis>{record.content}</Paragraph>
+          <Paragraph copyable ellipsis title={record.content}>{record.content}</Paragraph>
         ]
       },
     },
