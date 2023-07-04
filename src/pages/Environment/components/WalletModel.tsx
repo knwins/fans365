@@ -86,6 +86,9 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       width: '150px',
       fieldProps: { size: 'small' },
       valueEnum: {
+        EthereumMain: {
+          text: "EthereumMain",
+        },
         Ethereum: {
           text: "Ethereum",
         },
