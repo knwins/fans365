@@ -268,10 +268,10 @@ export default {
   'pages.wallet.autotx.placeholder': '请输入自动TX',
   'pages.wallet.autotx.required': '请输入自动TX!',
 
-  'pages.wallet.network': '区块链网络',
-  'pages.wallet.network.label': '区块链网络',
-  'pages.wallet.network.placeholder': '请选择区块链网络',
-  'pages.wallet.network.required': '请选择区块链网络!',
+  'pages.wallet.addressformat': '地址格式',
+  'pages.wallet.addressformat.label': '地址格式',
+  'pages.wallet.addressformat.placeholder': '请选择地址格式',
+  'pages.wallet.addressformat.required': '请选择地址格式!',
 
   'pages.wallet.environment': '所属环境',
   'pages.wallet.environment.label': '所属环境',
