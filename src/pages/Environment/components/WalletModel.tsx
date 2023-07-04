@@ -433,7 +433,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       fieldProps: { size: 'small' },
       render: (text, record) => {
         return [
-          <Paragraph><small>{record.walletTXType.name}</small></Paragraph>
+          <Paragraph title={record.walletTXType.name}>{record.walletTXType.name}</Paragraph>
         ]
       },
      
