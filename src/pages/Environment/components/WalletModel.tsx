@@ -5,14 +5,12 @@ import {
   ModalForm,
   ProColumns,
   ProDescriptions,
-  ProDescriptionsItemProps,
   ProFormInstance,
   ProTable,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
 import { Button, Drawer, Form, message, Space, Typography } from 'antd';
 const { Paragraph } = Typography;
-
 import React, { useRef, useState } from 'react';
 import type { EnvironmentItem, WalletItem, WalletParams, WalletTokenItem, WalletTokenParams, WalletTokenTransferItem, WalletLogItem, WalletLogParams } from '../data';
 import { addWalletToken, createWallet, getWalletList, getWalletLogList, getWalletTokenList, refreshWalletToken, removeWallet, removeWalletLog, removeWalletToken, transferWalletToken, updateWallet } from '../service';
@@ -82,24 +80,25 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
   const columns: ProColumns<WalletItem>[] = [
     {
-      title: <FormattedMessage id="pages.wallet.network" />,
-      dataIndex: 'network',
+      title: <FormattedMessage id="pages.wallet.addressformat" />,
+      dataIndex: 'addressFormat',
       valueType: 'select',
       width: '150px',
       fieldProps: { size: 'small' },
       valueEnum: {
         EthereumFormat: {
-          text: "EthereumFormat",
+          text: "Ethereum",
         },
-        SuiFormat: {
-          text: "SuiFormat",
+        Atom: {
+          text: "Atom",
         },
-        AtomFormat: {
-          text: "AtomFormat",
+        Tron: {
+          text: "Tron",
         },
-        APTFormat: {
-          text: "APTFormat",
+        Other: {
+          text: "Other",
         },
+       
       },
       render: (dom, entity) => {
         return (
@@ -511,9 +510,9 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
             form,
             editableKeys,
             onSave: async (rowKey, data) => {
-              if (data.network == undefined) {
+              if (data.addressFormat == undefined) {
                 message.error(intl.formatMessage({
-                  id: 'pages.wallet.network.required',
+                  id: 'pages.wallet.addressformat.required',
                 }));
                 return;
               }
@@ -585,8 +584,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               }}
               columns={[
                 {
-                  title: <FormattedMessage id="pages.wallet.network" />,
-                  dataIndex: 'network',
+                  title: <FormattedMessage id="pages.wallet.addressformat" />,
+                  dataIndex: 'addressformat',
                   valueType: 'select',
                   fieldProps: { size: 'small' },
                 },
@@ -685,8 +684,8 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               }}
               columns={[
                 {
-                  title: <FormattedMessage id="pages.wallet.network" />,
-                  dataIndex: 'network',
+                  title: <FormattedMessage id="pages.wallet.addressformat" />,
+                  dataIndex: 'addressFormat',
                   valueType: 'select',
                   fieldProps: { size: 'small' },
                 },
