@@ -599,9 +599,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
                   fieldProps: { size: 'small' },
                   render: (text, record, _, action) => {
                     if (record.address) {
-                      return [
-                        <Paragraph copyable title={record.address} ellipsis>{record.address}</Paragraph>
-                      ]
+                      return record.address;
                     }
                     return "-";
                   },
@@ -616,16 +614,16 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
                   title: <FormattedMessage id="pages.wallet.publickey" />,
                   dataIndex: 'publickey',
                   valueType: 'text',
+                  ellipsis:true,
                   hideInTable: true,
                   render: (text, record, _, action) => {
                     if (record.publickey) {
-                      return [
-                        <Paragraph copyable>{record.publickey}</Paragraph>
-                      ]
+                      return record.publickey;
                     }
                     return "-";
                   },
                 },
+               
               ]}
             />
 
@@ -696,12 +694,35 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
                   title: <FormattedMessage id="pages.wallet.address" />,
                   valueType: 'text',
                   dataIndex: 'address',
+                  ellipsis:true,
                   fieldProps: { size: 'small' },
                   render: (text, record, _, action) => {
                     if (record.address) {
-                      return [
-                        <Paragraph copyable title={record.address} ellipsis>{record.address}</Paragraph>
-                      ]
+                      return record.address;
+                    }
+                    return "-";
+                  },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.gasfee.total" />,
+                  dataIndex: 'gasFeeTotal',
+                  valueType: 'text',
+                  hideInTable: true,
+                  render: (text, record, _, action) => {
+                    if (record.gasFeeTotal) {
+                      return record.gasFeeTotal+" ETH";
+                    }
+                    return "-";
+                  },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.tx.total" />,
+                  dataIndex: 'txTotal',
+                  valueType: 'text',
+                  hideInTable: true,
+                  render: (text, record, _, action) => {
+                    if (record.txTotal) {
+                      return  record.txTotal;
                     }
                     return "-";
                   },
