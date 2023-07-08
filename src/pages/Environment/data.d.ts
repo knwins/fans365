@@ -114,6 +114,8 @@ export type WalletItem = {
   addressFormat?: string;
   createTime?: Date;
   autoTx?: string;
+  gasFeeTotal?:string;
+  txTotal?:string;
   environmentId?: string;
   lang?: string;
 };
