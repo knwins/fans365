@@ -282,6 +282,8 @@ export default {
 
   'pages.wallet.publickey': 'Publickey key',
   'pages.wallet.password': 'Password',
+  'pages.wallet.gasfee.total':'Gasfee Total',
+  'pages.wallet.tx.total':'HashTX Total',
 
   'pages.wallet.addressformat': 'AddressFormat',
   'pages.wallet.addressformat.label': 'AddressFormat',
