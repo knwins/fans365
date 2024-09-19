@@ -111,9 +111,11 @@ export type WalletItem = {
   mnemonic?: string;
   privatekey?: string;
   publickey?: string;
-  network?: string;
+  addressFormat?: string;
   createTime?: Date;
   autoTx?: string;
+  gasFeeTotal?:string;
+  txTotal?:string;
   environmentId?: string;
   lang?: string;
 };

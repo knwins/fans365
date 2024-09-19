@@ -1,9 +1,9 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from '@umijs/max';
-import host from '../../host';
+import host from '@/host';
 //console.log(host.api);
-/** 发送验证码 POST /api/login/captcha */
+/** 发送验证码 POST  */
 export async function getFakeCaptcha(
   params: {
     // query

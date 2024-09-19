@@ -9,23 +9,23 @@ import host from '../../host';
 export async function currentUser(options?: { [key: string]: any }) {
   return request<{
     data: API.CurrentUser;
-  }>(host.api+'api/users/current', {
+  }>(host.api+'api/user/current', {
     method: 'GET',
     ...(options || {}),
   });
 }
 
-/** 退出登录接口 POST /api/login/outLogin */
+/** 退出登录接口 POST */
 export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>(host.api+'api/login/outLogin', {
+  return request<Record<string, any>>(host.api+'api/user/outLogin', {
     method: 'POST',
     ...(options || {}),
   });
 }
 
-/** 登录接口 POST /api/login/account */
+/** 登录接口 POST  */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>(host.api+'api/login/account', {
+  return request<API.LoginResult>(host.api+'api/user/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

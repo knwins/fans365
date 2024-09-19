@@ -95,7 +95,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
       render: (text, record, _, action) => {
         if (record.username) {
           return [
-            <Paragraph copyable>{record.username}</Paragraph>
+            <Paragraph copyable title={record.username} ellipsis>{record.username}</Paragraph>
           ]
         }
         return "-";
@@ -108,7 +108,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
       render: (text, record, _, action) => {
         if (record.password) {
           return [
-            <Paragraph copyable>{record.password}</Paragraph>
+            <Paragraph copyable title={record.password} ellipsis>{record.password}</Paragraph>
           ]
         }
         return "-";
@@ -121,7 +121,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
       render: (text, record, _, action) => {
         if (record.telephone) {
           return [
-            <Paragraph copyable>{record.telephone}</Paragraph>
+            <Paragraph copyable title={record.telephone} ellipsis>{record.telephone}</Paragraph>
           ]
         }
         return "-";
@@ -135,7 +135,7 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
       render: (text, record, _, action) => {
         if (record.email) {
           return [
-            <Paragraph copyable>{record.email}</Paragraph>
+            <Paragraph copyable title={record.email} ellipsis>{record.email}</Paragraph>
           ]
         }
         return "-";
@@ -145,6 +145,8 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
       title: <FormattedMessage id="pages.accounts.status" />,
       dataIndex: 'status',
       valueType: 'select',
+      width:'100',
+      align:'center',
       valueEnum: {
         Normal: {
           text: <FormattedMessage id="pages.accounts.status.normal" />,
@@ -165,6 +167,8 @@ const AccountsModal: FC<AccountModalProps> = (props) => {
       title: <FormattedMessage id="pages.option" />,
       valueType: 'option',
       width: '160px',
+      width:'100',
+      align:'center',
       render: (text, record, _, action) => [
         <a
           key="editable"

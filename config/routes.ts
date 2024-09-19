@@ -76,6 +76,7 @@ export default [
     path: '/dashboard',
     name: 'dashboard',
     icon: 'dashboard',
+    access: 'AdminGroup',
     routes: [
       {
         path: '/dashboard',
@@ -99,13 +100,13 @@ export default [
         component: './Goods/list',
         access: 'AdminGroup',
       },
-      {
-        name: 'goodsShow',
-        icon: 'smile',
-        path: '/dashboard/goods/userlist',
-        component: './Goods/userList',
-        access: 'UserGroup',
-      },
+      // {
+      //   name: 'goodsShow',
+      //   icon: 'smile',
+      //   path: '/dashboard/goods/userlist',
+      //   component: './Goods/userList',
+      //   access: 'UserGroup',
+      // },
       {
         name: 'goodsShow',
         icon: 'smile',
@@ -122,21 +123,21 @@ export default [
         component: './Orders/list',
         access: 'AdminGroup',
       },
-      {
-        name: 'myOrders',
-        icon: 'smile',
-        path: '/dashboard/orders/userlist',
-        component: './Orders/userList',
-        access: 'UserGroup',
-      },
+      // {
+      //   name: 'myOrders',
+      //   icon: 'smile',
+      //   path: '/dashboard/orders/userlist',
+      //   component: './Orders/userList',
+      //   access: 'UserGroup',
+      // },
 
-      {
-        name: 'rushOrders',
-        icon: 'smile',
-        path: '/dashboard/orders/userPushList',
-        component: './Orders/userPushList',
-        access: 'UserGroup',
-      },
+      // {
+      //   name: 'rushOrders',
+      //   icon: 'smile',
+      //   path: '/dashboard/orders/userPushList',
+      //   component: './Orders/userPushList',
+      //   access: 'UserGroup',
+      // },
 
       {
         name: 'rushOrders',
@@ -156,12 +157,12 @@ export default [
         component: './Bill',
         access: 'AdminGroup',
       },
-      {
-        name: 'myBill',
-        path: '/dashboard/bill/userlist',
-        component: './Bill/userList',
-        access: 'UserGroup',
-      },
+      // {
+      //   name: 'myBill',
+      //   path: '/dashboard/bill/userlist',
+      //   component: './Bill/userList',
+      //   access: 'UserGroup',
+      // },
       {
         name: 'myBill',
         icon: 'smile',
@@ -185,13 +186,13 @@ export default [
         component: './Bind/merchantList',
         access: 'MerchantGroup',
       },
-      {
-        name: 'myBind',
-        icon: 'smile',
-        path: '/dashboard/bind/userList',
-        component: './Bind/userList',
-        access: 'UserGroup',
-      },
+      // {
+      //   name: 'myBind',
+      //   icon: 'smile',
+      //   path: '/dashboard/bind/userList',
+      //   component: './Bind/userList',
+      //   access: 'UserGroup',
+      // },
       //---------------------------------TSTask管理----------------------------
 
       {
@@ -208,13 +209,13 @@ export default [
         component: './TSTask/merchantList',
         access: 'MerchantGroup',
       },
-      {
-        name: 'myTSTask',
-        icon: 'smile',
-        path: '/dashboard/tstask/userList',
-        component: './TSTask/userList',
-        access: 'UserGroup',
-      },
+      // {
+      //   name: 'myTSTask',
+      //   icon: 'smile',
+      //   path: '/dashboard/tstask/userList',
+      //   component: './TSTask/userList',
+      //   access: 'UserGroup',
+      // },
       //---------------------------------Users管理----------------------------
       {
         name: 'usersManage',
@@ -241,7 +242,6 @@ export default [
     name: 'environment',
     icon: 'chrome',
     path: '/environment',
-    access: 'AdminGroup',
     routes: [
       {
         path: '/environment',
@@ -284,6 +284,8 @@ export default [
       },
     ],
   },
+
+  
 
   {
     name: 'account',

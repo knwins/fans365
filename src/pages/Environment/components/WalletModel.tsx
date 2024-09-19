@@ -5,16 +5,14 @@ import {
   ModalForm,
   ProColumns,
   ProDescriptions,
-  ProDescriptionsItemProps,
   ProFormInstance,
   ProTable,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
 import { Button, Drawer, Form, message, Space, Typography } from 'antd';
 const { Paragraph } = Typography;
-
 import React, { useRef, useState } from 'react';
-import type { EnvironmentItem, WalletItem, WalletParams, WalletTokenItem, WalletTokenParams, WalletTokenTransferItem,WalletLogItem, WalletLogParams } from '../data';
+import type { EnvironmentItem, WalletItem, WalletParams, WalletTokenItem, WalletTokenParams, WalletTokenTransferItem, WalletLogItem, WalletLogParams } from '../data';
 import { addWalletToken, createWallet, getWalletList, getWalletLogList, getWalletTokenList, refreshWalletToken, removeWallet, removeWalletLog, removeWalletToken, transferWalletToken, updateWallet } from '../service';
 import styles from '../style.less';
 import WalletTokenModel from './WalletTokenModel';
@@ -47,7 +45,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   const intl = useIntl();
   const actionRef = useRef<ActionType>();
   const actionRefToken = useRef<ActionType>();
-  const actionRefLog= useRef<ActionType>();
+  const actionRefLog = useRef<ActionType>();
 
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   const [dataSource, setDataSource] = useState<WalletItem[]>([]);
@@ -56,7 +54,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
   const [currentRow, setCurrentRow] = useState<WalletItem>();
 
   const [showLogs, setShowLogs] = useState<boolean>(false);
-  
+
 
   const [tokenUI, setTokenUI] = useState<boolean>(false);
 
@@ -82,24 +80,28 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
   const columns: ProColumns<WalletItem>[] = [
     {
-      title: <FormattedMessage id="pages.wallet.network" />,
-      dataIndex: 'network',
+      title: <FormattedMessage id="pages.wallet.addressformat" />,
+      dataIndex: 'addressFormat',
       valueType: 'select',
       width: '150px',
       fieldProps: { size: 'small' },
       valueEnum: {
-        EthereumFormat: {
-          text: "EthereumFormat",
+        EthereumMain: {
+          text: "EthereumMain",
         },
-        SuiFormat: {
-          text: "SuiFormat",
+        Ethereum: {
+          text: "Ethereum",
         },
-        AtomFormat: {
-          text: "AtomFormat",
+        Atom: {
+          text: "Atom",
         },
-        APTFormat: {
-          text: "APTFormat",
+        Tron: {
+          text: "Tron",
         },
+        Other: {
+          text: "Other",
+        },
+       
       },
       render: (dom, entity) => {
         return (
@@ -119,10 +121,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.address" />,
       valueType: 'text',
       dataIndex: 'address',
+      fieldProps: { size: 'small' },
       render: (text, record, _, action) => {
         if (record.address) {
           return [
-            <Paragraph copyable><small>{record.address}</small></Paragraph>
+            <Paragraph copyable title={record.address} ellipsis>{record.address}</Paragraph>
           ]
         }
         return "-";
@@ -133,10 +136,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.mnemonic" />,
       dataIndex: 'mnemonic',
       valueType: 'textarea',
+      fieldProps: { size: 'small' },
       render: (text, record, _, action) => {
         if (record.mnemonic) {
           return [
-            <Paragraph copyable><small>{record.mnemonic}</small></Paragraph>
+            <Paragraph copyable title={record.mnemonic} ellipsis>{record.mnemonic}</Paragraph>
           ]
         }
         return "-";
@@ -147,10 +151,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.privatekey" />,
       dataIndex: 'privatekey',
       valueType: 'textarea',
+      fieldProps: { size: 'small' },
       render: (text, record, _, action) => {
         if (record.privatekey) {
           return [
-            <Paragraph copyable><small>{record.privatekey}</small></Paragraph>
+            <Paragraph copyable title={record.privatekey} ellipsis>{record.privatekey}</Paragraph>
           ]
         }
         return "-";
@@ -182,7 +187,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       render: (text, record, _, action) => {
         if (record.publickey) {
           return [
-            <Paragraph copyable><small>{record.publickey}</small></Paragraph>
+            <Paragraph copyable>{record.publickey}</Paragraph>
           ]
         }
         return "-";
@@ -206,11 +211,11 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
           <FormattedMessage id="pages.edit" />
         </a>,
         <a
-        onClick={() => {
-          setCurrentRow(record);
-          setShowLogs(true);
-        }}
-      >
+          onClick={() => {
+            setCurrentRow(record);
+            setShowLogs(true);
+          }}
+        >
           <FormattedMessage id="pages.logs" />
         </a>
       ],
@@ -230,7 +235,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       const loadingHiddle = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        }),0
+        }), 0
       );
       //walletId
       fields.walletId = currentRow?.id;
@@ -264,17 +269,17 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
   const handleTransferSubmit = async (fields: WalletTokenTransferItem) => {
     try {
-      const loadingShow= message.loading(
+      const loadingShow = message.loading(
         intl.formatMessage({
           id: 'pages.tip.loading',
-        },),0
+        },), 0
       );
       const { status, info } = await transferWalletToken({ ...fields });
       loadingShow();
       if (status) {
         message.success(info);
         if (actionRefToken.current) {
-          actionRefToken.current.reload(); 
+          actionRefToken.current.reload();
         }
         handleDone();
       }
@@ -350,7 +355,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
         <a
           key="refresh"
-          onClick={async () => { 
+          onClick={async () => {
             setTransferStatusUI(true);
             setCurrentRowToken(record);
             return;
@@ -395,14 +400,14 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
 
   //------------------------------------walletLog-----------------------
   const walletLogColumns: ProColumns<WalletLogItem>[] = [
-    
-     
+
+
 
     {
       title: <FormattedMessage id="pages.wallet.log.createTime" />,
       dataIndex: 'createTime',
       valueType: 'dateTime',
-      width: '120px',
+      width:'140px',
       fieldProps: { size: 'small' },
     },
 
@@ -410,7 +415,14 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       title: <FormattedMessage id="pages.wallet.log.content" />,
       dataIndex: 'content',
       valueType: 'text',
-      align: 'center'
+      fieldProps: { size: 'small',width:'200px'},
+      align: 'left',
+      width: 200,
+      render: (text, record) => {
+        return [
+          <Paragraph copyable ellipsis title={record.content}>{record.content}</Paragraph>
+        ]
+      },
     },
 
     {
@@ -418,19 +430,24 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
       dataIndex: 'walletTXTypeName',
       valueType: 'text',
       align: 'center',
+      width: 100,
+      ellipsis: true,
+      fieldProps: { size: 'small' },
       render: (text, record) => {
-          return [<Paragraph><small>{record.walletTXType.name}</small></Paragraph>];
+        return [
+          <Paragraph title={record.walletTXType.name} ellipsis>{record.walletTXType.name}</Paragraph>
+        ]
       },
+     
     },
 
- 
+
     {
       title: <FormattedMessage id="pages.option" />,
       valueType: 'option',
-      width: '100px',
       align: 'center',
+      fieldProps: { size: 'small' },
       render: (text, record, _, action) => [
-         
         <a
           key="delete"
           onClick={async () => {
@@ -454,7 +471,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
     walletId: currentRow?.id,
   };
 
- 
+
 
   //------------------------------------walletLog end-----------------------
 
@@ -473,7 +490,7 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
         trigger={<>{children}</>}
         modalProps={{
           //onCancel: () => onDone(),
-          onCancel: () => { 
+          onCancel: () => {
             setEditableRowKeys([]); // 把 EditableProTable 组件中 setEditableRowKeys(可编辑行的key)的值清空
             onDone();
           },
@@ -496,9 +513,9 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
             form,
             editableKeys,
             onSave: async (rowKey, data) => {
-              if (data.network == undefined) {
+              if (data.addressFormat == undefined) {
                 message.error(intl.formatMessage({
-                  id: 'pages.wallet.network.required',
+                  id: 'pages.wallet.addressformat.required',
                 }));
                 return;
               }
@@ -568,7 +585,46 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               params={{
                 id: currentRow?.id,
               }}
-              columns={columns as ProDescriptionsItemProps<WalletItem>[]}
+              columns={[
+                {
+                  title: <FormattedMessage id="pages.wallet.addressformat" />,
+                  dataIndex: 'addressformat',
+                  valueType: 'select',
+                  fieldProps: { size: 'small' },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.address" />,
+                  valueType: 'text',
+                  dataIndex: 'address',
+                  fieldProps: { size: 'small' },
+                  render: (text, record, _, action) => {
+                    if (record.address) {
+                      return record.address;
+                    }
+                    return "-";
+                  },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.autotx" />,
+                  dataIndex: 'autoTx',
+                  valueType: 'text',
+                },
+            
+                {
+                  title: <FormattedMessage id="pages.wallet.publickey" />,
+                  dataIndex: 'publickey',
+                  valueType: 'text',
+                  ellipsis:true,
+                  hideInTable: true,
+                  render: (text, record, _, action) => {
+                    if (record.publickey) {
+                      return record.publickey;
+                    }
+                    return "-";
+                  },
+                },
+               
+              ]}
             />
 
             {currentRow ? (
@@ -627,7 +683,51 @@ const WalletModal: React.FC<WalletModelProps> = (props) => {
               params={{
                 id: currentRow?.id,
               }}
-              columns={columns as ProDescriptionsItemProps<WalletItem>[]}
+              columns={[
+                {
+                  title: <FormattedMessage id="pages.wallet.addressformat" />,
+                  dataIndex: 'addressFormat',
+                  valueType: 'select',
+                  fieldProps: { size: 'small' },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.address" />,
+                  valueType: 'text',
+                  dataIndex: 'address',
+                  ellipsis:true,
+                  fieldProps: { size: 'small' },
+                  render: (text, record, _, action) => {
+                    if (record.address) {
+                      return record.address;
+                    }
+                    return "-";
+                  },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.gasfee.total" />,
+                  dataIndex: 'gasFeeTotal',
+                  valueType: 'text',
+                  hideInTable: true,
+                  render: (text, record, _, action) => {
+                    if (record.gasFeeTotal) {
+                      return record.gasFeeTotal+" ETH";
+                    }
+                    return "-";
+                  },
+                },
+                {
+                  title: <FormattedMessage id="pages.wallet.tx.total" />,
+                  dataIndex: 'txTotal',
+                  valueType: 'text',
+                  hideInTable: true,
+                  render: (text, record, _, action) => {
+                    if (record.txTotal) {
+                      return  record.txTotal;
+                    }
+                    return "-";
+                  },
+                },
+              ]}
             />
 
             {currentRow ? (

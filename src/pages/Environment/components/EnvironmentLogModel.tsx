@@ -103,7 +103,7 @@ const EnvironmentLogModal: FC<EnvironmentLogModalProps> = (props) => {
   const params: EnvironmentLogParams = {
     environmentId: current?.id,
     sorter: 'DESC',
-    filter:'createTime',
+    filter:'create_time',
   };
  
   const paginationProps = {

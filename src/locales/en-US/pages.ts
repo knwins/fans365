@@ -282,11 +282,13 @@ export default {
 
   'pages.wallet.publickey': 'Publickey key',
   'pages.wallet.password': 'Password',
+  'pages.wallet.gasfee.total':'Gasfee Total',
+  'pages.wallet.tx.total':'HashTX Total',
 
-  'pages.wallet.network': 'Network',
-  'pages.wallet.network.label': 'Network',
-  'pages.wallet.network.placeholder': 'Please enter Network',
-  'pages.wallet.network.required': 'Please enter Network!',
+  'pages.wallet.addressformat': 'AddressFormat',
+  'pages.wallet.addressformat.label': 'AddressFormat',
+  'pages.wallet.addressformat.placeholder': 'Please enter AddressFormat',
+  'pages.wallet.addressformat.required': 'Please enter AddressFormat!',
 
   'pages.wallet.environment': 'Environment',
   'pages.wallet.environment.label': 'Environment',

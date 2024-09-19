@@ -43,7 +43,7 @@
       },
       "x-swagger-router-controller": "api"
     },
-    "/api/login/captcha": {
+    "/api/user/captcha": {
       "post": {
         "description": "发送验证码",
         "operationId": "getFakeCaptcha",
@@ -102,7 +102,7 @@
       },
       "x-swagger-router-controller": "api"
     },
-    "/api/login/account": {
+    "/api/user/login": {
       "post": {
         "tags": ["login"],
         "description": "登录接口",

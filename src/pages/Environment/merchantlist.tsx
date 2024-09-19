@@ -12,7 +12,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType } from '@ant-design/pro-table';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, Dropdown, message, Space, Tag, Menu, } from 'antd';
+import { Button, Drawer, Dropdown, message, Space, Tag, Menu, Typography } from 'antd';
+const { Paragraph } = Typography;
 import 'antd/dist/antd.css';
 import type { FC } from 'react';
 import { useRef, useState } from 'react';
@@ -31,6 +32,7 @@ import {
   createFromIconfontCN, WalletFilled, MailFilled, TwitterOutlined, PhoneOutlined, GoogleOutlined,
   ArrowUpOutlined, ArrowDownOutlined, SketchOutlined, DownOutlined
 } from '@ant-design/icons';
+
 
 const Icon = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_3745975_od931newm2.js', // 在 iconfont.cn 上生成
@@ -149,8 +151,8 @@ export const EnvironmentList: FC = () => {
                 actionRef.current?.reload();
               }
             }
-           // else if (key == "goDown") {
-            else{
+            // else if (key == "goDown") {
+            else {
               item.sortAction = "sortDown";
               const { status, info } = await updateEnvironment(item);
               if (status) {
@@ -243,7 +245,7 @@ export const EnvironmentList: FC = () => {
             record.walletLabels?.map(({ name, color, icon }) => (
               <Tag color={color} key={name} icon={<WalletFilled />}>
                 {name}
-              </Tag>
+              </Tag> 
             ))
           }
         </Space>

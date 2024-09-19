@@ -1,4 +1,5 @@
+//https://api.fans365.net:8083/
 export default {
-    api:"http://192.168.1.6:8081/",name:"Fans365.net" 
+    api:"https://fansapi.szqws.com:8083/",name:"Fans365.net" 
   };
   

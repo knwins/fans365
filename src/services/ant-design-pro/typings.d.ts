@@ -55,6 +55,11 @@ declare namespace API {
     status?: string;
   };
 
+  type CaptchaParams = {
+    username?: string;
+    lang?: string;
+  };
+
   type LoginParams = {
     username?: string;
     password?: string;

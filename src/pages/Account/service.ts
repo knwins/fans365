@@ -6,16 +6,9 @@ import host from '../../host';
 import type { UserItem } from '../User/data';
 
 export async function queryCurrent(): Promise<{ data: UserItem }> {
-  return request(host.api+'api/users/current');
+  return request(host.api+'api/user/current');
 }
-
-// export async function queryProvince(): Promise<{ data: GeographicItem[] }> {
-//   return request(host.api+'api/geographic/province');
-// }
-
-// export async function queryCity(province: string): Promise<{ data: GeographicItem[] }> {
-//   return request(`http://192.168.1.6:8081/api/geographic/city?province=${province}`);
-// }
+ 
 
 /** 更新PUT /api/user/update */
 export async function updateUser(data: { [id: string]: any }, options?: { [id: string]: any }) {

@@ -12,7 +12,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType } from '@ant-design/pro-table';
 import { FormattedMessage, useIntl } from '@umijs/max';
-import { Button, Drawer, Dropdown, message, Space, Tag, Menu, } from 'antd';
+import { Button, Drawer, Dropdown, message, Space, Tag, Menu,Typography } from 'antd';
+ const { Paragraph } = Typography;
 import 'antd/dist/antd.css';
 import type { FC } from 'react';
 import { useRef, useState } from 'react';
@@ -233,13 +234,13 @@ export const EnvironmentList: FC = () => {
       hideInSearch: true,
       align: 'left',
       render: (_, record) => (
-        <Space size={[8, 2]} wrap>
+        <Space size={[8, 2]} wrap >
 
           {
             record.walletLabels?.map(({ name, color, icon }) => (
               <Tag color={color} key={name} icon={<WalletFilled />}>
                 {name}
-              </Tag>
+              </Tag> 
             ))
           }
         </Space>
